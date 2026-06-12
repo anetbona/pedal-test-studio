@@ -1,0 +1,1242 @@
+[
+  {
+    "id": "boss-bd-2",
+    "name": "BD-2 Blues Driver",
+    "manufacturer": "Boss",
+    "manufacturerLogo": "/img/logos/boss.svg",
+    "type": "overdrive",
+    "image": "/img/boss-bd-2.svg",
+    "description": "Klasyczny bluesowy overdrive produkowany nieprzerwanie od 1995 roku. Reaguje na dynamikę gry jak wzmacniacz lampowy — od czystego boostu, przez lekkie podbicie, po kremowy crunch. Świetnie zachowuje charakter gitary i przetworników, dzięki czemu sprawdza się jako efekt „always-on\". Ulubieniec bluesa, rocka i indie.",
+    "knobs": [
+      {
+        "id": "level",
+        "label": "Level",
+        "role": "level",
+        "x": 0.2261,
+        "y": 0.11,
+        "size": 0.1696,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "tone",
+        "label": "Tone",
+        "role": "tone",
+        "x": 0.5,
+        "y": 0.11,
+        "size": 0.1696,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "gain",
+        "label": "Gain",
+        "role": "gain",
+        "x": 0.7739,
+        "y": 0.11,
+        "size": 0.1696,
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "affiliateLinks": [
+      {
+        "store": "Boss (producent)",
+        "url": "https://www.boss.info/global/products/bd-2/?aff=pedalteststudio",
+        "order": 1
+      },
+      {
+        "store": "Sweetwater",
+        "url": "https://www.sweetwater.com/store/search.php?s=Boss%20BD-2%20Blues%20Driver&aff=pedalteststudio",
+        "order": 2
+      },
+      {
+        "store": "GuitarCenter.pl",
+        "url": "https://guitarcenter.pl/szukaj?q=Boss%20BD-2%20Blues%20Driver&aff=pedalteststudio",
+        "order": 3
+      },
+      {
+        "store": "Guitar Center",
+        "url": "https://www.guitarcenter.com/search?Ntt=Boss%20BD-2%20Blues%20Driver&aff=pedalteststudio",
+        "order": 4
+      }
+    ],
+    "recordings": [
+      {
+        "id": "boss-bd-2-g2-t2-l6",
+        "file": "/audio/boss-bd-2/2-2-6.wav",
+        "label": "Gain 2 · Tone 2 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 2,
+          "gain": 2
+        }
+      },
+      {
+        "id": "boss-bd-2-g2-t6-l6",
+        "file": "/audio/boss-bd-2/2-6-6.wav",
+        "label": "Gain 2 · Tone 6 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 6,
+          "gain": 2
+        }
+      },
+      {
+        "id": "boss-bd-2-g2-t9-l6",
+        "file": "/audio/boss-bd-2/2-9-6.wav",
+        "label": "Gain 2 · Tone 9 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 9,
+          "gain": 2
+        }
+      },
+      {
+        "id": "boss-bd-2-g6-t2-l6",
+        "file": "/audio/boss-bd-2/6-2-6.wav",
+        "label": "Gain 6 · Tone 2 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 2,
+          "gain": 6
+        }
+      },
+      {
+        "id": "boss-bd-2-g6-t6-l6",
+        "file": "/audio/boss-bd-2/6-6-6.wav",
+        "label": "Gain 6 · Tone 6 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 6,
+          "gain": 6
+        }
+      },
+      {
+        "id": "boss-bd-2-g6-t9-l6",
+        "file": "/audio/boss-bd-2/6-9-6.wav",
+        "label": "Gain 6 · Tone 9 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 9,
+          "gain": 6
+        }
+      },
+      {
+        "id": "boss-bd-2-g9-t2-l6",
+        "file": "/audio/boss-bd-2/9-2-6.wav",
+        "label": "Gain 9 · Tone 2 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 2,
+          "gain": 9
+        }
+      },
+      {
+        "id": "boss-bd-2-g9-t6-l6",
+        "file": "/audio/boss-bd-2/9-6-6.wav",
+        "label": "Gain 9 · Tone 6 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 6,
+          "gain": 9
+        }
+      },
+      {
+        "id": "boss-bd-2-g9-t9-l6",
+        "file": "/audio/boss-bd-2/9-9-6.wav",
+        "label": "Gain 9 · Tone 9 · Level 6",
+        "knobValues": {
+          "level": 6,
+          "tone": 9,
+          "gain": 9
+        }
+      }
+    ]
+  },
+  {
+    "id": "ibanez-ts9",
+    "name": "TS9 Tube Screamer",
+    "manufacturer": "Ibanez",
+    "manufacturerLogo": "/img/logos/ibanez.svg",
+    "type": "overdrive",
+    "image": "/img/ibanez-ts9.svg",
+    "description": "Legendarny overdrive z charakterystycznym podbiciem środka pasma — od niego zaczęła się historia „tube screamerów\". Idealny do pchania lampowego wzmacniacza w naturalne przesterowanie. Środek przebija się przez miks, a dół pozostaje zwarty i konkretny. Brzmienie znane m.in. z nagrań Steviego Raya Vaughana.",
+    "knobs": [
+      {
+        "id": "drive",
+        "label": "Drive",
+        "role": "gain",
+        "x": 0.25,
+        "y": 0.1075,
+        "size": 0.1583,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "tone",
+        "label": "Tone",
+        "role": "tone",
+        "x": 0.5,
+        "y": 0.19,
+        "size": 0.1292,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "level",
+        "label": "Level",
+        "role": "level",
+        "x": 0.75,
+        "y": 0.1075,
+        "size": 0.1583,
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "affiliateLinks": [
+      {
+        "store": "Ibanez (producent)",
+        "url": "https://www.ibanez.com/usa/products/detail/ts9_02.html?aff=pedalteststudio",
+        "order": 1
+      },
+      {
+        "store": "Sweetwater",
+        "url": "https://www.sweetwater.com/store/search.php?s=Ibanez%20TS9%20Tube%20Screamer&aff=pedalteststudio",
+        "order": 2
+      },
+      {
+        "store": "GuitarCenter.pl",
+        "url": "https://guitarcenter.pl/szukaj?q=Ibanez%20TS9%20Tube%20Screamer&aff=pedalteststudio",
+        "order": 3
+      },
+      {
+        "store": "Guitar Center",
+        "url": "https://www.guitarcenter.com/search?Ntt=Ibanez%20TS9%20Tube%20Screamer&aff=pedalteststudio",
+        "order": 4
+      }
+    ],
+    "recordings": [
+      {
+        "id": "ibanez-ts9-g2-t2-l6",
+        "file": "/audio/ibanez-ts9/2-2-6.wav",
+        "label": "Drive 2 · Tone 2 · Level 6",
+        "knobValues": {
+          "drive": 2,
+          "tone": 2,
+          "level": 6
+        }
+      },
+      {
+        "id": "ibanez-ts9-g2-t6-l6",
+        "file": "/audio/ibanez-ts9/2-6-6.wav",
+        "label": "Drive 2 · Tone 6 · Level 6",
+        "knobValues": {
+          "drive": 2,
+          "tone": 6,
+          "level": 6
+        }
+      },
+      {
+        "id": "ibanez-ts9-g2-t9-l6",
+        "file": "/audio/ibanez-ts9/2-9-6.wav",
+        "label": "Drive 2 · Tone 9 · Level 6",
+        "knobValues": {
+          "drive": 2,
+          "tone": 9,
+          "level": 6
+        }
+      },
+      {
+        "id": "ibanez-ts9-g6-t2-l6",
+        "file": "/audio/ibanez-ts9/6-2-6.wav",
+        "label": "Drive 6 · Tone 2 · Level 6",
+        "knobValues": {
+          "drive": 6,
+          "tone": 2,
+          "level": 6
+        }
+      },
+      {
+        "id": "ibanez-ts9-g6-t6-l6",
+        "file": "/audio/ibanez-ts9/6-6-6.wav",
+        "label": "Drive 6 · Tone 6 · Level 6",
+        "knobValues": {
+          "drive": 6,
+          "tone": 6,
+          "level": 6
+        }
+      },
+      {
+        "id": "ibanez-ts9-g6-t9-l6",
+        "file": "/audio/ibanez-ts9/6-9-6.wav",
+        "label": "Drive 6 · Tone 9 · Level 6",
+        "knobValues": {
+          "drive": 6,
+          "tone": 9,
+          "level": 6
+        }
+      },
+      {
+        "id": "ibanez-ts9-g9-t2-l6",
+        "file": "/audio/ibanez-ts9/9-2-6.wav",
+        "label": "Drive 9 · Tone 2 · Level 6",
+        "knobValues": {
+          "drive": 9,
+          "tone": 2,
+          "level": 6
+        }
+      },
+      {
+        "id": "ibanez-ts9-g9-t6-l6",
+        "file": "/audio/ibanez-ts9/9-6-6.wav",
+        "label": "Drive 9 · Tone 6 · Level 6",
+        "knobValues": {
+          "drive": 9,
+          "tone": 6,
+          "level": 6
+        }
+      },
+      {
+        "id": "ibanez-ts9-g9-t9-l6",
+        "file": "/audio/ibanez-ts9/9-9-6.wav",
+        "label": "Drive 9 · Tone 9 · Level 6",
+        "knobValues": {
+          "drive": 9,
+          "tone": 9,
+          "level": 6
+        }
+      }
+    ]
+  },
+  {
+    "id": "fulltone-ocd",
+    "name": "OCD V2",
+    "manufacturer": "Fulltone",
+    "manufacturerLogo": "/img/logos/fulltone.svg",
+    "type": "overdrive",
+    "image": "/img/fulltone-ocd.svg",
+    "description": "Dynamiczny overdrive o wyjątkowo szerokim zakresie gainu — od czystego boostu po brzmienia graniczące z distortion. Przełącznik HP/LP zmienia charakter z transparentnego na bardziej agresywny. Doskonale współpracuje z potencjometrem głośności gitary. Jeden z najczęściej kopiowanych układów ostatnich dekad.",
+    "knobs": [
+      {
+        "id": "volume",
+        "label": "Volume",
+        "role": "level",
+        "x": 0.2261,
+        "y": 0.1098,
+        "size": 0.1609,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "drive",
+        "label": "Drive",
+        "role": "gain",
+        "x": 0.5,
+        "y": 0.1098,
+        "size": 0.1609,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "tone",
+        "label": "Tone",
+        "role": "tone",
+        "x": 0.7739,
+        "y": 0.1098,
+        "size": 0.1609,
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "affiliateLinks": [
+      {
+        "store": "Fulltone (producent)",
+        "url": "https://www.fulltone.com/products/ocd?aff=pedalteststudio",
+        "order": 1
+      },
+      {
+        "store": "Sweetwater",
+        "url": "https://www.sweetwater.com/store/search.php?s=Fulltone%20OCD%20V2&aff=pedalteststudio",
+        "order": 2
+      },
+      {
+        "store": "GuitarCenter.pl",
+        "url": "https://guitarcenter.pl/szukaj?q=Fulltone%20OCD%20V2&aff=pedalteststudio",
+        "order": 3
+      },
+      {
+        "store": "Guitar Center",
+        "url": "https://www.guitarcenter.com/search?Ntt=Fulltone%20OCD%20V2&aff=pedalteststudio",
+        "order": 4
+      }
+    ],
+    "recordings": [
+      {
+        "id": "fulltone-ocd-g2-t2-l6",
+        "file": "/audio/fulltone-ocd/2-2-6.wav",
+        "label": "Drive 2 · Tone 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 2,
+          "tone": 2
+        }
+      },
+      {
+        "id": "fulltone-ocd-g2-t6-l6",
+        "file": "/audio/fulltone-ocd/2-6-6.wav",
+        "label": "Drive 2 · Tone 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 2,
+          "tone": 6
+        }
+      },
+      {
+        "id": "fulltone-ocd-g2-t9-l6",
+        "file": "/audio/fulltone-ocd/2-9-6.wav",
+        "label": "Drive 2 · Tone 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 2,
+          "tone": 9
+        }
+      },
+      {
+        "id": "fulltone-ocd-g6-t2-l6",
+        "file": "/audio/fulltone-ocd/6-2-6.wav",
+        "label": "Drive 6 · Tone 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 6,
+          "tone": 2
+        }
+      },
+      {
+        "id": "fulltone-ocd-g6-t6-l6",
+        "file": "/audio/fulltone-ocd/6-6-6.wav",
+        "label": "Drive 6 · Tone 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 6,
+          "tone": 6
+        }
+      },
+      {
+        "id": "fulltone-ocd-g6-t9-l6",
+        "file": "/audio/fulltone-ocd/6-9-6.wav",
+        "label": "Drive 6 · Tone 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 6,
+          "tone": 9
+        }
+      },
+      {
+        "id": "fulltone-ocd-g9-t2-l6",
+        "file": "/audio/fulltone-ocd/9-2-6.wav",
+        "label": "Drive 9 · Tone 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 9,
+          "tone": 2
+        }
+      },
+      {
+        "id": "fulltone-ocd-g9-t6-l6",
+        "file": "/audio/fulltone-ocd/9-6-6.wav",
+        "label": "Drive 9 · Tone 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 9,
+          "tone": 6
+        }
+      },
+      {
+        "id": "fulltone-ocd-g9-t9-l6",
+        "file": "/audio/fulltone-ocd/9-9-6.wav",
+        "label": "Drive 9 · Tone 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "drive": 9,
+          "tone": 9
+        }
+      }
+    ]
+  },
+  {
+    "id": "ehx-soul-food",
+    "name": "Soul Food",
+    "manufacturer": "Electro-Harmonix",
+    "manufacturerLogo": "/img/logos/electro-harmonix.svg",
+    "type": "overdrive",
+    "image": "/img/ehx-soul-food.svg",
+    "description": "Transparentny overdrive inspirowany legendarnym i niemal niedostępnym Klonem Centaur. Dodaje czystego headroomu i otwartego, dźwięcznego charakteru bez zabarwiania brzmienia gitary. Świetny jako boost przed innym przesterem albo jako delikatny crunch. Ogromna wartość w przystępnej cenie.",
+    "knobs": [
+      {
+        "id": "volume",
+        "label": "Volume",
+        "role": "level",
+        "x": 0.25,
+        "y": 0.1051,
+        "size": 0.15,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "treble",
+        "label": "Treble",
+        "role": "tone",
+        "x": 0.5,
+        "y": 0.1923,
+        "size": 0.125,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "drive",
+        "label": "Drive",
+        "role": "gain",
+        "x": 0.75,
+        "y": 0.1051,
+        "size": 0.15,
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "affiliateLinks": [
+      {
+        "store": "Electro-Harmonix (producent)",
+        "url": "https://www.ehx.com/products/soul-food/?aff=pedalteststudio",
+        "order": 1
+      },
+      {
+        "store": "Sweetwater",
+        "url": "https://www.sweetwater.com/store/search.php?s=Electro-Harmonix%20Soul%20Food&aff=pedalteststudio",
+        "order": 2
+      },
+      {
+        "store": "GuitarCenter.pl",
+        "url": "https://guitarcenter.pl/szukaj?q=Electro-Harmonix%20Soul%20Food&aff=pedalteststudio",
+        "order": 3
+      },
+      {
+        "store": "Guitar Center",
+        "url": "https://www.guitarcenter.com/search?Ntt=Electro-Harmonix%20Soul%20Food&aff=pedalteststudio",
+        "order": 4
+      }
+    ],
+    "recordings": [
+      {
+        "id": "ehx-soul-food-g2-t2-l6",
+        "file": "/audio/ehx-soul-food/2-2-6.wav",
+        "label": "Drive 2 · Treble 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 2,
+          "drive": 2
+        }
+      },
+      {
+        "id": "ehx-soul-food-g2-t6-l6",
+        "file": "/audio/ehx-soul-food/2-6-6.wav",
+        "label": "Drive 2 · Treble 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 6,
+          "drive": 2
+        }
+      },
+      {
+        "id": "ehx-soul-food-g2-t9-l6",
+        "file": "/audio/ehx-soul-food/2-9-6.wav",
+        "label": "Drive 2 · Treble 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 9,
+          "drive": 2
+        }
+      },
+      {
+        "id": "ehx-soul-food-g6-t2-l6",
+        "file": "/audio/ehx-soul-food/6-2-6.wav",
+        "label": "Drive 6 · Treble 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 2,
+          "drive": 6
+        }
+      },
+      {
+        "id": "ehx-soul-food-g6-t6-l6",
+        "file": "/audio/ehx-soul-food/6-6-6.wav",
+        "label": "Drive 6 · Treble 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 6,
+          "drive": 6
+        }
+      },
+      {
+        "id": "ehx-soul-food-g6-t9-l6",
+        "file": "/audio/ehx-soul-food/6-9-6.wav",
+        "label": "Drive 6 · Treble 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 9,
+          "drive": 6
+        }
+      },
+      {
+        "id": "ehx-soul-food-g9-t2-l6",
+        "file": "/audio/ehx-soul-food/9-2-6.wav",
+        "label": "Drive 9 · Treble 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 2,
+          "drive": 9
+        }
+      },
+      {
+        "id": "ehx-soul-food-g9-t6-l6",
+        "file": "/audio/ehx-soul-food/9-6-6.wav",
+        "label": "Drive 9 · Treble 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 6,
+          "drive": 9
+        }
+      },
+      {
+        "id": "ehx-soul-food-g9-t9-l6",
+        "file": "/audio/ehx-soul-food/9-9-6.wav",
+        "label": "Drive 9 · Treble 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "treble": 9,
+          "drive": 9
+        }
+      }
+    ]
+  },
+  {
+    "id": "ehx-big-muff",
+    "name": "Big Muff Pi",
+    "manufacturer": "Electro-Harmonix",
+    "manufacturerLogo": "/img/logos/electro-harmonix.svg",
+    "type": "fuzz",
+    "image": "/img/ehx-big-muff.svg",
+    "description": "Ikona fuzzu produkowana od 1969 roku — gęsta, śpiewająca ściana dźwięku z niemal nieskończonym sustainem. Słychać go na tysiącach nagrań, od Davida Gilmoura po Smashing Pumpkins. Gałka Tone prowadzi od ciemnego, masywnego dołu po tnącą górę. Fuzz, od którego warto zacząć przygodę z tym typem efektu.",
+    "knobs": [
+      {
+        "id": "volume",
+        "label": "Volume",
+        "role": "level",
+        "x": 0.2419,
+        "y": 0.1429,
+        "size": 0.1387,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "tone",
+        "label": "Tone",
+        "role": "tone",
+        "x": 0.5,
+        "y": 0.2429,
+        "size": 0.1387,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "sustain",
+        "label": "Sustain",
+        "role": "gain",
+        "x": 0.7581,
+        "y": 0.1429,
+        "size": 0.1387,
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "affiliateLinks": [
+      {
+        "store": "Electro-Harmonix (producent)",
+        "url": "https://www.ehx.com/products/big-muff-pi/?aff=pedalteststudio",
+        "order": 1
+      },
+      {
+        "store": "Sweetwater",
+        "url": "https://www.sweetwater.com/store/search.php?s=Electro-Harmonix%20Big%20Muff%20Pi&aff=pedalteststudio",
+        "order": 2
+      },
+      {
+        "store": "GuitarCenter.pl",
+        "url": "https://guitarcenter.pl/szukaj?q=Electro-Harmonix%20Big%20Muff%20Pi&aff=pedalteststudio",
+        "order": 3
+      },
+      {
+        "store": "Guitar Center",
+        "url": "https://www.guitarcenter.com/search?Ntt=Electro-Harmonix%20Big%20Muff%20Pi&aff=pedalteststudio",
+        "order": 4
+      }
+    ],
+    "recordings": [
+      {
+        "id": "ehx-big-muff-g2-t2-l6",
+        "file": "/audio/ehx-big-muff/2-2-6.wav",
+        "label": "Sustain 2 · Tone 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 2,
+          "sustain": 2
+        }
+      },
+      {
+        "id": "ehx-big-muff-g2-t6-l6",
+        "file": "/audio/ehx-big-muff/2-6-6.wav",
+        "label": "Sustain 2 · Tone 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 6,
+          "sustain": 2
+        }
+      },
+      {
+        "id": "ehx-big-muff-g2-t9-l6",
+        "file": "/audio/ehx-big-muff/2-9-6.wav",
+        "label": "Sustain 2 · Tone 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 9,
+          "sustain": 2
+        }
+      },
+      {
+        "id": "ehx-big-muff-g6-t2-l6",
+        "file": "/audio/ehx-big-muff/6-2-6.wav",
+        "label": "Sustain 6 · Tone 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 2,
+          "sustain": 6
+        }
+      },
+      {
+        "id": "ehx-big-muff-g6-t6-l6",
+        "file": "/audio/ehx-big-muff/6-6-6.wav",
+        "label": "Sustain 6 · Tone 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 6,
+          "sustain": 6
+        }
+      },
+      {
+        "id": "ehx-big-muff-g6-t9-l6",
+        "file": "/audio/ehx-big-muff/6-9-6.wav",
+        "label": "Sustain 6 · Tone 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 9,
+          "sustain": 6
+        }
+      },
+      {
+        "id": "ehx-big-muff-g9-t2-l6",
+        "file": "/audio/ehx-big-muff/9-2-6.wav",
+        "label": "Sustain 9 · Tone 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 2,
+          "sustain": 9
+        }
+      },
+      {
+        "id": "ehx-big-muff-g9-t6-l6",
+        "file": "/audio/ehx-big-muff/9-6-6.wav",
+        "label": "Sustain 9 · Tone 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 6,
+          "sustain": 9
+        }
+      },
+      {
+        "id": "ehx-big-muff-g9-t9-l6",
+        "file": "/audio/ehx-big-muff/9-9-6.wav",
+        "label": "Sustain 9 · Tone 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "tone": 9,
+          "sustain": 9
+        }
+      }
+    ]
+  },
+  {
+    "id": "way-huge-swollen-pickle",
+    "name": "Swollen Pickle MkIIS",
+    "manufacturer": "Way Huge",
+    "manufacturerLogo": "/img/logos/way-huge.svg",
+    "type": "fuzz",
+    "image": "/img/way-huge-swollen-pickle.svg",
+    "description": "Masywny jumbo fuzz o ogromnym, ścianowym brzmieniu z potężnym dołem. Filter zamiast klasycznego tone’u pozwala rzeźbić charakter od bagiennego po żyletkowaty. Sustain dorzuca kompresji i ognia bez utraty konturu dźwięku. Pozycja obowiązkowa dla fanów stoner rocka i cięższych brzmień.",
+    "knobs": [
+      {
+        "id": "loudness",
+        "label": "Loudness",
+        "role": "level",
+        "x": 0.25,
+        "y": 0.1103,
+        "size": 0.1458,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "filter",
+        "label": "Filter",
+        "role": "tone",
+        "x": 0.5,
+        "y": 0.1103,
+        "size": 0.1458,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "sustain",
+        "label": "Sustain",
+        "role": "gain",
+        "x": 0.75,
+        "y": 0.1103,
+        "size": 0.1458,
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "affiliateLinks": [
+      {
+        "store": "Way Huge (producent)",
+        "url": "https://www.jimdunlop.com/way-huge-swollen-pickle-jumbo-fuzz-mkiis/?aff=pedalteststudio",
+        "order": 1
+      },
+      {
+        "store": "Sweetwater",
+        "url": "https://www.sweetwater.com/store/search.php?s=Way%20Huge%20Swollen%20Pickle%20MkIIS&aff=pedalteststudio",
+        "order": 2
+      },
+      {
+        "store": "GuitarCenter.pl",
+        "url": "https://guitarcenter.pl/szukaj?q=Way%20Huge%20Swollen%20Pickle%20MkIIS&aff=pedalteststudio",
+        "order": 3
+      },
+      {
+        "store": "Guitar Center",
+        "url": "https://www.guitarcenter.com/search?Ntt=Way%20Huge%20Swollen%20Pickle%20MkIIS&aff=pedalteststudio",
+        "order": 4
+      }
+    ],
+    "recordings": [
+      {
+        "id": "way-huge-swollen-pickle-g2-t2-l6",
+        "file": "/audio/way-huge-swollen-pickle/2-2-6.wav",
+        "label": "Sustain 2 · Filter 2 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 2,
+          "sustain": 2
+        }
+      },
+      {
+        "id": "way-huge-swollen-pickle-g2-t6-l6",
+        "file": "/audio/way-huge-swollen-pickle/2-6-6.wav",
+        "label": "Sustain 2 · Filter 6 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 6,
+          "sustain": 2
+        }
+      },
+      {
+        "id": "way-huge-swollen-pickle-g2-t9-l6",
+        "file": "/audio/way-huge-swollen-pickle/2-9-6.wav",
+        "label": "Sustain 2 · Filter 9 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 9,
+          "sustain": 2
+        }
+      },
+      {
+        "id": "way-huge-swollen-pickle-g6-t2-l6",
+        "file": "/audio/way-huge-swollen-pickle/6-2-6.wav",
+        "label": "Sustain 6 · Filter 2 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 2,
+          "sustain": 6
+        }
+      },
+      {
+        "id": "way-huge-swollen-pickle-g6-t6-l6",
+        "file": "/audio/way-huge-swollen-pickle/6-6-6.wav",
+        "label": "Sustain 6 · Filter 6 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 6,
+          "sustain": 6
+        }
+      },
+      {
+        "id": "way-huge-swollen-pickle-g6-t9-l6",
+        "file": "/audio/way-huge-swollen-pickle/6-9-6.wav",
+        "label": "Sustain 6 · Filter 9 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 9,
+          "sustain": 6
+        }
+      },
+      {
+        "id": "way-huge-swollen-pickle-g9-t2-l6",
+        "file": "/audio/way-huge-swollen-pickle/9-2-6.wav",
+        "label": "Sustain 9 · Filter 2 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 2,
+          "sustain": 9
+        }
+      },
+      {
+        "id": "way-huge-swollen-pickle-g9-t6-l6",
+        "file": "/audio/way-huge-swollen-pickle/9-6-6.wav",
+        "label": "Sustain 9 · Filter 6 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 6,
+          "sustain": 9
+        }
+      },
+      {
+        "id": "way-huge-swollen-pickle-g9-t9-l6",
+        "file": "/audio/way-huge-swollen-pickle/9-9-6.wav",
+        "label": "Sustain 9 · Filter 9 · Loudness 6",
+        "knobValues": {
+          "loudness": 6,
+          "filter": 9,
+          "sustain": 9
+        }
+      }
+    ]
+  },
+  {
+    "id": "wampler-velvet-fuzz",
+    "name": "Velvet Fuzz",
+    "manufacturer": "Wampler",
+    "manufacturerLogo": "/img/logos/wampler.svg",
+    "type": "fuzz",
+    "image": "/img/wampler-velvet-fuzz.svg",
+    "description": "Aksamitny fuzz zaprojektowany tak, by brzmieć jak wielki wzmacniacz stackowy na granicy eksplozji. Mniej szorstki niż klasyczne fuzzy — gładki, śpiewający sustain idealny do solówek. Brightness dopasowuje brzmienie zarówno do ciemnych, jak i jasnych wzmacniaczy. Płynna granica między fuzzem a wielkim distortion.",
+    "knobs": [
+      {
+        "id": "volume",
+        "label": "Volume",
+        "role": "level",
+        "x": 0.25,
+        "y": 0.1075,
+        "size": 0.1458,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "brightness",
+        "label": "Brightness",
+        "role": "tone",
+        "x": 0.5,
+        "y": 0.1075,
+        "size": 0.1458,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "fuzz",
+        "label": "Fuzz",
+        "role": "gain",
+        "x": 0.75,
+        "y": 0.1075,
+        "size": 0.1458,
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "affiliateLinks": [
+      {
+        "store": "Wampler (producent)",
+        "url": "https://www.wamplerpedals.com/?aff=pedalteststudio",
+        "order": 1
+      },
+      {
+        "store": "Sweetwater",
+        "url": "https://www.sweetwater.com/store/search.php?s=Wampler%20Velvet%20Fuzz&aff=pedalteststudio",
+        "order": 2
+      },
+      {
+        "store": "GuitarCenter.pl",
+        "url": "https://guitarcenter.pl/szukaj?q=Wampler%20Velvet%20Fuzz&aff=pedalteststudio",
+        "order": 3
+      },
+      {
+        "store": "Guitar Center",
+        "url": "https://www.guitarcenter.com/search?Ntt=Wampler%20Velvet%20Fuzz&aff=pedalteststudio",
+        "order": 4
+      }
+    ],
+    "recordings": [
+      {
+        "id": "wampler-velvet-fuzz-g2-t2-l6",
+        "file": "/audio/wampler-velvet-fuzz/2-2-6.wav",
+        "label": "Fuzz 2 · Brightness 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 2,
+          "fuzz": 2
+        }
+      },
+      {
+        "id": "wampler-velvet-fuzz-g2-t6-l6",
+        "file": "/audio/wampler-velvet-fuzz/2-6-6.wav",
+        "label": "Fuzz 2 · Brightness 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 6,
+          "fuzz": 2
+        }
+      },
+      {
+        "id": "wampler-velvet-fuzz-g2-t9-l6",
+        "file": "/audio/wampler-velvet-fuzz/2-9-6.wav",
+        "label": "Fuzz 2 · Brightness 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 9,
+          "fuzz": 2
+        }
+      },
+      {
+        "id": "wampler-velvet-fuzz-g6-t2-l6",
+        "file": "/audio/wampler-velvet-fuzz/6-2-6.wav",
+        "label": "Fuzz 6 · Brightness 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 2,
+          "fuzz": 6
+        }
+      },
+      {
+        "id": "wampler-velvet-fuzz-g6-t6-l6",
+        "file": "/audio/wampler-velvet-fuzz/6-6-6.wav",
+        "label": "Fuzz 6 · Brightness 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 6,
+          "fuzz": 6
+        }
+      },
+      {
+        "id": "wampler-velvet-fuzz-g6-t9-l6",
+        "file": "/audio/wampler-velvet-fuzz/6-9-6.wav",
+        "label": "Fuzz 6 · Brightness 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 9,
+          "fuzz": 6
+        }
+      },
+      {
+        "id": "wampler-velvet-fuzz-g9-t2-l6",
+        "file": "/audio/wampler-velvet-fuzz/9-2-6.wav",
+        "label": "Fuzz 9 · Brightness 2 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 2,
+          "fuzz": 9
+        }
+      },
+      {
+        "id": "wampler-velvet-fuzz-g9-t6-l6",
+        "file": "/audio/wampler-velvet-fuzz/9-6-6.wav",
+        "label": "Fuzz 9 · Brightness 6 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 6,
+          "fuzz": 9
+        }
+      },
+      {
+        "id": "wampler-velvet-fuzz-g9-t9-l6",
+        "file": "/audio/wampler-velvet-fuzz/9-9-6.wav",
+        "label": "Fuzz 9 · Brightness 9 · Volume 6",
+        "knobValues": {
+          "volume": 6,
+          "brightness": 9,
+          "fuzz": 9
+        }
+      }
+    ]
+  },
+  {
+    "id": "mxr-variac-fuzz",
+    "name": "Super Badass Variac Fuzz",
+    "manufacturer": "MXR",
+    "manufacturerLogo": "/img/logos/mxr.svg",
+    "type": "fuzz",
+    "image": "/img/mxr-variac-fuzz.svg",
+    "description": "Fuzz z kontrolą napięcia zasilania (variac) — od sprężystego, pełnego brzmienia przy 9 V po rozpadające się, bramkujące tekstury przy niższych napięciach. Amount steruje ilością ognia, a Tone okiełznuje górę pasma. Klasyczny krzemowy charakter zamknięty w pancernej obudowie MXR.",
+    "knobs": [
+      {
+        "id": "output",
+        "label": "Output",
+        "role": "level",
+        "x": 0.2261,
+        "y": 0.105,
+        "size": 0.1435,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "tone",
+        "label": "Tone",
+        "role": "tone",
+        "x": 0.5,
+        "y": 0.105,
+        "size": 0.1435,
+        "min": 0,
+        "max": 10
+      },
+      {
+        "id": "amount",
+        "label": "Amount",
+        "role": "gain",
+        "x": 0.7739,
+        "y": 0.105,
+        "size": 0.1435,
+        "min": 0,
+        "max": 10
+      }
+    ],
+    "affiliateLinks": [
+      {
+        "store": "MXR (producent)",
+        "url": "https://www.jimdunlop.com/mxr-super-badass-variac-fuzz/?aff=pedalteststudio",
+        "order": 1
+      },
+      {
+        "store": "Sweetwater",
+        "url": "https://www.sweetwater.com/store/search.php?s=MXR%20Super%20Badass%20Variac%20Fuzz&aff=pedalteststudio",
+        "order": 2
+      },
+      {
+        "store": "GuitarCenter.pl",
+        "url": "https://guitarcenter.pl/szukaj?q=MXR%20Super%20Badass%20Variac%20Fuzz&aff=pedalteststudio",
+        "order": 3
+      },
+      {
+        "store": "Guitar Center",
+        "url": "https://www.guitarcenter.com/search?Ntt=MXR%20Super%20Badass%20Variac%20Fuzz&aff=pedalteststudio",
+        "order": 4
+      }
+    ],
+    "recordings": [
+      {
+        "id": "mxr-variac-fuzz-g2-t2-l6",
+        "file": "/audio/mxr-variac-fuzz/2-2-6.wav",
+        "label": "Amount 2 · Tone 2 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 2,
+          "amount": 2
+        }
+      },
+      {
+        "id": "mxr-variac-fuzz-g2-t6-l6",
+        "file": "/audio/mxr-variac-fuzz/2-6-6.wav",
+        "label": "Amount 2 · Tone 6 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 6,
+          "amount": 2
+        }
+      },
+      {
+        "id": "mxr-variac-fuzz-g2-t9-l6",
+        "file": "/audio/mxr-variac-fuzz/2-9-6.wav",
+        "label": "Amount 2 · Tone 9 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 9,
+          "amount": 2
+        }
+      },
+      {
+        "id": "mxr-variac-fuzz-g6-t2-l6",
+        "file": "/audio/mxr-variac-fuzz/6-2-6.wav",
+        "label": "Amount 6 · Tone 2 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 2,
+          "amount": 6
+        }
+      },
+      {
+        "id": "mxr-variac-fuzz-g6-t6-l6",
+        "file": "/audio/mxr-variac-fuzz/6-6-6.wav",
+        "label": "Amount 6 · Tone 6 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 6,
+          "amount": 6
+        }
+      },
+      {
+        "id": "mxr-variac-fuzz-g6-t9-l6",
+        "file": "/audio/mxr-variac-fuzz/6-9-6.wav",
+        "label": "Amount 6 · Tone 9 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 9,
+          "amount": 6
+        }
+      },
+      {
+        "id": "mxr-variac-fuzz-g9-t2-l6",
+        "file": "/audio/mxr-variac-fuzz/9-2-6.wav",
+        "label": "Amount 9 · Tone 2 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 2,
+          "amount": 9
+        }
+      },
+      {
+        "id": "mxr-variac-fuzz-g9-t6-l6",
+        "file": "/audio/mxr-variac-fuzz/9-6-6.wav",
+        "label": "Amount 9 · Tone 6 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 6,
+          "amount": 9
+        }
+      },
+      {
+        "id": "mxr-variac-fuzz-g9-t9-l6",
+        "file": "/audio/mxr-variac-fuzz/9-9-6.wav",
+        "label": "Amount 9 · Tone 9 · Output 6",
+        "knobValues": {
+          "output": 6,
+          "tone": 9,
+          "amount": 9
+        }
+      }
+    ]
+  }
+]

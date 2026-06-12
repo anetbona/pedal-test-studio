@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PedalTest Studio — usłysz prawdziwą kostkę, zanim ją kupisz</title>
+  <meta name="description" content="Katalog efektów gitarowych z nagraniami tego samego riffu w różnych ustawieniach gałek. Porównaj brzmienie własnym uchem, zanim kupisz.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="#/" class="nav-brand">PedalTest Studio</a>
+    <a href="#/" class="nav-link" data-nav-catalog>Katalog</a>
+  </nav>
+
+  <!-- Widok: katalog (U1) -->
+  <main id="view-catalog" hidden>
+    <header class="hero">
+      <div class="eyebrow">PedalTest Studio</div>
+      <h1>Usłysz prawdziwą kostkę,<br>zanim ją kupisz.</h1>
+      <p class="hero-sub">Ten sam riff, różne ustawienia gałek. Porównaj brzmienie efektów własnym uchem — bez wycieczki do sklepu.</p>
+      <a class="pill-cta" href="#katalog">Przeglądaj katalog</a>
+    </header>
+
+    <section class="catalog-section" id="katalog">
+      <h2>Katalog kostek</h2>
+      <p class="catalog-hint">Fuzz i overdrive od różnych producentów. Kliknij kostkę, żeby ją usłyszeć.</p>
+      <div class="carousel-wrap">
+        <button class="carousel-arrow" data-dir="-1" aria-label="Poprzednie kostki">‹</button>
+        <div class="carousel" id="carousel"></div>
+        <button class="carousel-arrow" data-dir="1" aria-label="Następne kostki">›</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Widok: kostka — układ 3-częściowy: podgląd | panel ustawień | belka sklepów -->
+  <main id="view-pedal" hidden>
+    <div class="kn-page">
+      <section class="kn-preview">
+        <div class="kn-preview-bar">
+          <a class="kn-back" href="#/">‹ Katalog</a>
+          <span class="kn-preview-label">◇ Podgląd kostki</span>
+          <span class="kn-preview-hint">obraz poglądowy</span>
+        </div>
+        <div class="kn-stage">
+          <div class="pedal-image-wrap" id="pedal-image-wrap">
+            <img id="pedal-image" alt="">
+            <!-- animowane gałki nakładane przez knobs.js -->
+          </div>
+        </div>
+      </section>
+
+      <aside class="kn-panel">
+        <h2 class="kn-title">Posłuchaj tej kostki</h2>
+
+        <section class="kn-step">
+          <header class="kn-step-head">
+            <span class="kn-step-num">01</span>
+            <h3>Kostka</h3>
+            <span class="kn-step-value" id="pedal-type"></span>
+          </header>
+          <div class="kn-name-row">
+            <img id="pedal-logo" alt="" hidden>
+            <h1 id="pedal-name"></h1>
+          </div>
+          <p class="pedal-manufacturer" id="pedal-manufacturer"></p>
+          <p class="pedal-description clamped" id="pedal-description"></p>
+          <button class="kn-more" id="desc-toggle" hidden>więcej</button>
+        </section>
+
+        <section class="kn-step">
+          <header class="kn-step-head">
+            <span class="kn-step-num">02</span>
+            <h3>Nagrania</h3>
+            <span class="kn-step-value" id="current-recording">—</span>
+          </header>
+          <p class="kn-step-hint">Ten sam riff w różnych ustawieniach gałek — kliknij, żeby porównać.</p>
+          <ul class="recording-list" id="recording-list"></ul>
+        </section>
+      </aside>
+    </div>
+
+    <!-- belka sklepów (U5) — pod całością, zawsze widoczna -->
+    <div class="kn-buybar" id="affiliate-banner">
+      <span class="kn-buybar-label">Kup ten efekt w:</span>
+      <div class="affiliate-links" id="affiliate-links"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>PedalTest Studio · portal odsłuchowy dla gitarzystów · nagrania demonstracyjne</p>
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

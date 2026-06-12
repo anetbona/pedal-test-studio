@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="780" viewBox="0 0 480 780">
+  <rect x="10" y="10" width="460" height="760" rx="24" fill="#e8e9ec"/>
+  <rect x="10" y="10" width="460" height="760" rx="24" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="3"/>
+  <rect x="20" y="20" width="440" height="740" rx="18" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+  <circle cx="120" cy="82" r="43" fill="rgba(0,0,0,0.18)"/>
+  <circle cx="240" cy="150" r="37" fill="rgba(0,0,0,0.18)"/>
+  <circle cx="360" cy="82" r="43" fill="rgba(0,0,0,0.18)"/>
+  <text x="240" y="360" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700" font-style="italic" fill="#c8102e">Soul Food</text>
+  <text x="240" y="408" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="23" font-weight="700" fill="#17171a">electro-harmonix</text>
+  <circle cx="120" cy="560" r="13" fill="rgba(0,0,0,0.35)"/>
+  <circle cx="120" cy="560" r="8" fill="#ff3b30"/>
+  <circle cx="240" cy="622" r="59" fill="rgba(0,0,0,0.28)"/>
+  <circle cx="240" cy="622" r="50" fill="#c7c8cc"/>
+  <circle cx="240" cy="622" r="50" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
+  <circle cx="240" cy="622" r="36" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="2"/>
+  <g fill="rgba(0,0,0,0.35)">
+    <circle cx="40" cy="40" r="8"/><circle cx="440" cy="40" r="8"/>
+    <circle cx="40" cy="740" r="8"/><circle cx="440" cy="740" r="8"/>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="800" viewBox="0 0 480 800">
+  <rect x="10" y="10" width="460" height="780" rx="24" fill="#1d1d20"/>
+  <rect x="10" y="10" width="460" height="780" rx="24" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="3"/>
+  <rect x="20" y="20" width="440" height="760" rx="18" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+  <circle cx="120" cy="86" r="42" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="240" cy="86" r="42" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="360" cy="86" r="42" fill="rgba(255,255,255,0.10)"/>
+  <text x="240" y="386" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-style="italic" fill="#f4f4f6">Velvet Fuzz</text>
+  <text x="240" y="446" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-style="italic" fill="rgba(244,244,246,0.8)">Wampler</text>
+  <circle cx="240" cy="524" r="13" fill="rgba(0,0,0,0.35)"/>
+  <circle cx="240" cy="524" r="8" fill="#9ad1ff"/>
+  <circle cx="240" cy="632" r="59" fill="rgba(0,0,0,0.28)"/>
+  <circle cx="240" cy="632" r="50" fill="#c7c8cc"/>
+  <circle cx="240" cy="632" r="50" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
+  <circle cx="240" cy="632" r="36" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="2"/>
+  <g fill="rgba(0,0,0,0.35)">
+    <circle cx="40" cy="40" r="8"/><circle cx="440" cy="40" r="8"/>
+    <circle cx="40" cy="760" r="8"/><circle cx="440" cy="760" r="8"/>
+  </g>
+</svg>

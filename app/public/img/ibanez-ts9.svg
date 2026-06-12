@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="800" viewBox="0 0 480 800">
+  <rect x="10" y="10" width="460" height="780" rx="26" fill="#3fae49"/>
+  <rect x="10" y="10" width="460" height="780" rx="26" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="3"/>
+  <rect x="20" y="20" width="440" height="760" rx="20" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+  <circle cx="120" cy="86" r="45" fill="rgba(0,0,0,0.30)"/>
+  <circle cx="240" cy="152" r="38" fill="rgba(0,0,0,0.30)"/>
+  <circle cx="360" cy="86" r="45" fill="rgba(0,0,0,0.30)"/>
+  <circle cx="240" cy="222" r="13" fill="rgba(0,0,0,0.35)"/>
+  <circle cx="240" cy="222" r="8" fill="#ff3b30"/>
+  <!-- kwadratowy chromowany przycisk -->
+  <rect x="124" y="262" width="232" height="196" rx="14" fill="#cfd2d6"/>
+  <rect x="124" y="262" width="232" height="196" rx="14" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="3"/>
+  <rect x="140" y="278" width="200" height="164" rx="10" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2"/>
+  <!-- czarna belka z nazwą modelu -->
+  <rect x="44" y="498" width="392" height="160" rx="10" fill="#101010"/>
+  <text x="72" y="578" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="58" font-weight="800" fill="#ffffff">TS9</text>
+  <text x="72" y="622" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="23" font-weight="600" letter-spacing="3" fill="#ffffff">TUBE SCREAMER</text>
+  <text x="240" y="730" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" font-style="italic" fill="#101010">Ibanez</text>
+  <g fill="rgba(0,0,0,0.35)">
+    <circle cx="40" cy="40" r="8"/><circle cx="440" cy="40" r="8"/>
+    <circle cx="40" cy="760" r="8"/><circle cx="440" cy="760" r="8"/>
+  </g>
+</svg>
