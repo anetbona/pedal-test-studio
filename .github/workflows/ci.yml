@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Syntax check (wszystkie pliki JS)
+        run: find app tests -name '*.js' -print0 | xargs -0 -n1 node --check
+
+      - name: Walidacja generatora danych startowych
+        run: node app/scripts/generate-seed.js
+
+      - name: Testy
+        run: node --test "tests/**/*.test.js"

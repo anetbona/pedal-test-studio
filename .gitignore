@@ -1,0 +1,16 @@
+# system / edytory
+.DS_Store
+Icon?
+desktop.ini
+*.log
+
+# Claude Code (konfiguracja lokalna)
+.claude/
+
+# dane generowane / runtime
+app/data/events.ndjson
+app/data/audio/
+
+# na wszelki wypadek (projekt jest zero-dependency)
+node_modules/
+.env
