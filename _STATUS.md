@@ -29,3 +29,4 @@ last_updated: 2026-06-11
 ## Notatki agenta
 - Granica webapp vs fizyczny rig: w MVP nieistotna (brak riga). Sloty/kradziez slotu (20 PLN/30min) opisane w U7-U9 + Flow 3 jako pozniejsze etapy.
 - Otwarte pytania na Krok 2: zrodlo modeli efektow (generyczne vs konkretne kostki), live input vs upload, konta w v1, success criteria.
+- 2026-06-12: REPO GITHUB utworzone (skill repozytorium-gh): https://github.com/anetbona/pedal-test-studio (prywatne). Git w folderze projektu (decyzja userki). Dodane: docs/ (PRD, STRATEGY, ROADMAP, UX_ARCHITECTURE, TESTING_STRATEGY), tests/ (integration, node:test), .github/ (CI + szablony PR/issues), CHANGELOG, nowy README (stary -> docs/archiwum-paczka-claude-code.md). CI zielone.
