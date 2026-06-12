@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVP vs V2: PedalTest Studio</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --color-primary: #0071e3;
+      --color-bg: #f5f5f7;
+      --color-surface: #ffffff;
+      --color-text: #1d1d1f;
+      --color-text-muted: rgba(0, 0, 0, 0.56);
+      --color-border: rgba(0, 0, 0, 0.08);
+      --color-must: #0071e3;
+      --color-should: #1d1d1f;
+      --color-could: #e8e8ed;
+      --color-wont: #86868b;
+      --font-heading: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-body: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.47;
+      letter-spacing: -0.2px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-heading); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 48px 32px; }
+    @media (max-width: 640px) { .container { padding: 24px 16px; } }
+
+    .hero { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--color-border); }
+    .eyebrow { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary); margin-bottom: 12px; }
+    h1 { font-size: 48px; font-weight: 600; line-height: 1.07; letter-spacing: -0.28px; margin-bottom: 12px; }
+    @media (max-width: 640px) { h1 { font-size: 32px; } }
+    .meta { font-size: 14px; color: var(--color-text-muted); }
+
+    section { margin-bottom: 56px; }
+    section h2 { font-size: 32px; font-weight: 600; line-height: 1.1; margin-bottom: 22px; }
+
+    .verdict-box {
+      background: #000000;
+      color: white;
+      padding: 32px 36px;
+      border-radius: 16px;
+      margin-bottom: 36px;
+    }
+    .verdict-box h3 { color: white; font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+    .verdict-box p { font-size: 16px; color: rgba(255,255,255,0.8); }
+    .verdict-box strong { color: #2997ff; }
+
+    .moscow-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .moscow-table th {
+      background: #1d1d1f;
+      color: white;
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: var(--font-heading);
+    }
+    .moscow-table td {
+      padding: 14px 18px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--color-border);
+      vertical-align: top;
+      line-height: 1.45;
+    }
+    .moscow-table tr:last-child td { border-bottom: none; }
+
+    .cat-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 980px;
+      color: white;
+      white-space: nowrap;
+    }
+    .cat-Must { background: var(--color-must); }
+    .cat-Should { background: var(--color-should); }
+    .cat-Could { background: var(--color-could); color: var(--color-text); }
+    .cat-Wont { background: var(--color-wont); }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .cat-card {
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      padding: 26px;
+    }
+    .cat-card.must { box-shadow: inset 0 0 0 2px var(--color-must); }
+    .cat-card.should { box-shadow: inset 0 0 0 2px var(--color-should); }
+    .cat-card.could { opacity: 0.9; }
+    .cat-card.wont { opacity: 0.8; }
+
+    .cat-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .cat-card h3 .cat-badge { margin-right: 8px; vertical-align: middle; }
+    .cat-card .cat-subtitle { font-size: 12px; color: var(--color-text-muted); margin-bottom: 14px; }
+    .cat-card ul { list-style: none; }
+    .cat-card li { padding: 10px 0; border-bottom: 1px solid var(--color-border); line-height: 1.45; }
+    .cat-card li:last-child { border-bottom: none; }
+    .cat-card .feat-name { font-size: 14px; font-weight: 600; display: block; margin-bottom: 3px; }
+    .cat-card .feat-name::before { content: "• "; color: var(--color-text-muted); font-weight: 400; }
+    .cat-card .feat-desc { font-size: 13px; color: var(--color-text-muted); line-height: 1.45; padding-left: 14px; display: block; }
+
+    .v2-marker {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--color-wont);
+      padding: 2px 8px;
+      border: 1px solid var(--color-wont);
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+
+    .instruct {
+      background: var(--color-surface);
+      border-left: 4px solid var(--color-primary);
+      padding: 20px 24px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+    .instruct strong { color: var(--color-primary); }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="eyebrow">MVP vs V2 · Podział MoSCoW</div>
+      <h1>PedalTest Studio</h1>
+      <div class="meta">Utworzono: 2026-06-11 · Replit zbuduje sekcję MVP. V2 dorzucamy potem.</div>
+    </header>
+
+    <div class="verdict-box">
+      <h3>🎯 Buduj TYLKO funkcje z sekcji MVP</h3>
+      <p>MVP = pełny core flow end-to-end: <strong>katalog → konfigurator → odsłuch z animacją gałek → banner afiliacyjny</strong>, plus treści i statystyki. Cała warstwa hardware (live MIDI, sloty, płatności, konta) to świadomie odłożone V2 — dorzucamy iteracyjnie w Replit.</p>
+    </div>
+
+    <section>
+      <h2>Podział MoSCoW — pełna tabela</h2>
+      <p style="font-size: 14px; color: var(--color-text-muted); margin-bottom: 16px; line-height: 1.5;">
+        Każdy feature ma opis z perspektywy usera — żebyś mogła świadomie zdecydować, czy zgadzasz się z kategorią, czy chcesz coś przesunąć.
+      </p>
+      <table class="moscow-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Feature</th>
+            <th style="width: 34%;">Opis (co user robi/dostaje)</th>
+            <th style="width: 12%;">Kategoria</th>
+            <th>Uzasadnienie</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>U1 · Katalog kostek</strong></td>
+            <td>User wchodzi na stronę i od razu widzi przesuwany katalog kostek (zdjęcie, nazwa, producent, typ efektu). Przewija i wybiera.</td>
+            <td><span class="cat-badge cat-Must">Must</span></td>
+            <td>Punkt wejścia core flow — bez katalogu nie ma czego testować.</td>
+          </tr>
+          <tr>
+            <td><strong>U2 · Konfigurator kostki</strong></td>
+            <td>Po kliknięciu kostki user widzi jej duże zdjęcie z nałożonymi animowanymi gałkami (3–4 potencjometry, skala 0–10) i listę nagrań.</td>
+            <td><span class="cat-badge cat-Must">Must</span></td>
+            <td>Serce produktu — wizualny „efekt wow" odróżniający od YouTube.</td>
+          </tr>
+          <tr>
+            <td><strong>U3 · Odtwarzanie z animacją gałek</strong></td>
+            <td>User klika nagranie → słyszy riff w danych ustawieniach, a gałki płynnie ustawiają się w pozycje tego nagrania.</td>
+            <td><span class="cat-badge cat-Must">Must</span></td>
+            <td>Główna wartość: słyszę brzmienie + widzę ustawienia. Bez tego flow się łamie.</td>
+          </tr>
+          <tr>
+            <td><strong>U4 · Przełączanie nagrań</strong></td>
+            <td>User klika kolejne nagrania (ten sam riff, inne ustawienia 2/6/9) i słyszy różnicę brzmienia.</td>
+            <td><span class="cat-badge cat-Must">Must</span></td>
+            <td>To JEST testowanie — porównanie ustawień to sedno produktu.</td>
+          </tr>
+          <tr>
+            <td><strong>U5 · Banner afiliacyjny</strong></td>
+            <td>User widzi banner „Kup ten efekt w: [producent] [Sweetwater]..." i klika — sklep otwiera się w nowej karcie.</td>
+            <td><span class="cat-badge cat-Must">Must</span></td>
+            <td>Monetyzacja w MVP (decyzja usera) — domyka flow „posłuchał → kupił".</td>
+          </tr>
+          <tr>
+            <td><strong>A1 · Dodawanie kostki</strong></td>
+            <td>Admin dodaje kostkę „od kuchni": dane, zdjęcie z oficjalnej strony, układ gałek (aplikacja renderuje je animowane), linki sklepów.</td>
+            <td><span class="cat-badge cat-Must">Must</span></td>
+            <td>Bez ścieżki dodawania treści katalog jest pusty.</td>
+          </tr>
+          <tr>
+            <td><strong>A2 · Dodawanie nagrań</strong></td>
+            <td>Admin dodaje do kostki nagrania riffu z przypisanymi wartościami gałek (np. 2/6/9) — kliknięcie nagrania ustawia gałki.</td>
+            <td><span class="cat-badge cat-Must">Must</span></td>
+            <td>Nagrania + metadane pozycji gałek = paliwo całego doświadczenia.</td>
+          </tr>
+          <tr>
+            <td><strong>A3 · Anonimowe statystyki</strong></td>
+            <td>Admin widzi odtworzenia per kostka/nagranie i kliknięcia w bannery — dane do rozmów z producentami.</td>
+            <td><span class="cat-badge cat-Should">Should</span></td>
+            <td>Tanie w budowie, nie blokuje flow usera, ale kluczowe dla walidacji biznesu — w MVP buildzie.</td>
+          </tr>
+          <tr>
+            <td><strong>U12 · Porównanie A/B dwóch kostek</strong></td>
+            <td>User zestawia dwie kostki, zmienia podobne parametry obu naraz i przełącza się między nimi jednym kliknięciem/klawiszem.</td>
+            <td><span class="cat-badge cat-Could">Could</span></td>
+            <td>Świetny dodatek, ale osobny moduł UI — user sam wskazał „później".</td>
+          </tr>
+          <tr>
+            <td><strong>U13 · Ankieta NPS</strong></td>
+            <td>Po sesji testowej user dostaje krótkie pytanie NPS; właścicielka zbiera wyniki.</td>
+            <td><span class="cat-badge cat-Could">Could</span></td>
+            <td>Niezależny dodatek — łatwy do dorzucenia promptem po MVP.</td>
+          </tr>
+          <tr>
+            <td><strong>U6 · Konta użytkowników</strong></td>
+            <td>User rejestruje się, ma historię testów; konto wymagane do rezerwacji.</td>
+            <td><span class="cat-badge cat-Wont">Won't</span></td>
+            <td>User zdecydował: MVP w pełni otwarty. Konta mają sens dopiero ze slotami.</td>
+          </tr>
+          <tr>
+            <td><strong>U7 · Rezerwacja slotów (kalendarz)</strong></td>
+            <td>User rezerwuje slot czasowy na fizycznej kostce (1 kostka = 1 user naraz); pierwsze sloty gratis, kolejne płatne.</td>
+            <td><span class="cat-badge cat-Wont">Won't</span></td>
+            <td>Zależy od fizycznego riga, którego w MVP nie ma.</td>
+          </tr>
+          <tr>
+            <td><strong>U8 · Płatności / „ukradnij slot"</strong></td>
+            <td>User płaci (np. 30 min / 20 PLN) za natychmiastowe przejęcie kostki; system rozstrzyga konflikty darmowy vs płatny.</td>
+            <td><span class="cat-badge cat-Wont">Won't</span></td>
+            <td>Wymaga slotów i kont — cały moduł monetyzacji czasu to V2+.</td>
+          </tr>
+          <tr>
+            <td><strong>U9 · Live sterowanie kostką (MIDI)</strong></td>
+            <td>User kręci wirtualnymi gałkami, fizyczna kostka reaguje przez MIDI, audio streamuje na żywo; licznik 5 min.</td>
+            <td><span class="cat-badge cat-Wont">Won't</span></td>
+            <td>Wizja docelowa — wymaga fizycznego riga i streamingu. Świadomie odłożone.</td>
+          </tr>
+          <tr>
+            <td><strong>U10 · Upload własnego śladu</strong></td>
+            <td>User wgrywa nagranie swojej suchej gitary i słyszy ją przez testowaną kostkę.</td>
+            <td><span class="cat-badge cat-Wont">Won't</span></td>
+            <td>Etap 2 wg usera — wymaga przetwarzania przez rig.</td>
+          </tr>
+          <tr>
+            <td><strong>U11 · Granie na żywo z gitarą</strong></td>
+            <td>User podpina gitarę do komputera i gra przez kostkę na żywo.</td>
+            <td><span class="cat-badge cat-Wont">Won't</span></td>
+            <td>Najpóźniejszy etap (latencja) — wg usera.</td>
+          </tr>
+          <tr>
+            <td><strong>A4 · Panel admina w UI</strong></td>
+            <td>Admin zarządza katalogiem, kalendarzem, finansami i statystykami w dedykowanym panelu.</td>
+            <td><span class="cat-badge cat-Wont">Won't</span></td>
+            <td>W MVP admin działa „od kuchni" — panel ma sens przy slotach/finansach.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Podział wizualny</h2>
+      <div class="cat-grid">
+        <div class="cat-card must">
+          <h3><span class="cat-badge cat-Must">Must</span></h3>
+          <p class="cat-subtitle">Bez tego apka nie działa — core MVP</p>
+          <ul>
+            <li><span class="feat-name">U1 Katalog kostek</span><span class="feat-desc">Przesuwany katalog na stronie głównej — wejście do flow.</span></li>
+            <li><span class="feat-name">U2 Konfigurator kostki</span><span class="feat-desc">Zdjęcie kostki z animowanymi gałkami + lista nagrań.</span></li>
+            <li><span class="feat-name">U3 Odtwarzanie z animacją</span><span class="feat-desc">Klik nagrania = dźwięk + gałki ustawiają się same.</span></li>
+            <li><span class="feat-name">U4 Przełączanie nagrań</span><span class="feat-desc">Ten sam riff w różnych ustawieniach — porównanie uchem.</span></li>
+            <li><span class="feat-name">U5 Banner afiliacyjny</span><span class="feat-desc">„Kup ten efekt w..." — sklep producenta pierwszy, nowa karta.</span></li>
+            <li><span class="feat-name">A1 Dodawanie kostki</span><span class="feat-desc">Admin dodaje kostkę z gałkami „od kuchni".</span></li>
+            <li><span class="feat-name">A2 Dodawanie nagrań</span><span class="feat-desc">Nagrania riffu z wartościami gałek 2/6/9.</span></li>
+          </ul>
+        </div>
+        <div class="cat-card should">
+          <h3><span class="cat-badge cat-Should">Should</span></h3>
+          <p class="cat-subtitle">Ważne, w MVP buildzie</p>
+          <ul>
+            <li><span class="feat-name">A3 Anonimowe statystyki</span><span class="feat-desc">Odtworzenia per kostka/nagranie + kliknięcia bannerów — dane do rozmów z producentami.</span></li>
+          </ul>
+        </div>
+        <div class="cat-card could">
+          <h3><span class="cat-badge cat-Could">Could</span> <span class="v2-marker">V2</span></h3>
+          <p class="cat-subtitle">Fajne dodatki — dorzucamy iteracyjnie</p>
+          <ul>
+            <li><span class="feat-name">U12 Porównanie A/B</span><span class="feat-desc">Dwie kostki obok siebie, wspólne parametry, przełączanie jednym kliknięciem.</span></li>
+            <li><span class="feat-name">U13 Ankieta NPS</span><span class="feat-desc">Krótkie pytanie po sesji testowej.</span></li>
+          </ul>
+        </div>
+        <div class="cat-card wont">
+          <h3><span class="cat-badge cat-Wont">Won't (w MVP)</span> <span class="v2-marker">V2+</span></h3>
+          <p class="cat-subtitle">Świadomie odkładamy — większe moduły</p>
+          <ul>
+            <li><span class="feat-name">U6 Konta użytkowników</span><span class="feat-desc">Rejestracja, historia — potrzebne dopiero ze slotami.</span></li>
+            <li><span class="feat-name">U7 Rezerwacja slotów</span><span class="feat-desc">Kalendarz, 1 kostka = 1 user, sloty gratis/płatne.</span></li>
+            <li><span class="feat-name">U8 Płatności / „ukradnij slot"</span><span class="feat-desc">30 min / 20 PLN, rozstrzyganie konfliktów.</span></li>
+            <li><span class="feat-name">U9 Live sterowanie (MIDI)</span><span class="feat-desc">Prawdziwa kostka reaguje na wirtualne gałki, stream audio.</span></li>
+            <li><span class="feat-name">U10 Upload własnego śladu</span><span class="feat-desc">Twoja sucha gitara przez testowaną kostkę.</span></li>
+            <li><span class="feat-name">U11 Granie na żywo</span><span class="feat-desc">Gitara podpięta do komputera, niska latencja.</span></li>
+            <li><span class="feat-name">A4 Panel admina</span><span class="feat-desc">Katalog, kalendarz, finanse, statystyki w UI.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Co dalej?</h2>
+      <div class="instruct">
+        <p><strong>Replit zbuduje:</strong> wszystko z Must Have + Should Have w pierwszym buildzie (7 + 1 stories).</p>
+      </div>
+      <div class="instruct">
+        <p><strong>V2 ficzery</strong> (Could + Won't) <strong>dorzucasz później prosto w Replit</strong> — napisz w czacie „dodaj funkcję [X]", odwołując się do tej tabeli.</p>
+      </div>
+    </section>
+
+    <section style="margin-top: 64px; padding: 24px 28px; background: var(--color-surface); border-radius: var(--radius); text-align: center;">
+      <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--color-primary);">📚 Pełna specyfikacja funkcjonalna</h3>
+      <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.55;">
+        Ten dokument zawiera <strong>tylko decyzję o priorytetach</strong> (klasyfikację MoSCoW).<br>
+        Pełne user stories z acceptance criteria, flows i reguły biznesowe: <strong>04-spec.md</strong> (podgląd: <strong>04-spec.html</strong>).<br>
+        To jest też plik, który załączysz do Replita jako PRD attachment.
+      </p>
+    </section>
+  </main>
+
+  <footer style="
+    margin-top: 64px;
+    padding: 24px 32px;
+    border-top: 1px solid rgba(139, 92, 246, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 13px;
+    color: #6E7191;
+    line-height: 1.5;
+  ">
+    <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+      <svg width="32" height="32" viewBox="0 0 1058 1058" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+        <path d="M719.288 396.369H659.786V566.284L710.57 663.324H719.288V396.369Z" fill="url(#aibb-grad-1)"/>
+        <path d="M339 663.154L460.458 416.556C471.377 394.719 486.274 392.179 500.874 392.179H535.365C553.182 392.179 566.089 396.708 574.934 415.244L710.57 663.154H634.521C615.053 663.154 604.77 655.452 597.787 640.809L519.326 484.86L439.891 639.328C432.443 651.474 422.624 663.154 405.739 663.154H339Z" fill="url(#aibb-grad-2)"/>
+        <path opacity="0.3" d="M659.786 566.242L710.57 663.281H719.88L659.786 562.517V566.242Z" fill="black"/>
+        <defs>
+          <linearGradient id="aibb-grad-1" x1="689.537" y1="396.369" x2="689.537" y2="663.154" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#18A0FB"/>
+            <stop offset="0.48" stop-color="#3119F8"/>
+            <stop offset="1" stop-color="#FF28E7"/>
+          </linearGradient>
+          <linearGradient id="aibb-grad-2" x1="524.785" y1="392.349" x2="524.785" y2="663.154" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#24D9FE"/>
+            <stop offset="0.48" stop-color="#3119F8"/>
+            <stop offset="1" stop-color="#FF28E7"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span style="min-width: 0;">
+        Stworzono z pomocą skilla
+        <strong style="color: #8B5CF6; font-weight: 600;">/od-pomyslu-do-promptu</strong>
+        w ramach kursu
+        <strong style="color: #1E1E2E; font-weight: 600;">AI Builder Camp</strong>
+      </span>
+    </div>
+    <a href="https://aibusinessbuilders.pl" target="_blank" rel="noopener" style="
+      color: #8B5CF6;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    ">aibusinessbuilders.pl →</a>
+  </footer>
+</body>
+</html>
