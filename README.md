@@ -10,6 +10,22 @@ afiliacyjny.
 > hardware'em** (nie symulacją). MVP świadomie pomija warstwę hardware —
 > patrz [docs/ROADMAP.md](docs/ROADMAP.md).
 
+## Live demo
+
+**<https://pedal-test-studio.vercel.app>**
+
+Hosted on Vercel: the frontend and catalog are served statically from `app/public`, and the
+`/api/*` endpoints run as serverless functions ([`api/`](api/) — logic 1:1 with
+[`app/server.js`](app/server.js)). Demo notes: audio recordings are locally generated
+placeholders and are not part of the repo, so playback is unavailable in the demo; event
+stats (`/api/stats`) are stored in ephemeral instance storage and reset periodically.
+
+PL: Demo działa na Vercelu: frontend i katalog serwowane są statycznie z `app/public`,
+a endpointy `/api/*` jako funkcje serverless ([`api/`](api/) — logika 1:1
+z [`app/server.js`](app/server.js)). Uwagi do dema: nagrania audio to generowane lokalnie
+placeholdery i nie ma ich w repo, więc odsłuch w demo jest niedostępny; statystyki zdarzeń
+(`/api/stats`) zapisują się w ulotnej pamięci instancji i okresowo się resetują.
+
 ## Szybki start
 
 Wymagania: **Node.js ≥ 20** (bez `npm install` — projekt nie ma żadnych zależności).
@@ -37,6 +53,7 @@ node --test "tests/**/*.test.js"
 | Dane | `app/data/pedals.json` (katalog), WAV (nagrania), NDJSON (zdarzenia, zero PII) |
 | Dane startowe | generator: synteza riffu (Karplus–Strong) + DSP per ustawienie gałek, grafiki kostek SVG |
 | Testy / CI | wbudowany `node:test`, GitHub Actions |
+| Deploy | Vercel — statyka z `app/public` + funkcje serverless w `api/` |
 
 ## Struktura repozytorium
 
@@ -47,6 +64,7 @@ node --test "tests/**/*.test.js"
 │   ├── data/              #   katalog kostek + nagrania + log zdarzeń
 │   ├── scripts/           #   generator danych startowych
 │   └── README-admin.md    #   ścieżka admina: dodawanie kostek/nagrań bez zmian w kodzie
+├── api/                   # funkcje serverless dla demo na Vercelu (pedals / events / stats)
 ├── docs/                  # dokumentacja produktowa (PM/UX)
 │   ├── PRD.md             #   wymagania produktu (skrót; pełny PRD: 04-spec.md)
 │   ├── STRATEGY.md        #   Business Model Canvas + Value Proposition Canvas
