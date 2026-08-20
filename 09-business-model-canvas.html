@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Model Canvas — PedalTest Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#2e7d32;--green-dark:#1b5e20;--green-light:#e8f5e9;--ink:#1a1a1a;--muted:#5f6b62;--line:#d9e2d9;--bg:#f6f8f6;--warn:#b26a00;--warn-bg:#fff4e0}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.5}
+  .nav{background:#fff;border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;gap:14px}
+  .nav .dot{width:12px;height:12px;border-radius:50%;background:var(--green)}
+  .nav b{font-family:'Oswald';font-weight:600;letter-spacing:.5px;text-transform:uppercase;font-size:15px}
+  .nav span{color:var(--muted);font-size:13px}
+  .wrap{max-width:1280px;margin:0 auto;padding:32px 24px 70px}
+  h1{font-family:'Oswald';font-weight:700;font-size:34px;margin:0 0 6px;letter-spacing:.5px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:26px}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);grid-auto-rows:minmax(150px,auto);gap:12px}
+  .cell{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column}
+  .cell h3{font-family:'Oswald';font-weight:600;font-size:14px;letter-spacing:.4px;text-transform:uppercase;margin:0 0 4px;color:var(--green-dark);display:flex;align-items:center;gap:6px}
+  .cell .ic{font-size:15px}
+  .cell ul{margin:6px 0 0;padding-left:16px}
+  .cell li{font-size:12.5px;margin-bottom:5px;color:#2a2a2a}
+  .cell.vp{border-top:4px solid var(--green);background:var(--green-light)}
+  .cell.cs{border-top:4px solid #0277bd}
+  .span2{grid-row:span 2}
+  .warn{background:var(--warn-bg);border-left:3px solid var(--warn);padding:6px 9px;border-radius:5px;font-size:11.5px;margin-top:8px;color:#5b4300}
+  .tag{display:inline-block;font-family:'Oswald';font-size:10px;padding:1px 7px;border-radius:10px;background:var(--green);color:#fff;letter-spacing:.5px;margin-left:auto}
+  .tag.v{background:#0277bd}
+  .botrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .note{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 22px;font-size:14px}
+  .note h3{font-family:'Oswald';font-weight:600;margin:0 0 8px;color:var(--green-dark)}
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.span2{grid-row:auto}.botrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="nav"><span class="dot"></span><b>PedalTest Studio</b><span>· Business Model Canvas · 2026-06-13</span></div>
+<div class="wrap">
+  <h1>Business Model Canvas</h1>
+  <div class="sub">Wariant MVP (dziś) + wizja docelowa. <span style="color:var(--warn)">⚠️</span> = aktualizacja wynikająca z researchu konkurencji.</div>
+
+  <div class="grid">
+    <div class="cell span2">
+      <h3><span class="ic">🤝</span>Kluczowi partnerzy</h3>
+      <ul>
+        <li><strong>Producenci</strong> — najpierw boutique/mniejsze marki (chętniejsze na ekspozycję)</li>
+        <li>Sklepy z afiliacją: Sweetwater, Reverb, Guitar Center + <strong>sklepy PL/CEE</strong></li>
+        <li>Społeczności gitarowe / twórcy (dystrybucja)</li>
+        <li>Później: dostawca streamingu audio (rig)</li>
+      </ul>
+      <div class="warn">⚠️ Nie ścigaj się o Boss/Ibanez z Thomannem — buduj na mniejszych markach.</div>
+    </div>
+    <div class="cell span2">
+      <h3><span class="ic">⚙️</span>Kluczowe działania</h3>
+      <ul>
+        <li><strong>Produkcja realnych nagrań</strong> reamp per kostka (główny koszt)</li>
+        <li>Rozwój portalu: porównanie A/B, edukacja, SEO</li>
+        <li>Pozyskiwanie partnerstw afiliacyjnych i producenckich</li>
+        <li>Analiza danych o zaangażowaniu</li>
+      </ul>
+    </div>
+    <div class="cell vp span2">
+      <h3><span class="ic">💎</span>Propozycja wartości</h3>
+      <ul>
+        <li>Uczciwe porównanie: ten sam riff, te same ustawienia (2/6/9)</li>
+        <li>Zero kont i paywalla przed pierwszym dźwiękiem</li>
+        <li><strong>Kuratorowany wybór</strong> zamiast przytłaczającego katalogu</li>
+        <li>Dla producenta: ekspozycja przed kupującym o wysokiej intencji + dane</li>
+        <li><em>Wizja:</em> prawdziwy hardware + porównanie A/B</li>
+      </ul>
+      <div class="warn">⚠️ Rdzeń („usłysz, jak brzmi naprawdę") wymaga realnych nagrań — synteza go nie spełnia.</div>
+    </div>
+    <div class="cell span2">
+      <h3><span class="ic">❤️</span>Relacje z klientami</h3>
+      <ul>
+        <li>Self-service, anonimowo (MVP) — bez zobowiązań</li>
+        <li>Później: konta, rezerwacje slotów, NPS, presety</li>
+        <li>Zaufanie przez uczciwość porównań i edukację</li>
+      </ul>
+    </div>
+    <div class="cell cs span2">
+      <h3><span class="ic">🎯</span>Segmenty klientów</h3>
+      <ul>
+        <li>Gitarzysta-hobbysta, kupujący rozważnie</li>
+        <li><strong>Najwyższa wartość: początkujący</strong> wybierający pierwszy overdrive/fuzz</li>
+        <li>Wykluczeni: profesjonaliści, użytkownicy modelerów</li>
+        <li>Druga strona rynku: producenci i sklepy</li>
+      </ul>
+      <div class="warn">⚠️ Zaostrz fokus na początkującym decydencie — tam przewaga nad Stompenbergiem.</div>
+    </div>
+
+    <div class="cell">
+      <h3><span class="ic">🔑</span>Kluczowe zasoby</h3>
+      <ul>
+        <li>Katalog z <strong>realnymi nagraniami</strong></li>
+        <li>Wierne grafiki + metadane gałek (encje)</li>
+        <li>Anonimowe statystyki (argument dla marek)</li>
+        <li>Marka/zaufanie + pozycja SEO</li>
+        <li>Później: fizyczny rig</li>
+      </ul>
+    </div>
+    <div class="cell">
+      <h3><span class="ic">📡</span>Kanały</h3>
+      <ul>
+        <li>Otwarty portal web (zero tarcia)</li>
+        <li><strong>SEO</strong> — strony porównawcze</li>
+        <li>Społeczności, YouTube/IG</li>
+        <li>Partnerstwa z producentami</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="botrow">
+    <div class="cell">
+      <h3><span class="ic">💸</span>Struktura kosztów</h3>
+      <ul>
+        <li>MVP: czas na treści + znikomy hosting (zero-dependency)</li>
+        <li><strong>Skalowanie treści: realne nagrania</strong> (studio, reamp, sprzęt) — główny koszt</li>
+        <li>Wizja: sprzęt rigu, streaming audio, obsługa płatności</li>
+        <li>Ewentualna konsultacja prawna</li>
+      </ul>
+    </div>
+    <div class="cell">
+      <h3><span class="ic">💰</span>Strumienie przychodów</h3>
+      <ul>
+        <li>MVP: linki afiliacyjne / commission fee <span class="tag">dziś</span></li>
+        <li>Płatne minuty na rigu (freemium „na kawę", ~5 USD/h) <span class="tag v">wizja</span></li>
+        <li><strong>Partnerstwa producenckie</strong> (promowane demo) — rekomendowane</li>
+        <li>Ew. premium (większy katalog, presety)</li>
+      </ul>
+      <div class="warn">⚠️ Afiliacja fizyczna płaci mało (Reverb ~1%, Sweetwater ~$0,07/klik) — dodatek, nie fundament.</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>Podsumowanie modelu</h3>
+    <p style="margin:0">PedalTest to <strong>dwustronny rynek</strong>: hobbyści szukający kostki ⟷ producenci/sklepy chcący dotrzeć do kupujących o wysokiej intencji. Wartość rośnie z jakością treści (realne nagrania) i z fokusem na decyzji początkującego. Najsłabsze ogniwo to monetyzacja oparta wyłącznie na niskomarżowej afiliacji — model powinien ewoluować w stronę partnerstw producenckich i/lub premium, zanim wejdzie w kapitałochłonny rig.</p>
+  </div>
+</div>
+</body>
+</html>

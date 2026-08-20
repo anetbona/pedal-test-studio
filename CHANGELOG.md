@@ -10,6 +10,26 @@ wersjonowanie zgodne z [SemVer](https://semver.org/lang/pl/).
 - Prawdziwe nagrania i zdjęcia kostek (zamiast generowanych placeholderów)
 - U12 porównanie A/B, U13 ankieta NPS — patrz [docs/ROADMAP.md](docs/ROADMAP.md)
 
+## [0.3.0] — 2026-08-20
+
+### Fixed
+- **Dźwięk w demo na Vercelu**: nagrania WAV przeniesione do `app/public/audio/`
+  i dodane do repo (wcześniej ignorowane — statyczny hosting nie miał plików audio).
+- **Linki sklepów** zweryfikowane i poprawione: Ibanez → strona modelu Tube Screamer,
+  Fulltone i Wampler → strony główne (podstrony 404), GuitarCenter.pl → działający
+  URL wyszukiwarki; dodany Thomann (PL).
+
+### Added
+- **Interaktywne gałki**: kręcenie przeciągnięciem lub strzałkami (dostępność: role
+  slider, fokus) — wartość przyciąga się do najbliższego nagranego ustawienia
+  i odtwarza pasujące nagranie.
+- **Dwujęzyczność EN/PL**: angielski jako wersja bazowa (domyślna), polski przez
+  przełącznik EN/PL w nawigacji; opisy kostek w obu językach; wybór zapamiętywany.
+
+### Changed
+- Dopracowane grafiki kostek: gradienty obudowy, metaliczne przyciski i śruby,
+  poświata LED, detale per model (szyny treadle'a Boss, chrom TS9 itd.).
+
 ## [0.2.0] — 2026-06-12
 
 ### Changed

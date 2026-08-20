@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research i benchmarking — PedalTest Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#2e7d32; --green-dark:#1b5e20; --green-light:#e8f5e9;
+    --ink:#1a1a1a; --muted:#5f6b62; --line:#e3e8e3; --bg:#f6f8f6; --card:#fff;
+    --warn:#b26a00; --warn-bg:#fff4e0; --red:#c62828;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+  .nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;gap:14px}
+  .nav .dot{width:12px;height:12px;border-radius:50%;background:var(--green)}
+  .nav b{font-family:'Oswald';font-weight:600;letter-spacing:.5px;text-transform:uppercase;font-size:15px}
+  .nav span{color:var(--muted);font-size:13px}
+  .wrap{max-width:980px;margin:0 auto;padding:40px 28px 80px}
+  h1{font-family:'Oswald';font-weight:700;font-size:40px;line-height:1.1;margin:0 0 8px;letter-spacing:.5px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:36px}
+  h2{font-family:'Oswald';font-weight:600;font-size:26px;margin:48px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--green);letter-spacing:.3px}
+  h3{font-family:'Oswald';font-weight:500;font-size:19px;margin:28px 0 8px;color:var(--green-dark)}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 14px;padding-left:22px}
+  li{margin-bottom:7px}
+  strong{font-weight:600}
+  .tldr{background:var(--green-light);border-left:4px solid var(--green);border-radius:8px;padding:20px 24px;margin-bottom:8px}
+  .warn{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:6px;padding:12px 16px;margin:14px 0;font-size:14.5px}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px;background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  th{background:var(--green);color:#fff;font-family:'Oswald';font-weight:500;text-align:left;padding:11px 13px;letter-spacing:.3px}
+  td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#fafcfa}
+  .swot{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  .swot .box{border-radius:10px;padding:18px 20px;background:var(--card);border-top:4px solid var(--green)}
+  .swot .box.w{border-top-color:var(--warn)}
+  .swot .box.o{border-top-color:#0277bd}
+  .swot .box.t{border-top-color:var(--red)}
+  .swot h3{margin-top:0}
+  .swot ul{padding-left:18px}
+  .swot li{font-size:14px}
+  .pill{display:inline-block;background:var(--green);color:#fff;font-family:'Oswald';font-size:12px;padding:2px 10px;border-radius:20px;letter-spacing:.5px;vertical-align:middle}
+  .sources{font-size:13px;color:var(--muted)}
+  .sources a{color:var(--green-dark)}
+  .donot li{margin-bottom:10px}
+  @media(max-width:680px){.swot{grid-template-columns:1fr}h1{font-size:30px}table{font-size:12.5px}}
+</style>
+</head>
+<body>
+<div class="nav"><span class="dot"></span><b>PedalTest Studio</b><span>· Research &amp; Benchmarking · 2026-06-13</span></div>
+<div class="wrap">
+  <h1>Research rynkowy i benchmarking konkurencji</h1>
+  <div class="sub">Analiza oparta na materiałach projektu i desk researchu rynkowym (czerwiec 2026). Powiązane: Business Model Canvas, Value Proposition Canvas.</div>
+
+  <h2>1. Streszczenie zarządcze</h2>
+  <div class="tldr">
+    <p>PedalTest rozwiązuje <strong>realny, zwalidowany problem</strong> — hobbysta nie ma jak rzetelnie ocenić brzmienia kostki przed zakupem. Ale pomysł <strong>nie jest pusty na rynku</strong>.</p>
+    <p><strong>Loopy Demos</strong> robi już to, co MVP PedalTest (interaktywne odsłuchy z przełączaniem gałek). <strong>Thomann Stompenberg FX</strong> robi już „wizję docelową" — prawdziwy hardware sterowany online, <strong>za darmo</strong>, na 200+ kostkach, z grą na żywo — i jest własnością największego sklepu muzycznego w Europie.</p>
+    <p>Wniosek: przewagą nie może być „jako jedyni kręcimy gałkami prawdziwej kostki online". Musi być węższa: <strong>kuratorowane, uczciwe porównania dla początkującego, który chce wybrać JEDEN overdrive</strong> — decyzyjność zamiast katalogu. Najtrudniejszy element to monetyzacja: afiliacja na sprzęcie fizycznym płaci bardzo mało.</p>
+  </div>
+
+  <h2>2. Problem i jego walidacja</h2>
+  <p>Założenie, że dema na YouTube są niereprezentatywne, <strong>potwierdza się w opiniach użytkowników</strong>. Na forach (Telecaster Guitar Forum, Ultimate Guitar) wraca skarga: gitarzysta kupuje kostkę z demo, ustawia gałki identycznie — i brzmi inaczej. Powody są strukturalne: inny wzmacniacz, gitara, gracz, postprodukcja. Pojawiają się relacje osób, które kupowały i sprzedawały tę samą kostkę wielokrotnie.</p>
+  <h3>Wielkość rynku</h3>
+  <p>Globalny rynek efektów gitarowych to ok. <strong>3,8 mld USD (2025)</strong>, prognoza ~4,6–4,8 mld USD w 2029 r. (CAGR ~4–6%). Rynek zdrowy i rosnący, ale <strong>dojrzały i rozdrobniony</strong> — z mocnymi graczami contentowymi i e-commerce.</p>
+
+  <h2>3. Krajobraz konkurencyjny</h2>
+  <h3>A. Interaktywne odsłuchy na prawdziwym hardware</h3>
+  <p><strong>Thomann Stompenberg FX</strong> — najgroźniejszy konkurent. Thomann rozbiera kostki, digitalizuje gałki i umieszcza je w racku; użytkownik steruje <strong>prawdziwym sprzętem</strong> z przeglądarki. Pętle wzorcowe, upload, <strong>gra na żywo (≤200 ms)</strong>, IR kolumn. 200+ kostek topowych marek. <strong>Darmowe</strong> — monetyzacją jest sprzedaż w sklepie Thomann. To dokładnie etap U9 z roadmapy PedalTest, już wdrożony na masową skalę.</p>
+  <h3>B. Interaktywne odsłuchy na nagraniach</h3>
+  <p><strong>Loopy Demos</strong> — robi dokładnie to, co MVP PedalTest: reamp + nagrane „przejścia gałek", przełączanie ustawień, content porównawczy, współprace z producentami. Dojrzała realizacja tej samej idei, z realnymi nagraniami. <strong>TonePedia</strong> — porównywarka sprzętu obok siebie.</p>
+  <h3>C. Wizualne planery pedalboardów (bez dźwięku)</h3>
+  <p><strong>Pedal Playground</strong>, <strong>PedalboardPlanner</strong> — układanie wirtualnego pedalboardu, ale bez dźwięku. Pokazują popyt na interaktywne narzędzia okołozakupowe.</p>
+  <h3>D. Emulacje programowe (anty-wzorzec, ale realny substytut)</h3>
+  <p><strong>AmpliTube, Neural DSP, ToneX, Positive Grid</strong> — software z opcją „try before you buy" (np. demo 72 h). PedalTest się odcina, ale dla usera rozwiązują podobny ból — a część hobbystów zostaje przy pluginie zamiast kupić hardware.</p>
+  <h3>E. Wypożyczalnie fizycznych kostek</h3>
+  <p><strong>Pedal Genie (US)</strong> — $34,95/mies., 2000+ kostek, zniżka przy zakupie. <strong>The Pedal Club / Tonebuddy (UK)</strong> — £30/mies., 500+ kostek. Jedyny model dający pełny <strong>fizyczny test</strong> na własnym sprzęcie — ale kapitałochłonny i ograniczony geograficznie.</p>
+
+  <h2>4. Benchmarking — porównanie</h2>
+  <table>
+    <tr><th>Rozwiązanie</th><th>Model biznesowy</th><th>Mocne strony</th><th>Słabe strony</th></tr>
+    <tr><td><strong>Thomann Stompenberg FX</strong></td><td>Darmowe; sprzedaż sprzętu</td><td>Prawdziwy hardware, 200+ kostek, gra na żywo, marka giganta, za darmo</td><td>Latencja ≤200 ms; część kostek brzmi słabo na wzorcach; awarie; przytłacza nowicjusza</td></tr>
+    <tr><td><strong>Loopy Demos</strong></td><td>Współprace z producentami</td><td>Realne nagrania, uczciwe „sweepy", content, UX</td><td>Brak grania na żywo; ograniczony katalog; zależność od marek</td></tr>
+    <tr><td><strong>TonePedia</strong></td><td>Afiliacja / leady</td><td>Szeroki zakres, porównania A/B</td><td>Mniej „interaktywne kręcenie"</td></tr>
+    <tr><td><strong>Pedal Playground</strong></td><td>Afiliacja / sklep</td><td>Prosty, popularny planer</td><td>Brak dźwięku</td></tr>
+    <tr><td><strong>AmpliTube / Neural DSP</strong></td><td>Sprzedaż licencji</td><td>Ogromne katalogi, realne demo, gra na żywo</td><td>Symulacja, nie hardware; kanibalizuje zakup kostki</td></tr>
+    <tr><td><strong>Pedal Genie / Pedal Club</strong></td><td>Subskrypcja + sprzedaż</td><td>Pełny fizyczny test; ogromny katalog; zniżka</td><td>Koszt; logistyka; nowości wypożyczone; geografia</td></tr>
+    <tr><td><strong>Dema YouTube</strong></td><td>Reklamy, sponsoring, afiliacja</td><td>Darmowe, zasięg, zaufanie do twórców</td><td>Niereprezentatywne; brak interakcji; sztywne ustawienia</td></tr>
+    <tr><td><strong>Sklep stacjonarny</strong></td><td>Sprzedaż</td><td>Pełny realny test, doradztwo</td><td>Często brak w okolicy; presja sprzedaży</td></tr>
+    <tr><td style="background:var(--green-light)"><strong>PedalTest (MVP)</strong></td><td style="background:var(--green-light)">Afiliacja (+ płatne minuty)</td><td style="background:var(--green-light)">Otwarty, zero tarcia, uczciwe porównanie, kuratorowany wybór</td><td style="background:var(--green-light)">Syntezowany riff; mały katalog; pokrycie z Loopy; słaba afiliacja</td></tr>
+  </table>
+
+  <h2>5. Modele biznesowe konkurencji — analiza</h2>
+  <p><strong>„Darmowo, bo jesteśmy sklepem" (Stompenberg).</strong> Najsilniejszy — narzędzie to lejek sprzedażowy. Niemożliwy do skopiowania bez zaplecza e-commerce i kapitału.</p>
+  <p><strong>„Współprace z producentami" (Loopy Demos).</strong> Niski koszt sprzętu, wbudowana dystrybucja. Słabość: zależność od marek i ryzyko utraty wiarygodności.</p>
+  <p><strong>Afiliacja.</strong> Skalowalna, bez magazynu — ale stawki na fizycznym sprzęcie są niskie: <strong>Reverb ~1%</strong> (fizyczne), Sweetwater ~$0,07/klik lub do 8%. Wymaga dużej skali ruchu, by się spiąć.</p>
+  <p><strong>Subskrypcja / wypożyczalnia.</strong> Powtarzalny przychód i jasna wartość, ale kapitałochłonna, z logistyką i zwrotami.</p>
+  <p><strong>Treść (YouTube).</strong> Reklamy + sponsoring + afiliacja — ale to inny biznes (produkcja wideo, zasięg, osobowość).</p>
+
+  <h2>6. SWOT pomysłu PedalTest</h2>
+  <div class="swot">
+    <div class="box"><h3>Mocne strony</h3><ul>
+      <li>Trafny, zwalidowany problem i ostra persona</li>
+      <li>Uczciwe porównanie (ten sam riff, 2/6/9)</li>
+      <li>Zero tarcia — otwarty portal bez kont</li>
+      <li>Architektura gotowa na rozwój (gałki jako encje)</li>
+      <li>Niski koszt startu; MVP działa</li>
+      <li>Kuratorowany mały katalog jako zaleta dla nowicjusza</li>
+    </ul></div>
+    <div class="box w"><h3>Słabe strony</h3><ul>
+      <li><strong>Syntezowany riff</strong> podważa rdzeń wartości</li>
+      <li>Pokrycie z Loopy Demos (oni robią to lepiej)</li>
+      <li>Słaba ekonomia afiliacji fizycznej</li>
+      <li>Mały katalog (8 vs 200+/2000+)</li>
+      <li>Brak grania na żywo i uploadu w MVP</li>
+      <li>Ryzyko prawne nazw/grafik przy skali</li>
+    </ul></div>
+    <div class="box o"><h3>Szanse</h3><ul>
+      <li>Nisza „decyzja dla początkującego"</li>
+      <li>Treść porównawcza pod SEO (wysoka intencja)</li>
+      <li>Rynek PL/CEE — luka po anglojęzycznych graczach</li>
+      <li>Partnerstwa z boutique producentami</li>
+      <li>Warstwa edukacyjna przyciąga personę</li>
+    </ul></div>
+    <div class="box t"><h3>Zagrożenia</h3><ul>
+      <li>Thomann Stompenberg robi „wizję" za darmo</li>
+      <li>Loopy Demos robi MVP lepiej</li>
+      <li>Trend w stronę software'u (ToneX, Neural DSP)</li>
+      <li>Zależność od stawek afiliacyjnych</li>
+      <li>Koszt wiarygodnej treści (realne nagrania)</li>
+    </ul></div>
+  </div>
+
+  <h2>7. Kierunki rozwoju <span class="pill">gdzie iść</span></h2>
+  <ol>
+    <li><strong>Realne nagrania zamiast syntezy — priorytet zero.</strong> Lepiej 5 prawdziwych kostek niż 50 syntezowanych. Bez tego produkt nie dotrzymuje obietnicy.</li>
+    <li><strong>Zawęzić pozycjonowanie do „przewodnika decyzyjnego dla początkującego".</strong> Porównanie A/B (U12) jest tu kluczowe — przesuń je w priorytecie do góry.</li>
+    <li><strong>Treść porównawcza + SEO</strong> („TS9 vs OCD vs Blues Driver") — tani, skalowalny ruch o wysokiej intencji zakupowej.</li>
+    <li><strong>Rynek PL/CEE jako przyczółek</strong> — lokalny język, lokalne sklepy afiliacyjne, społeczności.</li>
+    <li><strong>Partnerstwa z boutique/mniejszymi markami</strong> — nie walka o Boss/Ibanez z Thomannem.</li>
+    <li><strong>Warstwa edukacyjna</strong> — „co robi która gałka", glosariusz brzmień.</li>
+    <li><strong>Dywersyfikacja monetyzacji</strong> — partnerstwa producenckie i/lub premium ponad samą afiliację.</li>
+  </ol>
+
+  <h2>8. W co NIE iść <span class="pill" style="background:var(--red)">stop</span></h2>
+  <ol class="donot">
+    <li><strong>Nie ścigaj się ze Stompenbergiem na „prawdziwy hardware online za darmo".</strong> To walka kapitałowa z największym sklepem w Europie, który już to oddaje za darmo.</li>
+    <li><strong>Nie skaluj katalogu syntezowanych nagrań</strong> — skalujesz wtedy rozbieżność między obietnicą a produktem.</li>
+    <li><strong>Nie buduj uploadu i grania na żywo zbyt wcześnie</strong> — kosztowne i już istnieje gdzie indziej; to nie twój wyróżnik.</li>
+    <li><strong>Nie wchodź w model wypożyczalni fizycznej</strong> — kapitałochłonny, logistyka, zwroty, cienka marża.</li>
+    <li><strong>Nie opieraj przychodów wyłącznie na afiliacji sprzętu</strong> — stawki zbyt niskie bez ogromnej skali.</li>
+    <li><strong>Nie celuj w profesjonalistów</strong> — rozmycie persony osłabia jedyną przewagę.</li>
+    <li><strong>Nie używaj nazw/grafik producentów bez weryfikacji prawnej</strong> przy rosnącej skali i monetyzacji.</li>
+  </ol>
+
+  <h2>9. Wnioski</h2>
+  <p>Problem realny, persona trafna, MVP sprawne i tanie. Ale pomysł stoi między dwoma silniejszymi rozwiązaniami: Loopy Demos (lepsze MVP) i Stompenberg FX (gotowa „wizja", za darmo, od giganta). Droga naprzód to <strong>zawężenie</strong>: realne nagrania zamiast syntezy, fokus na decyzji początkującego (A/B + edukacja), rynek PL/CEE jako przyczółek i partnerstwa z mniejszymi markami. Afiliacja — jako dodatek, nie fundament. Fundamentem jest zaufanie i decyzyjność dostarczone wąsko zdefiniowanej personie.</p>
+
+  <h2>Źródła</h2>
+  <div class="sources">
+    <p>Thomann Stompenberg FX:
+      <a href="https://musictech.com/news/gear/thomann-stompenberg-fx/">MusicTech</a> ·
+      <a href="https://guitar.com/news/gear-news/thomann-stompenberg-fx-demo-pedals-free/">Guitar.com</a> ·
+      <a href="https://www.musicradar.com/news/test-guitar-effects-pedals-from-the-comfort-of-your-home-with-thomanns-stompenberg-fx-online-app">MusicRadar</a> ·
+      <a href="https://www.thomann.de/blog/en/gear/stompenberg-fx-speaker-simulator-update/">Thomann Blog</a> ·
+      <a href="https://www.diystompboxes.com/smfforum/index.php?topic=121788.0">diystompboxes</a>.
+      Loopy Demos: <a href="https://loopydemos.com/">loopydemos.com</a>, <a href="https://loopydemos.com/about">About</a>.
+      <a href="https://www.tonepedia.com/">TonePedia</a> ·
+      <a href="https://pedalplayground.com/">Pedal Playground</a> ·
+      <a href="https://www.sweetwater.com/insync/cool-site-pedalboardplannercom/">PedalboardPlanner</a> ·
+      <a href="https://www.ikmultimedia.com/products/amplitube5cs/">AmpliTube</a>.
+      Wypożyczalnie: <a href="http://distortionpedalhq.com/pedal-genie-review/">Pedal Genie review</a>, <a href="https://www.guitarpedalx.com/news/news/try-before-you-buy-makes-uss-pedal-genie-and-uks-tonebuddy-essential-resources-for-many-pedal-fans">Guitar Pedal X</a>.
+      Dema YT: <a href="https://www.tdpri.com/threads/pedals-that-dont-sound-as-good-as-youtube-demos-make-them-sound.1006983/">Telecaster Forum</a>, <a href="https://www.ultimate-guitar.com/forum/showthread.php?t=826038">Ultimate Guitar</a>.
+      Afiliacja: <a href="https://commission.academy/blog/best-musical-instrument-affiliate-programs/">Commission Academy</a>, <a href="https://www.flexoffers.com/affiliate-programs/sweetwater-sound-affiliate-program/">FlexOffers</a>.
+      Rynek: <a href="https://www.researchandmarkets.com/reports/6009292/guitar-pedals-global-market-report">Research and Markets</a>, <a href="https://www.cognitivemarketresearch.com/guitar-effects-pedals-market-report">Cognitive Market Research</a>.</p>
+  </div>
+</div>
+</body>
+</html>

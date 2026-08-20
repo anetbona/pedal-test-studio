@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Value Proposition Canvas — PedalTest Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#2e7d32;--green-dark:#1b5e20;--green-light:#e8f5e9;--ink:#1a1a1a;--muted:#5f6b62;--line:#d9e2d9;--bg:#f6f8f6;--blue:#0277bd;--blue-light:#e1f0f7;--warn:#b26a00;--warn-bg:#fff4e0}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.5}
+  .nav{background:#fff;border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;gap:14px}
+  .nav .dot{width:12px;height:12px;border-radius:50%;background:var(--green)}
+  .nav b{font-family:'Oswald';font-weight:600;letter-spacing:.5px;text-transform:uppercase;font-size:15px}
+  .nav span{color:var(--muted);font-size:13px}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 24px 70px}
+  h1{font-family:'Oswald';font-weight:700;font-size:34px;margin:0 0 6px;letter-spacing:.5px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:26px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+  .panel.value{border-top:5px solid var(--green)}
+  .panel.cust{border-top:5px solid var(--blue)}
+  .ptitle{font-family:'Oswald';font-weight:600;font-size:20px;letter-spacing:.4px;margin:0 0 4px}
+  .panel.value .ptitle{color:var(--green-dark)}
+  .panel.cust .ptitle{color:var(--blue)}
+  .pshape{font-size:12px;color:var(--muted);margin-bottom:16px}
+  .blk{margin-bottom:16px}
+  .blk h3{font-family:'Oswald';font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:.4px;margin:0 0 7px;display:flex;align-items:center;gap:7px}
+  .blk.green h3{color:var(--green-dark)} .blk.blue h3{color:var(--blue)}
+  .blk ul{margin:0;padding-left:17px}
+  .blk li{font-size:13px;margin-bottom:6px}
+  .chip{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+  .chip.g{background:var(--green-light)} .chip.b{background:var(--blue-light)}
+  .arrow{text-align:center;font-family:'Oswald';color:var(--muted);font-size:13px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+  th{background:var(--green);color:#fff;font-family:'Oswald';font-weight:500;text-align:left;padding:9px 11px}
+  td{padding:9px 11px;border-top:1px solid var(--line);vertical-align:top}
+  .fit h2{font-family:'Oswald';font-weight:600;font-size:24px;border-bottom:2px solid var(--green);padding-bottom:6px;margin:34px 0 12px}
+  .ok{color:var(--green-dark);font-weight:600} .part{color:var(--warn);font-weight:600} .no{color:#c62828;font-weight:600}
+  .note{margin-top:18px;background:var(--green-light);border-left:4px solid var(--green);border-radius:8px;padding:16px 20px;font-size:14px}
+  @media(max-width:880px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="nav"><span class="dot"></span><b>PedalTest Studio</b><span>· Value Proposition Canvas · 2026-06-13</span></div>
+<div class="wrap">
+  <h1>Value Proposition Canvas</h1>
+  <div class="sub">Segment: gitarzysta-hobbysta, początkujący/średnio-zaawansowany, wybierający kostkę przed zakupem. Model Osterwaldera.</div>
+
+  <div class="two">
+    <div class="panel value">
+      <div class="ptitle">◧ Mapa wartości</div>
+      <div class="pshape">Co oferuje PedalTest (kwadrat)</div>
+      <div class="blk green">
+        <h3><span class="chip g">📦</span>Produkty i usługi</h3>
+        <ul>
+          <li>Otwarty portal: katalog → podstrona kostki (grafika + animowane gałki + nagrania) → belka sklepów</li>
+          <li>Przełączanie nagrań (riff w ustawieniach 2/6/9) z animacją gałek</li>
+          <li><em>Rekomendowane:</em> porównanie A/B, edukacja „co robi gałka", strony SEO</li>
+          <li><em>Wizja:</em> zdalne sterowanie prawdziwym hardware'em</li>
+        </ul>
+      </div>
+      <div class="blk green">
+        <h3><span class="chip g">➕</span>Środki przeciwbólowe</h3>
+        <ul>
+          <li>Jeden riff w wielu ustawieniach = uczciwe porównanie (koniec „magicznego sprzętu demonstratora")</li>
+          <li>Gałki pokazują dokładne ustawienia nagrania</li>
+          <li>Zero kont i paywalli — brak tarcia i presji</li>
+          <li>Kuratorowany mały katalog — antidotum na przytłoczenie wyborem</li>
+        </ul>
+      </div>
+      <div class="blk green">
+        <h3><span class="chip g">🚀</span>Generatory korzyści</h3>
+        <ul>
+          <li>Natychmiastowe porównanie uchem w jednym miejscu</li>
+          <li>Od decyzji do zakupu w kilka sekund (linki sklepów obok)</li>
+          <li>Edukacja + A/B = pewność i poczucie kompetencji</li>
+          <li>Wizja: prawdziwy hardware = najwyższa wiarygodność</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel cust">
+      <div class="ptitle">◯ Profil klienta</div>
+      <div class="pshape">Czego potrzebuje hobbysta (koło)</div>
+      <div class="blk blue">
+        <h3><span class="chip b">🎯</span>Zadania klienta</h3>
+        <ul>
+          <li>Wybrać kostkę brzmiącą dobrze <em>dla jego ucha</em>; porównać modele</li>
+          <li>Zrozumieć, co robi która gałka; nie przepłacić</li>
+          <li><em>Emocjonalne:</em> pewność decyzji, brak żalu po zakupie</li>
+          <li><em>Społeczne:</em> czuć się kompetentnym, uzasadnić wybór</li>
+        </ul>
+      </div>
+      <div class="blk blue">
+        <h3><span class="chip b">➖</span>Bóle</h3>
+        <ul>
+          <li>Dema YT niereprezentatywne („ustawiam jak w demo, brzmi inaczej")</li>
+          <li>Brak sklepu w okolicy / brak możliwości testu</li>
+          <li>Sample online w sztywnych ustawieniach</li>
+          <li>Ryzyko nietrafionego, kosztownego zakupu</li>
+          <li>Przytłoczenie wyborem i żargonem</li>
+        </ul>
+      </div>
+      <div class="blk blue">
+        <h3><span class="chip b">🎁</span>Korzyści</h3>
+        <ul>
+          <li>Usłyszeć różnicę ustawień i modeli <strong>przed</strong> zakupem</li>
+          <li>Uczciwe porównanie „jabłka do jabłek"</li>
+          <li>Szybka, pewna droga do zakupu</li>
+          <li>Zrozumieć sprzęt bez bycia ekspertem</li>
+          <li>Wygodnie, z domu, za darmo, bez presji</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">▲ Mapa wartości (lewo) odpowiada na profil klienta (prawo) ▲</div>
+
+  <div class="fit">
+    <h2>Ocena dopasowania (Fit)</h2>
+    <table>
+      <tr><th>Ból / korzyść klienta</th><th>MVP?</th><th>Komentarz (z researchu)</th></tr>
+      <tr><td>Dema YT niereprezentatywne</td><td class="part">⚠️ Częściowo</td><td>Uczciwe porównanie TAK, ale <strong>syntezowany riff</strong> sam jest niereprezentatywny. Realne nagrania domykają fit.</td></tr>
+      <tr><td>Sztywne ustawienia sampli</td><td class="ok">✅ Tak</td><td>Przełączanie 2/6/9 + animowane gałki rozwiązują to wprost.</td></tr>
+      <tr><td>Przytłoczenie wyborem</td><td class="ok">✅ Tak</td><td>Kuratorowany katalog to przewaga nad Stompenberg/Pedal Genie. Wzmocnić A/B i edukacją.</td></tr>
+      <tr><td>Brak testu fizycznego</td><td class="no">❌ Nie (MVP)</td><td>Pełny fit dają wypożyczalnie i (częściowo) Stompenberg. Rig adresuje, ale to walka z gigantem.</td></tr>
+      <tr><td>Ryzyko nietrafionego zakupu</td><td class="part">⚠️ Częściowo</td><td>Maleje przy realnych nagraniach + A/B; przy syntezie zostaje.</td></tr>
+      <tr><td>Pewność / kompetencja decyzji</td><td class="part">⚠️ Częściowo</td><td>Wymaga warstwy edukacyjnej, której MVP nie ma.</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Wniosek:</strong> mapa wartości dobrze odpowiada na bóle „sztywnych ustawień" i „przytłoczenia wyborem" — to realna nisza. Najsłabszy punkt to rdzeń obietnicy brzmienia: dopóki nagrania są syntezowane, najważniejszy ból („chcę usłyszeć, jak to brzmi NAPRAWDĘ") nie jest w pełni rozwiązany. Dwa ruchy domykają fit bez kosztownego rigu: <strong>(1) realne nagrania reamp</strong> i <strong>(2) porównanie A/B + edukacja</strong> dla początkującego decydenta.
+  </div>
+</div>
+</body>
+</html>

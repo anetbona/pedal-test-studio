@@ -14,17 +14,17 @@ afiliacyjny.
 
 **<https://pedal-test-studio.vercel.app>**
 
-Hosted on Vercel: the frontend and catalog are served statically from `app/public`, and the
+Hosted on Vercel: the frontend, catalog, images and **audio** are served statically from
+`app/public` (recordings are committed to the repo, so playback works in the demo), and the
 `/api/*` endpoints run as serverless functions ([`api/`](api/) — logic 1:1 with
-[`app/server.js`](app/server.js)). Demo notes: audio recordings are locally generated
-placeholders and are not part of the repo, so playback is unavailable in the demo; event
-stats (`/api/stats`) are stored in ephemeral instance storage and reset periodically.
+[`app/server.js`](app/server.js)). The UI is bilingual — **English by default**, Polish via
+the EN/PL switch in the nav. Demo note: event stats (`/api/stats`) are stored in ephemeral
+instance storage and reset periodically.
 
-PL: Demo działa na Vercelu: frontend i katalog serwowane są statycznie z `app/public`,
-a endpointy `/api/*` jako funkcje serverless ([`api/`](api/) — logika 1:1
-z [`app/server.js`](app/server.js)). Uwagi do dema: nagrania audio to generowane lokalnie
-placeholdery i nie ma ich w repo, więc odsłuch w demo jest niedostępny; statystyki zdarzeń
-(`/api/stats`) zapisują się w ulotnej pamięci instancji i okresowo się resetują.
+PL: Demo działa na Vercelu: frontend, katalog, grafiki i **audio** serwowane są statycznie
+z `app/public` (nagrania są w repo, więc odsłuch w demo działa), a endpointy `/api/*` jako
+funkcje serverless. Interfejs jest dwujęzyczny — **domyślnie angielski**, polski przez
+przełącznik EN/PL w nawigacji. Statystyki zdarzeń resetują się okresowo (pamięć ulotna).
 
 ## Szybki start
 
@@ -49,8 +49,8 @@ node --test "tests/**/*.test.js"
 | Warstwa | Technologia |
 |---------|-------------|
 | Backend | czysty Node.js (`node:http`) — statyka + JSON API, zero zależności |
-| Frontend | vanilla JS (ES modules), HTML, CSS; fonty Google (Oswald + Inter) |
-| Dane | `app/data/pedals.json` (katalog), WAV (nagrania), NDJSON (zdarzenia, zero PII) |
+| Frontend | vanilla JS (ES modules), HTML, CSS; fonty Google (Oswald + Inter); i18n EN (bazowy) + PL |
+| Dane | `app/data/pedals.json` (katalog, opisy EN+PL), WAV w `app/public/audio/` (nagrania), NDJSON (zdarzenia, zero PII) |
 | Dane startowe | generator: synteza riffu (Karplus–Strong) + DSP per ustawienie gałek, grafiki kostek SVG |
 | Testy / CI | wbudowany `node:test`, GitHub Actions |
 | Deploy | Vercel — statyka z `app/public` + funkcje serverless w `api/` |
