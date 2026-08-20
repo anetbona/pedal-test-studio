@@ -19,7 +19,6 @@ const path = require('path');
 const PORT = process.env.PORT || 4321;
 const PUBLIC_DIR = path.join(__dirname, 'public');
 const DATA_DIR = path.join(__dirname, 'data');
-const AUDIO_DIR = path.join(DATA_DIR, 'audio');
 const PEDALS_FILE = path.join(DATA_DIR, 'pedals.json');
 // nadpisywalne w testach (izolacja od produkcyjnego logu zdarzeń)
 const EVENTS_FILE = process.env.PEDALTEST_EVENTS_FILE || path.join(DATA_DIR, 'events.ndjson');
@@ -150,7 +149,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'GET' && p === '/api/stats') return handleStats(res);
 
   if (req.method === 'GET' || req.method === 'HEAD') {
-    if (p.startsWith('/audio/')) return serveStatic(res, AUDIO_DIR, p.slice('/audio/'.length));
+    // audio leży w public/audio/ — serwowane jak reszta statyki (działa też na Vercelu)
     const rel = p === '/' ? 'index.html' : p.slice(1);
     return serveStatic(res, PUBLIC_DIR, rel);
   }

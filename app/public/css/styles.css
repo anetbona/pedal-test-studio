@@ -54,8 +54,29 @@ h1, h2, h3 { font-family: var(--heading); color: var(--ink); }
   text-decoration: none;
   white-space: nowrap;
 }
-.nav-link {
+.lang-switch {
   margin-left: auto;
+  display: flex;
+  gap: 2px;
+  margin-right: 16px;
+}
+.lang-switch button {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 6px 8px;
+  font-family: var(--heading);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--gray);
+  cursor: pointer;
+}
+.lang-switch button:hover { color: var(--ink); }
+.lang-switch button.active { color: var(--green); border-bottom-color: var(--green); }
+.lang-switch button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+.nav-link {
   color: var(--green);
   border: 2px solid var(--green);
   border-radius: 3px;
@@ -288,8 +309,14 @@ h1, h2, h3 { font-family: var(--heading); color: var(--ink); }
   position: absolute;
   transform: translate(-50%, -50%);
   text-align: center;
-  pointer-events: none;
+  cursor: grab;
+  touch-action: none; /* przeciąganie gałki zamiast scrollowania na dotyku */
+  user-select: none;
+  -webkit-user-select: none;
+  border-radius: 12px;
 }
+.knob:active { cursor: grabbing; }
+.knob:focus-visible { outline: 2px solid #7bd684; outline-offset: 4px; }
 .knob-dial {
   position: relative;
   width: 100%;

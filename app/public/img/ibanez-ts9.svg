@@ -1,23 +1,62 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="480" height="800" viewBox="0 0 480 800">
-  <rect x="10" y="10" width="460" height="780" rx="26" fill="#3fae49"/>
-  <rect x="10" y="10" width="460" height="780" rx="26" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="3"/>
-  <rect x="20" y="20" width="440" height="760" rx="20" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
-  <circle cx="120" cy="86" r="45" fill="rgba(0,0,0,0.30)"/>
-  <circle cx="240" cy="152" r="38" fill="rgba(0,0,0,0.30)"/>
-  <circle cx="360" cy="86" r="45" fill="rgba(0,0,0,0.30)"/>
-  <circle cx="240" cy="222" r="13" fill="rgba(0,0,0,0.35)"/>
-  <circle cx="240" cy="222" r="8" fill="#ff3b30"/>
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5ebb66"/>
+      <stop offset="0.45" stop-color="#3fae49"/>
+      <stop offset="1" stop-color="#36963f"/>
+    </linearGradient>
+    <radialGradient id="metal" cx="0.35" cy="0.3" r="0.9">
+      <stop offset="0" stop-color="#f4f5f7"/>
+      <stop offset="0.6" stop-color="#c3c6cc"/>
+      <stop offset="1" stop-color="#8e9299"/>
+    </radialGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f7f9"/>
+      <stop offset="0.5" stop-color="#d4d7db"/>
+      <stop offset="1" stop-color="#aeb2b8"/>
+    </linearGradient>
+    <radialGradient id="ledGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff6a5e"/>
+      <stop offset="0.55" stop-color="#e0271b"/>
+      <stop offset="1" stop-color="#8e0f07"/>
+    </radialGradient>
+  </defs>
+  <rect x="10" y="10" width="460" height="780" rx="26" fill="url(#bodyGrad)"/>
+  <rect x="10" y="10" width="460" height="780" rx="26" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="3"/>
+  <rect x="19" y="19" width="442" height="762" rx="20" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+  <circle cx="120" cy="86" r="46" fill="rgba(0,0,0,0.32)"/>
+  <circle cx="120" cy="86" r="46" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+  <circle cx="240" cy="152" r="39" fill="rgba(0,0,0,0.32)"/>
+  <circle cx="240" cy="152" r="39" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+  <circle cx="360" cy="86" r="46" fill="rgba(0,0,0,0.32)"/>
+  <circle cx="360" cy="86" r="46" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+  <circle cx="240" cy="222" r="17" fill="rgba(224,39,27,0.25)"/>
+  <circle cx="240" cy="222" r="12" fill="#3a3a3c"/>
+  <circle cx="240" cy="222" r="8" fill="url(#ledGlow)"/>
+  <circle cx="237.5" cy="219.5" r="2.2" fill="rgba(255,255,255,0.75)"/>
   <!-- kwadratowy chromowany przycisk -->
-  <rect x="124" y="262" width="232" height="196" rx="14" fill="#cfd2d6"/>
-  <rect x="124" y="262" width="232" height="196" rx="14" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="3"/>
-  <rect x="140" y="278" width="200" height="164" rx="10" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2"/>
+  <rect x="122" y="260" width="236" height="200" rx="14" fill="rgba(0,0,0,0.3)" transform="translate(0 5)"/>
+  <rect x="122" y="260" width="236" height="200" rx="14" fill="url(#chrome)"/>
+  <rect x="122" y="260" width="236" height="200" rx="14" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
+  <rect x="138" y="276" width="204" height="168" rx="10" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="2"/>
+  <ellipse cx="185" cy="305" rx="52" ry="18" fill="rgba(255,255,255,0.5)"/>
   <!-- czarna belka z nazwą modelu -->
-  <rect x="44" y="498" width="392" height="160" rx="10" fill="#101010"/>
-  <text x="72" y="578" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="58" font-weight="800" fill="#ffffff">TS9</text>
-  <text x="72" y="622" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="23" font-weight="600" letter-spacing="3" fill="#ffffff">TUBE SCREAMER</text>
-  <text x="240" y="730" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" font-style="italic" fill="#101010">Ibanez</text>
-  <g fill="rgba(0,0,0,0.35)">
-    <circle cx="40" cy="40" r="8"/><circle cx="440" cy="40" r="8"/>
-    <circle cx="40" cy="760" r="8"/><circle cx="440" cy="760" r="8"/>
+  <rect x="44" y="498" width="392" height="162" rx="10" fill="#101010"/>
+  <rect x="44" y="498" width="392" height="162" rx="10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <text x="70" y="578" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="60" font-weight="800" fill="#ffffff">TS9</text>
+  <text x="70" y="624" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="23" font-weight="600" letter-spacing="3.5" fill="#ffffff">TUBE SCREAMER</text>
+  <text x="240" y="732" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="37" font-weight="800" font-style="italic" fill="#0e0e0e">Ibanez</text>
+  <g transform="rotate(20 40 40)">
+    <circle cx="40" cy="40" r="9" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="34.42" y1="40" x2="45.58" y2="40" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
+  </g><g transform="rotate(65 440 40)">
+    <circle cx="440" cy="40" r="9" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="434.42" y1="40" x2="445.58" y2="40" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
+  </g><g transform="rotate(80 40 760)">
+    <circle cx="40" cy="760" r="9" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="34.42" y1="760" x2="45.58" y2="760" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
+  </g><g transform="rotate(35 440 760)">
+    <circle cx="440" cy="760" r="9" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="434.42" y1="760" x2="445.58" y2="760" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
   </g>
 </svg>

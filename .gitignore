@@ -9,7 +9,7 @@ desktop.ini
 
 # dane generowane / runtime
 app/data/events.ndjson
-app/data/audio/
+# uwaga: audio (app/public/audio/) JEST w repo — bez niego demo na Vercelu nie ma dźwięku
 
 # na wszelki wypadek (projekt jest zero-dependency)
 node_modules/

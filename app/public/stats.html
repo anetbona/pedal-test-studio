@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Statystyki — PedalTest Studio</title>
+  <title>Stats — PedalTest Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -72,37 +72,37 @@
 <body>
   <div class="topbar">
     <a class="brand" href="/">PedalTest Studio</a>
-    <a class="cta" href="/">Katalog</a>
+    <a class="cta" href="/">Catalog</a>
   </div>
   <main>
-    <div class="eyebrow">Panel admina</div>
-    <h1>Statystyki</h1>
-    <p class="sub">Anonimowe zdarzenia per kostka / nagranie / sklep — zero danych osobowych. Surowe dane: <a href="/api/stats">/api/stats</a></p>
+    <div class="eyebrow">Admin panel</div>
+    <h1>Stats</h1>
+    <p class="sub">Anonymous events per pedal / recording / store — zero personal data. Raw data: <a href="/api/stats">/api/stats</a></p>
     <div class="totals">
-      <div class="total-card"><div class="num" id="t-plays">–</div><div class="lbl">odtworzenia</div></div>
-      <div class="total-card"><div class="num" id="t-clicks">–</div><div class="lbl">kliknięcia w bannery</div></div>
+      <div class="total-card"><div class="num" id="t-plays">–</div><div class="lbl">plays</div></div>
+      <div class="total-card"><div class="num" id="t-clicks">–</div><div class="lbl">store link clicks</div></div>
     </div>
-    <section><div class="sec-head"><span class="sec-num">01</span><h2>Odtworzenia per kostka</h2></div><div id="plays-pedal"></div></section>
-    <section><div class="sec-head"><span class="sec-num">02</span><h2>Odtworzenia per nagranie</h2></div><div id="plays-recording"></div></section>
-    <section><div class="sec-head"><span class="sec-num">03</span><h2>Kliknięcia per kostka</h2></div><div id="clicks-pedal"></div></section>
-    <section><div class="sec-head"><span class="sec-num">04</span><h2>Kliknięcia per sklep</h2></div><div id="clicks-store"></div></section>
+    <section><div class="sec-head"><span class="sec-num">01</span><h2>Plays per pedal</h2></div><div id="plays-pedal"></div></section>
+    <section><div class="sec-head"><span class="sec-num">02</span><h2>Plays per recording</h2></div><div id="plays-recording"></div></section>
+    <section><div class="sec-head"><span class="sec-num">03</span><h2>Clicks per pedal</h2></div><div id="clicks-pedal"></div></section>
+    <section><div class="sec-head"><span class="sec-num">04</span><h2>Clicks per store</h2></div><div id="clicks-store"></div></section>
   </main>
   <script>
     function table(containerId, obj, keyHeader) {
       const el = document.getElementById(containerId);
       const entries = Object.entries(obj).sort((a, b) => b[1] - a[1]);
-      if (!entries.length) { el.innerHTML = '<div class="empty">Brak zdarzeń.</div>'; return; }
+      if (!entries.length) { el.innerHTML = '<div class="empty">No events yet.</div>'; return; }
       const rows = entries.map(([k, v]) =>
         `<tr><td>${k.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</td><td class="num">${v}</td></tr>`).join('');
-      el.innerHTML = `<table><thead><tr><th>${keyHeader}</th><th style="text-align:right">liczba</th></tr></thead><tbody>${rows}</tbody></table>`;
+      el.innerHTML = `<table><thead><tr><th>${keyHeader}</th><th style="text-align:right">count</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
     fetch('/api/stats').then(r => r.json()).then(s => {
       document.getElementById('t-plays').textContent = s.totals.plays;
       document.getElementById('t-clicks').textContent = s.totals.affiliateClicks;
-      table('plays-pedal', s.playsPerPedal, 'kostka');
-      table('plays-recording', s.playsPerRecording, 'nagranie');
-      table('clicks-pedal', s.clicksPerPedal, 'kostka');
-      table('clicks-store', s.clicksPerStore, 'sklep');
+      table('plays-pedal', s.playsPerPedal, 'pedal');
+      table('plays-recording', s.playsPerRecording, 'recording');
+      table('clicks-pedal', s.clicksPerPedal, 'pedal');
+      table('clicks-store', s.clicksPerStore, 'store');
     });
   </script>
 </body>

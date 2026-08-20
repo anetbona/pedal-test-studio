@@ -1,20 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="620" height="840" viewBox="0 0 620 840">
-  <rect x="10" y="10" width="600" height="820" rx="20" fill="#d6d7d9"/>
-  <rect x="10" y="10" width="600" height="820" rx="20" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="3"/>
-  <rect x="20" y="20" width="580" height="800" rx="14" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
-  <rect x="38" y="38" width="544" height="764" rx="10" fill="none" stroke="#1d1d1f" stroke-width="3"/>
-  <circle cx="150" cy="120" r="50" fill="rgba(0,0,0,0.18)"/>
-  <circle cx="310" cy="204" r="50" fill="rgba(0,0,0,0.18)"/>
-  <circle cx="470" cy="120" r="50" fill="rgba(0,0,0,0.18)"/>
-  <text x="310" y="330" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#17171a">electro-harmonix</text>
-  <text x="310" y="412" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="66" font-weight="900" letter-spacing="4" fill="#141414">BIG MUFF</text>
-  <text x="310" y="540" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="700" fill="#c8102e">&#960;</text>
-  <circle cx="310" cy="692" r="67" fill="rgba(0,0,0,0.28)"/>
-  <circle cx="310" cy="692" r="58" fill="#c7c8cc"/>
-  <circle cx="310" cy="692" r="58" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
-  <circle cx="310" cy="692" r="41.76" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="2"/>
-  <g fill="rgba(0,0,0,0.35)">
-    <circle cx="44" cy="44" r="9"/><circle cx="576" cy="44" r="9"/>
-    <circle cx="44" cy="796" r="9"/><circle cx="576" cy="796" r="9"/>
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dddddf"/>
+      <stop offset="0.45" stop-color="#d6d7d9"/>
+      <stop offset="1" stop-color="#b8b9bb"/>
+    </linearGradient>
+    <radialGradient id="metal" cx="0.35" cy="0.3" r="0.9">
+      <stop offset="0" stop-color="#f4f5f7"/>
+      <stop offset="0.6" stop-color="#c3c6cc"/>
+      <stop offset="1" stop-color="#8e9299"/>
+    </radialGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f7f9"/>
+      <stop offset="0.5" stop-color="#d4d7db"/>
+      <stop offset="1" stop-color="#aeb2b8"/>
+    </linearGradient>
+    <radialGradient id="ledGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff6a5e"/>
+      <stop offset="0.55" stop-color="#e0271b"/>
+      <stop offset="1" stop-color="#8e0f07"/>
+    </radialGradient>
+  </defs>
+  <rect x="10" y="10" width="600" height="820" rx="20" fill="url(#bodyGrad)"/>
+  <rect x="10" y="10" width="600" height="820" rx="20" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="3"/>
+  <rect x="19" y="19" width="582" height="802" rx="14" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+  <rect x="38" y="38" width="544" height="764" rx="10" fill="none" stroke="#1d1d1f" stroke-width="3.5"/>
+  <circle cx="150" cy="120" r="51" fill="rgba(0,0,0,0.2)"/>
+  <circle cx="150" cy="120" r="51" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+  <circle cx="310" cy="204" r="51" fill="rgba(0,0,0,0.2)"/>
+  <circle cx="310" cy="204" r="51" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+  <circle cx="470" cy="120" r="51" fill="rgba(0,0,0,0.2)"/>
+  <circle cx="470" cy="120" r="51" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+  <text x="310" y="330" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.5" fill="#17171a">electro-harmonix</text>
+  <text x="310" y="414" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="5" fill="#141414">BIG MUFF</text>
+  <text x="310" y="548" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="126" font-weight="700" fill="#c8102e">&#960;</text>
+  <circle cx="310" cy="696" r="68" fill="rgba(0,0,0,0.35)"/>
+  <circle cx="310" cy="692" r="67" fill="#6d7076"/>
+  <circle cx="310" cy="692" r="67" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="2"/>
+  <circle cx="310" cy="692" r="58" fill="url(#metal)"/>
+  <circle cx="310" cy="692" r="58" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"/>
+  <circle cx="310" cy="692" r="41.76" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+  <ellipse cx="292.6" cy="669.96" rx="24.36" ry="13.92" fill="rgba(255,255,255,0.35)"/>
+  <g transform="rotate(20 44 44)">
+    <circle cx="44" cy="44" r="10" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="37.8" y1="44" x2="50.2" y2="44" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
+  </g><g transform="rotate(65 576 44)">
+    <circle cx="576" cy="44" r="10" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="569.8" y1="44" x2="582.2" y2="44" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
+  </g><g transform="rotate(80 44 796)">
+    <circle cx="44" cy="796" r="10" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="37.8" y1="796" x2="50.2" y2="796" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
+  </g><g transform="rotate(35 576 796)">
+    <circle cx="576" cy="796" r="10" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="569.8" y1="796" x2="582.2" y2="796" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
   </g>
 </svg>

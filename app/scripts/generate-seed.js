@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 /**
- * generate-seed.js — dane startowe PedalTest Studio (MVP)
+ * generate-seed.js — dane startowe PedalTest Studio
  *
  * Generuje:
- *  - data/pedals.json          — katalog 8 kostek (Pedal/Knob/Recording/AffiliateLink)
+ *  - data/pedals.json          — katalog 8 kostek (opisy EN+PL, zweryfikowane linki sklepów)
  *  - public/img/<id>.svg       — grafiki kostek odtworzone na wzór oryginałów
- *                                (proporcje, kolorystyka, układ gałek i przycisków)
- *  - public/img/logos/<m>.svg  — logotypy producentów (wordmarki)
- *  - data/audio/<id>/*.wav     — ten sam syntezowany riff przez DSP (ustawienia 2/6/9)
+ *  - public/img/logos/<m>.svg  — logotypy producentów
+ *  - public/audio/<id>/*.wav   — nagrania (w public/, żeby działały też na hostingu
+ *                                statycznym, np. Vercel)
  *
  * Uruchomienie: node app/scripts/generate-seed.js   (zero zależności)
+ * UWAGA: nadpisuje data/pedals.json.
  */
 
 const fs = require('fs');
@@ -17,7 +18,7 @@ const path = require('path');
 
 const APP_DIR = path.join(__dirname, '..');
 const DATA_DIR = path.join(APP_DIR, 'data');
-const AUDIO_DIR = path.join(DATA_DIR, 'audio');
+const AUDIO_DIR = path.join(APP_DIR, 'public', 'audio');
 const IMG_DIR = path.join(APP_DIR, 'public', 'img');
 const LOGO_DIR = path.join(IMG_DIR, 'logos');
 
@@ -25,49 +26,92 @@ const SAMPLE_RATE = 22050;
 const F = `-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif`;
 
 // ---------------------------------------------------------------------------
-// Elementy wspólne grafik
+// Pomocnicze: kolory i wspólne elementy grafik
 // ---------------------------------------------------------------------------
 
-function screws(W, H, inset = 26, r = 8) {
-  return `<g fill="rgba(0,0,0,0.35)">
-    <circle cx="${inset + 14}" cy="${inset + 14}" r="${r}"/><circle cx="${W - inset - 14}" cy="${inset + 14}" r="${r}"/>
-    <circle cx="${inset + 14}" cy="${H - inset - 14}" r="${r}"/><circle cx="${W - inset - 14}" cy="${H - inset - 14}" r="${r}"/>
+function shade(hex, amt) {
+  // amt: -1..1 (ujemne = ciemniej, dodatnie = jaśniej)
+  const n = parseInt(hex.slice(1), 16);
+  const ch = (v) => {
+    const x = (n >> v) & 255;
+    const t = amt < 0 ? x * (1 + amt) : x + (255 - x) * amt;
+    return Math.round(Math.max(0, Math.min(255, t)));
+  };
+  return `#${((ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16).padStart(6, '0')}`;
+}
+
+function svgDefs(color) {
+  return `<defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="${shade(color, 0.16)}"/>
+      <stop offset="0.45" stop-color="${color}"/>
+      <stop offset="1" stop-color="${shade(color, -0.14)}"/>
+    </linearGradient>
+    <radialGradient id="metal" cx="0.35" cy="0.3" r="0.9">
+      <stop offset="0" stop-color="#f4f5f7"/>
+      <stop offset="0.6" stop-color="#c3c6cc"/>
+      <stop offset="1" stop-color="#8e9299"/>
+    </radialGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f7f9"/>
+      <stop offset="0.5" stop-color="#d4d7db"/>
+      <stop offset="1" stop-color="#aeb2b8"/>
+    </linearGradient>
+    <radialGradient id="ledGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff6a5e"/>
+      <stop offset="0.55" stop-color="#e0271b"/>
+      <stop offset="1" stop-color="#8e0f07"/>
+    </radialGradient>
+  </defs>`;
+}
+
+function screws(W, H, inset = 26, r = 9) {
+  const s = (cx, cy, rot) => `<g transform="rotate(${rot} ${cx} ${cy})">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#metal)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+    <line x1="${cx - r * 0.62}" y1="${cy}" x2="${cx + r * 0.62}" y2="${cy}" stroke="rgba(0,0,0,0.5)" stroke-width="2.4"/>
   </g>`;
+  return s(inset + 14, inset + 14, 20) + s(W - inset - 14, inset + 14, 65)
+    + s(inset + 14, H - inset - 14, 80) + s(W - inset - 14, H - inset - 14, 35);
 }
 
 function footswitch(cx, cy, r) {
-  return `<circle cx="${cx}" cy="${cy}" r="${r + 9}" fill="rgba(0,0,0,0.28)"/>
-  <circle cx="${cx}" cy="${cy}" r="${r}" fill="#c7c8cc"/>
-  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
-  <circle cx="${cx}" cy="${cy}" r="${r * 0.72}" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="2"/>`;
+  return `<circle cx="${cx}" cy="${cy + 4}" r="${r + 10}" fill="rgba(0,0,0,0.35)"/>
+  <circle cx="${cx}" cy="${cy}" r="${r + 9}" fill="${'#6d7076'}"/>
+  <circle cx="${cx}" cy="${cy}" r="${r + 9}" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="2"/>
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#metal)"/>
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"/>
+  <circle cx="${cx}" cy="${cy}" r="${r * 0.72}" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+  <ellipse cx="${cx - r * 0.3}" cy="${cy - r * 0.38}" rx="${r * 0.42}" ry="${r * 0.24}" fill="rgba(255,255,255,0.35)"/>`;
 }
 
-function led(cx, cy, color = '#ff3b30') {
-  return `<circle cx="${cx}" cy="${cy}" r="13" fill="rgba(0,0,0,0.35)"/>
-  <circle cx="${cx}" cy="${cy}" r="8" fill="${color}"/>`;
+function led(cx, cy, glow = true) {
+  return `${glow ? `<circle cx="${cx}" cy="${cy}" r="17" fill="rgba(224,39,27,0.25)"/>` : ''}
+  <circle cx="${cx}" cy="${cy}" r="12" fill="#3a3a3c"/>
+  <circle cx="${cx}" cy="${cy}" r="8" fill="url(#ledGlow)"/>
+  <circle cx="${cx - 2.5}" cy="${cy - 2.5}" r="2.2" fill="rgba(255,255,255,0.75)"/>`;
 }
 
-// gniazda pod animowane gałki (overlay frontendowy ląduje dokładnie w tych miejscach)
 function knobSockets(knobs, socketFill) {
   return knobs.map((k) => {
-    const r = k.d / 2 + 7;
-    return `<circle cx="${k.cx}" cy="${k.cy}" r="${r}" fill="${socketFill}"/>`;
+    const r = k.d / 2 + 8;
+    return `<circle cx="${k.cx}" cy="${k.cy}" r="${r}" fill="${socketFill}"/>
+  <circle cx="${k.cx}" cy="${k.cy}" r="${r}" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>`;
   }).join('\n  ');
 }
 
-function body(W, H, fill, rx = 26, stroke = 'rgba(0,0,0,0.3)') {
-  return `<rect x="10" y="10" width="${W - 20}" height="${H - 20}" rx="${rx}" fill="${fill}"/>
+function body(W, H, rx = 26, stroke = 'rgba(0,0,0,0.35)') {
+  return `<rect x="10" y="10" width="${W - 20}" height="${H - 20}" rx="${rx}" fill="url(#bodyGrad)"/>
   <rect x="10" y="10" width="${W - 20}" height="${H - 20}" rx="${rx}" fill="none" stroke="${stroke}" stroke-width="3"/>
-  <rect x="20" y="20" width="${W - 40}" height="${H - 40}" rx="${rx - 6}" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>`;
+  <rect x="19" y="19" width="${W - 38}" height="${H - 38}" rx="${rx - 6}" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>`;
 }
 
 // ---------------------------------------------------------------------------
-// Definicje kostek — wymiary, układ gałek i grafika wzorowane na oryginałach
+// Definicje kostek — wymiary, układ gałek i grafika wzorowane na oryginałach.
+// Opisy dwujęzyczne (EN bazowy + PL). Linki sklepów zweryfikowane 2026-08-20.
 // ---------------------------------------------------------------------------
 
 const PEDALS = [
   {
-    // Boss compact: gałki na samej górze, duży czarny pedał-treadle, logo BOSS na dole
     id: 'boss-bd-2', name: 'BD-2 Blues Driver', manufacturer: 'Boss', type: 'overdrive',
     W: 460, H: 800,
     knobs: [
@@ -75,28 +119,34 @@ const PEDALS = [
       { id: 'tone', label: 'Tone', role: 'tone', cx: 230, cy: 88, d: 78 },
       { id: 'gain', label: 'Gain', role: 'gain', cx: 356, cy: 88, d: 78 },
     ],
-    description: 'Klasyczny bluesowy overdrive produkowany nieprzerwanie od 1995 roku. Reaguje na dynamikę gry jak wzmacniacz lampowy — od czystego boostu, przez lekkie podbicie, po kremowy crunch. Świetnie zachowuje charakter gitary i przetworników, dzięki czemu sprawdza się jako efekt „always-on". Ulubieniec bluesa, rocka i indie.',
+    description: {
+      en: 'A classic blues overdrive in continuous production since 1995. It responds to picking dynamics like a tube amp — from clean boost through light grit to creamy crunch. It preserves the character of your guitar and pickups, which makes it a great always-on pedal. A favourite in blues, rock and indie.',
+      pl: 'Klasyczny bluesowy overdrive produkowany nieprzerwanie od 1995 roku. Reaguje na dynamikę gry jak wzmacniacz lampowy — od czystego boostu, przez lekkie podbicie, po kremowy crunch. Świetnie zachowuje charakter gitary i przetworników, dzięki czemu sprawdza się jako efekt „always-on". Ulubieniec bluesa, rocka i indie.',
+    },
     producerUrl: 'https://www.boss.info/global/products/bd-2/',
     art(W, H, k) {
-      return `${body(W, H, '#2f63d2', 28)}
-  ${knobSockets(k, 'rgba(0,0,0,0.30)')}
+      return `${body(W, H, 28)}
+  ${knobSockets(k, 'rgba(0,0,0,0.32)')}
   ${led(230, 196)}
-  <text x="230" y="186" text-anchor="middle" font-family="${F}" font-size="13" letter-spacing="1" fill="rgba(255,255,255,0.7)">CHECK</text>
-  <text x="230" y="252" text-anchor="middle" font-family="${F}" font-size="30" font-weight="700" font-style="italic" fill="#ffffff">Blues Driver</text>
-  <text x="230" y="282" text-anchor="middle" font-family="${F}" font-size="18" font-weight="600" fill="rgba(255,255,255,0.85)">BD-2</text>
-  <!-- srebrny zawias + czarny treadle z ryflami -->
-  <rect x="58" y="300" width="344" height="20" rx="8" fill="#aab0b8"/>
-  <rect x="60" y="318" width="340" height="356" rx="16" fill="#17181a"/>
-  <g stroke="rgba(255,255,255,0.09)" stroke-width="7">
-    ${[360, 396, 432, 468, 504, 540, 576, 612].map((y) => `<line x1="84" y1="${y}" x2="376" y2="${y}"/>`).join('')}
+  <text x="230" y="176" text-anchor="middle" font-family="${F}" font-size="13" letter-spacing="1.5" fill="rgba(255,255,255,0.75)">CHECK</text>
+  <text x="230" y="250" text-anchor="middle" font-family="${F}" font-size="31" font-weight="700" font-style="italic" fill="#ffffff">Blues Driver</text>
+  <text x="230" y="280" text-anchor="middle" font-family="${F}" font-size="18" font-weight="600" letter-spacing="1" fill="rgba(255,255,255,0.9)">BD-2</text>
+  <!-- zawias + gumowy treadle z ryflami i bocznymi szynami -->
+  <rect x="54" y="298" width="352" height="22" rx="9" fill="url(#chrome)" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+  <circle cx="76" cy="309" r="6" fill="rgba(0,0,0,0.35)"/>
+  <circle cx="384" cy="309" r="6" fill="rgba(0,0,0,0.35)"/>
+  <rect x="56" y="320" width="14" height="352" rx="7" fill="${'#0d0e10'}"/>
+  <rect x="390" y="320" width="14" height="352" rx="7" fill="${'#0d0e10'}"/>
+  <rect x="66" y="318" width="328" height="356" rx="14" fill="${'#191a1c'}"/>
+  <rect x="66" y="318" width="328" height="356" rx="14" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2"/>
+  <g stroke="rgba(255,255,255,0.1)" stroke-width="7" stroke-linecap="round">
+    ${[356, 392, 428, 464, 500, 536, 572, 608, 640].map((y) => `<line x1="92" y1="${y}" x2="368" y2="${y}"/>`).join('')}
   </g>
-  <text x="230" y="736" text-anchor="middle" font-family="${F}" font-size="46" font-weight="900" letter-spacing="3" fill="#ffffff">BOSS</text>
+  <text x="230" y="736" text-anchor="middle" font-family="${F}" font-size="47" font-weight="900" letter-spacing="4" fill="#ffffff">BOSS</text>
   ${screws(W, H)}`;
     },
   },
   {
-    // TS9: zielony, Drive/Level u góry, Tone niżej w środku, kwadratowy chromowany przycisk,
-    // czarna belka z nazwą, logo Ibanez na dole
     id: 'ibanez-ts9', name: 'TS9 Tube Screamer', manufacturer: 'Ibanez', type: 'overdrive',
     W: 480, H: 800,
     knobs: [
@@ -104,26 +154,31 @@ const PEDALS = [
       { id: 'tone', label: 'Tone', role: 'tone', cx: 240, cy: 152, d: 62 },
       { id: 'level', label: 'Level', role: 'level', cx: 360, cy: 86, d: 76 },
     ],
-    description: 'Legendarny overdrive z charakterystycznym podbiciem środka pasma — od niego zaczęła się historia „tube screamerów". Idealny do pchania lampowego wzmacniacza w naturalne przesterowanie. Środek przebija się przez miks, a dół pozostaje zwarty i konkretny. Brzmienie znane m.in. z nagrań Steviego Raya Vaughana.',
-    producerUrl: 'https://www.ibanez.com/usa/products/detail/ts9_02.html',
+    description: {
+      en: 'The legendary overdrive with its signature mid-range boost — the pedal that started the whole “tube screamer” story. Perfect for pushing a tube amp into natural break-up: the mids cut through the mix while the low end stays tight. The sound behind countless Stevie Ray Vaughan records.',
+      pl: 'Legendarny overdrive z charakterystycznym podbiciem środka pasma — od niego zaczęła się historia „tube screamerów". Idealny do pchania lampowego wzmacniacza w naturalne przesterowanie: środek przebija się przez miks, a dół pozostaje zwarty. Brzmienie znane m.in. z nagrań Steviego Raya Vaughana.',
+    },
+    producerUrl: 'https://www.ibanez.com/usa/products/model/tube_screamer/',
     art(W, H, k) {
-      return `${body(W, H, '#3fae49', 26)}
-  ${knobSockets(k, 'rgba(0,0,0,0.30)')}
+      return `${body(W, H, 26)}
+  ${knobSockets(k, 'rgba(0,0,0,0.32)')}
   ${led(240, 222)}
   <!-- kwadratowy chromowany przycisk -->
-  <rect x="124" y="262" width="232" height="196" rx="14" fill="#cfd2d6"/>
-  <rect x="124" y="262" width="232" height="196" rx="14" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="3"/>
-  <rect x="140" y="278" width="200" height="164" rx="10" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2"/>
+  <rect x="122" y="260" width="236" height="200" rx="14" fill="rgba(0,0,0,0.3)" transform="translate(0 5)"/>
+  <rect x="122" y="260" width="236" height="200" rx="14" fill="url(#chrome)"/>
+  <rect x="122" y="260" width="236" height="200" rx="14" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
+  <rect x="138" y="276" width="204" height="168" rx="10" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="2"/>
+  <ellipse cx="185" cy="305" rx="52" ry="18" fill="rgba(255,255,255,0.5)"/>
   <!-- czarna belka z nazwą modelu -->
-  <rect x="44" y="498" width="392" height="160" rx="10" fill="#101010"/>
-  <text x="72" y="578" font-family="${F}" font-size="58" font-weight="800" fill="#ffffff">TS9</text>
-  <text x="72" y="622" font-family="${F}" font-size="23" font-weight="600" letter-spacing="3" fill="#ffffff">TUBE SCREAMER</text>
-  <text x="240" y="730" text-anchor="middle" font-family="${F}" font-size="36" font-weight="800" font-style="italic" fill="#101010">Ibanez</text>
+  <rect x="44" y="498" width="392" height="162" rx="10" fill="#101010"/>
+  <rect x="44" y="498" width="392" height="162" rx="10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <text x="70" y="578" font-family="${F}" font-size="60" font-weight="800" fill="#ffffff">TS9</text>
+  <text x="70" y="624" font-family="${F}" font-size="23" font-weight="600" letter-spacing="3.5" fill="#ffffff">TUBE SCREAMER</text>
+  <text x="240" y="732" text-anchor="middle" font-family="${F}" font-size="37" font-weight="800" font-style="italic" fill="#0e0e0e">Ibanez</text>
   ${screws(W, H)}`;
     },
   },
   {
-    // OCD: kremowa obudowa, 3 gałki + mini-przełącznik HP/LP, wielkie "OCD" na froncie
     id: 'fulltone-ocd', name: 'OCD V2', manufacturer: 'Fulltone', type: 'overdrive',
     W: 460, H: 820,
     knobs: [
@@ -131,26 +186,28 @@ const PEDALS = [
       { id: 'drive', label: 'Drive', role: 'gain', cx: 230, cy: 90, d: 74 },
       { id: 'tone', label: 'Tone', role: 'tone', cx: 356, cy: 90, d: 74 },
     ],
-    description: 'Dynamiczny overdrive o wyjątkowo szerokim zakresie gainu — od czystego boostu po brzmienia graniczące z distortion. Przełącznik HP/LP zmienia charakter z transparentnego na bardziej agresywny. Doskonale współpracuje z potencjometrem głośności gitary. Jeden z najczęściej kopiowanych układów ostatnich dekad.',
-    producerUrl: 'https://www.fulltone.com/products/ocd',
+    description: {
+      en: 'A dynamic overdrive with an unusually wide gain range — from clean boost to nearly-distortion territory. The HP/LP switch flips its character from transparent to more aggressive, and it cleans up beautifully with the guitar volume knob. One of the most copied circuits of recent decades.',
+      pl: 'Dynamiczny overdrive o wyjątkowo szerokim zakresie gainu — od czystego boostu po brzmienia graniczące z distortion. Przełącznik HP/LP zmienia charakter z transparentnego na bardziej agresywny, a kostka pięknie czyści się potencjometrem głośności gitary. Jeden z najczęściej kopiowanych układów ostatnich dekad.',
+    },
+    producerUrl: 'https://www.fulltone.com/',
     art(W, H, k) {
-      return `${body(W, H, '#ece4cd', 26)}
-  ${knobSockets(k, 'rgba(0,0,0,0.18)')}
+      return `${body(W, H, 26)}
+  ${knobSockets(k, 'rgba(0,0,0,0.2)')}
   <!-- mini przełącznik HP/LP -->
-  <rect x="210" y="158" width="40" height="22" rx="6" fill="#8d9096"/>
-  <circle cx="222" cy="169" r="7" fill="#26262a"/>
-  <text x="206" y="174" text-anchor="end" font-family="${F}" font-size="14" font-weight="600" fill="#3a3a3a">HP</text>
-  <text x="256" y="174" font-family="${F}" font-size="14" font-weight="600" fill="#3a3a3a">LP</text>
-  <text x="230" y="296" text-anchor="middle" font-family="${F}" font-size="30" font-weight="700" font-style="italic" fill="#1b1b1b">Fulltone</text>
-  <text x="230" y="446" text-anchor="middle" font-family="${F}" font-size="128" font-weight="900" font-style="italic" fill="#141414">OCD</text>
-  <text x="230" y="492" text-anchor="middle" font-family="${F}" font-size="17" font-weight="600" letter-spacing="1" fill="#3a3a3a">Obsessive Compulsive Drive</text>
+  <rect x="206" y="156" width="48" height="26" rx="7" fill="url(#chrome)" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+  <circle cx="220" cy="169" r="8" fill="#26262a"/>
+  <text x="198" y="175" text-anchor="end" font-family="${F}" font-size="14" font-weight="600" fill="#4a4a44">HP</text>
+  <text x="262" y="175" font-family="${F}" font-size="14" font-weight="600" fill="#4a4a44">LP</text>
+  <text x="230" y="298" text-anchor="middle" font-family="${F}" font-size="31" font-weight="700" font-style="italic" fill="#20201c">Fulltone</text>
+  <text x="230" y="450" text-anchor="middle" font-family="${F}" font-size="132" font-weight="900" font-style="italic" fill="#161612">OCD</text>
+  <text x="230" y="496" text-anchor="middle" font-family="${F}" font-size="17" font-weight="600" letter-spacing="1.2" fill="#44443c">Obsessive Compulsive Drive</text>
   ${led(140, 600)}
   ${footswitch(230, 668, 52)}
   ${screws(W, H)}`;
     },
   },
   {
-    // Soul Food: srebrna obudowa, Volume/Drive u góry, Treble w środku, czerwony napis
     id: 'ehx-soul-food', name: 'Soul Food', manufacturer: 'Electro-Harmonix', type: 'overdrive',
     W: 480, H: 780,
     knobs: [
@@ -158,21 +215,22 @@ const PEDALS = [
       { id: 'treble', label: 'Treble', role: 'tone', cx: 240, cy: 150, d: 60 },
       { id: 'drive', label: 'Drive', role: 'gain', cx: 360, cy: 82, d: 72 },
     ],
-    description: 'Transparentny overdrive inspirowany legendarnym i niemal niedostępnym Klonem Centaur. Dodaje czystego headroomu i otwartego, dźwięcznego charakteru bez zabarwiania brzmienia gitary. Świetny jako boost przed innym przesterem albo jako delikatny crunch. Ogromna wartość w przystępnej cenie.',
+    description: {
+      en: 'A transparent overdrive inspired by the legendary, nearly unobtainable Klon Centaur. It adds clean headroom and an open, chiming character without colouring your tone. Great as a boost in front of another drive or as a light crunch on its own. Outstanding value for the money.',
+      pl: 'Transparentny overdrive inspirowany legendarnym i niemal niedostępnym Klonem Centaur. Dodaje czystego headroomu i otwartego, dźwięcznego charakteru bez zabarwiania brzmienia gitary. Świetny jako boost przed innym przesterem albo samodzielny, delikatny crunch. Ogromna wartość w przystępnej cenie.',
+    },
     producerUrl: 'https://www.ehx.com/products/soul-food/',
     art(W, H, k) {
-      return `${body(W, H, '#e8e9ec', 24)}
-  ${knobSockets(k, 'rgba(0,0,0,0.18)')}
-  <text x="240" y="360" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700" font-style="italic" fill="#c8102e">Soul Food</text>
-  <text x="240" y="408" text-anchor="middle" font-family="${F}" font-size="23" font-weight="700" fill="#17171a">electro-harmonix</text>
+      return `${body(W, H, 24)}
+  ${knobSockets(k, 'rgba(0,0,0,0.2)')}
+  <text x="240" y="362" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" font-style="italic" fill="#c8102e">Soul Food</text>
+  <text x="240" y="410" text-anchor="middle" font-family="${F}" font-size="24" font-weight="700" letter-spacing="0.5" fill="#17171a">electro-harmonix</text>
   ${led(120, 560)}
   ${footswitch(240, 622, 50)}
   ${screws(W, H)}`;
     },
   },
   {
-    // Big Muff: duża szeroka srebrna skrzynka, czarna ramka, gałki w trójkącie,
-    // napis BIG MUFF + czerwone π
     id: 'ehx-big-muff', name: 'Big Muff Pi', manufacturer: 'Electro-Harmonix', type: 'fuzz',
     W: 620, H: 840,
     knobs: [
@@ -180,21 +238,23 @@ const PEDALS = [
       { id: 'tone', label: 'Tone', role: 'tone', cx: 310, cy: 204, d: 86 },
       { id: 'sustain', label: 'Sustain', role: 'gain', cx: 470, cy: 120, d: 86 },
     ],
-    description: 'Ikona fuzzu produkowana od 1969 roku — gęsta, śpiewająca ściana dźwięku z niemal nieskończonym sustainem. Słychać go na tysiącach nagrań, od Davida Gilmoura po Smashing Pumpkins. Gałka Tone prowadzi od ciemnego, masywnego dołu po tnącą górę. Fuzz, od którego warto zacząć przygodę z tym typem efektu.',
+    description: {
+      en: 'The fuzz icon, in production since 1969 — a thick, singing wall of sound with nearly endless sustain. Heard on thousands of records, from David Gilmour to Smashing Pumpkins. The Tone knob sweeps from dark and massive to cutting highs. The perfect fuzz to start your journey with.',
+      pl: 'Ikona fuzzu produkowana od 1969 roku — gęsta, śpiewająca ściana dźwięku z niemal nieskończonym sustainem. Słychać go na tysiącach nagrań, od Davida Gilmoura po Smashing Pumpkins. Gałka Tone prowadzi od ciemnego, masywnego dołu po tnącą górę. Fuzz, od którego warto zacząć przygodę z tym typem efektu.',
+    },
     producerUrl: 'https://www.ehx.com/products/big-muff-pi/',
     art(W, H, k) {
-      return `${body(W, H, '#d6d7d9', 20)}
-  <rect x="38" y="38" width="${W - 76}" height="${H - 76}" rx="10" fill="none" stroke="#1d1d1f" stroke-width="3"/>
-  ${knobSockets(k, 'rgba(0,0,0,0.18)')}
-  <text x="310" y="330" text-anchor="middle" font-family="${F}" font-size="27" font-weight="700" fill="#17171a">electro-harmonix</text>
-  <text x="310" y="412" text-anchor="middle" font-family="${F}" font-size="66" font-weight="900" letter-spacing="4" fill="#141414">BIG MUFF</text>
-  <text x="310" y="540" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="700" fill="#c8102e">&#960;</text>
+      return `${body(W, H, 20)}
+  <rect x="38" y="38" width="${W - 76}" height="${H - 76}" rx="10" fill="none" stroke="#1d1d1f" stroke-width="3.5"/>
+  ${knobSockets(k, 'rgba(0,0,0,0.2)')}
+  <text x="310" y="330" text-anchor="middle" font-family="${F}" font-size="28" font-weight="700" letter-spacing="0.5" fill="#17171a">electro-harmonix</text>
+  <text x="310" y="414" text-anchor="middle" font-family="${F}" font-size="68" font-weight="900" letter-spacing="5" fill="#141414">BIG MUFF</text>
+  <text x="310" y="548" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="126" font-weight="700" fill="#c8102e">&#960;</text>
   ${footswitch(310, 692, 58)}
-  ${screws(W, H, 30, 9)}`;
+  ${screws(W, H, 30, 10)}`;
     },
   },
   {
-    // Swollen Pickle: ciemnozielony jumbo fuzz, kremowe napisy
     id: 'way-huge-swollen-pickle', name: 'Swollen Pickle MkIIS', manufacturer: 'Way Huge', type: 'fuzz',
     W: 480, H: 780,
     knobs: [
@@ -202,22 +262,24 @@ const PEDALS = [
       { id: 'filter', label: 'Filter', role: 'tone', cx: 240, cy: 86, d: 70 },
       { id: 'sustain', label: 'Sustain', role: 'gain', cx: 360, cy: 86, d: 70 },
     ],
-    description: 'Masywny jumbo fuzz o ogromnym, ścianowym brzmieniu z potężnym dołem. Filter zamiast klasycznego tone’u pozwala rzeźbić charakter od bagiennego po żyletkowaty. Sustain dorzuca kompresji i ognia bez utraty konturu dźwięku. Pozycja obowiązkowa dla fanów stoner rocka i cięższych brzmień.',
+    description: {
+      en: 'A massive jumbo fuzz with a huge wall-of-sound character and thunderous low end. The Filter control replaces a classic tone knob and sculpts the voice from swampy to razor-sharp, while Sustain adds compression and fire without losing note definition. A must for stoner rock and heavier styles.',
+      pl: 'Masywny jumbo fuzz o ogromnym, ścianowym brzmieniu z potężnym dołem. Filter zastępuje klasyczny tone i rzeźbi charakter od bagiennego po żyletkowaty, a Sustain dorzuca kompresji i ognia bez utraty konturu dźwięku. Pozycja obowiązkowa dla fanów stoner rocka i cięższych brzmień.',
+    },
     producerUrl: 'https://www.jimdunlop.com/way-huge-swollen-pickle-jumbo-fuzz-mkiis/',
     art(W, H, k) {
-      return `${body(W, H, '#4f7a1f', 24)}
-  ${knobSockets(k, 'rgba(0,0,0,0.30)')}
-  <text x="240" y="330" text-anchor="middle" font-family="${F}" font-size="52" font-weight="800" font-style="italic" fill="#f2e8c9">Swollen</text>
-  <text x="240" y="392" text-anchor="middle" font-family="${F}" font-size="52" font-weight="800" font-style="italic" fill="#f2e8c9">Pickle</text>
-  <text x="240" y="432" text-anchor="middle" font-family="${F}" font-size="20" font-weight="600" letter-spacing="3" fill="rgba(242,232,201,0.85)">JUMBO FUZZ MkIIS</text>
-  <text x="240" y="486" text-anchor="middle" font-family="${F}" font-size="22" font-weight="800" letter-spacing="4" fill="#f2e8c9">WAY HUGE</text>
+      return `${body(W, H, 24)}
+  ${knobSockets(k, 'rgba(0,0,0,0.32)')}
+  <text x="240" y="330" text-anchor="middle" font-family="${F}" font-size="54" font-weight="800" font-style="italic" fill="#f2e8c9">Swollen</text>
+  <text x="240" y="394" text-anchor="middle" font-family="${F}" font-size="54" font-weight="800" font-style="italic" fill="#f2e8c9">Pickle</text>
+  <text x="240" y="434" text-anchor="middle" font-family="${F}" font-size="20" font-weight="600" letter-spacing="3.5" fill="rgba(242,232,201,0.88)">JUMBO FUZZ MkIIS</text>
+  <text x="240" y="488" text-anchor="middle" font-family="${F}" font-size="23" font-weight="800" letter-spacing="4.5" fill="#f2e8c9">WAY HUGE</text>
   ${led(240, 540)}
   ${footswitch(240, 628, 50)}
   ${screws(W, H)}`;
     },
   },
   {
-    // Velvet Fuzz: czarna obudowa, eleganckie białe liternictwo
     id: 'wampler-velvet-fuzz', name: 'Velvet Fuzz', manufacturer: 'Wampler', type: 'fuzz',
     W: 480, H: 800,
     knobs: [
@@ -225,20 +287,22 @@ const PEDALS = [
       { id: 'brightness', label: 'Brightness', role: 'tone', cx: 240, cy: 86, d: 70 },
       { id: 'fuzz', label: 'Fuzz', role: 'gain', cx: 360, cy: 86, d: 70 },
     ],
-    description: 'Aksamitny fuzz zaprojektowany tak, by brzmieć jak wielki wzmacniacz stackowy na granicy eksplozji. Mniej szorstki niż klasyczne fuzzy — gładki, śpiewający sustain idealny do solówek. Brightness dopasowuje brzmienie zarówno do ciemnych, jak i jasnych wzmacniaczy. Płynna granica między fuzzem a wielkim distortion.',
+    description: {
+      en: 'A velvety fuzz designed to sound like a huge stack amp on the edge of explosion. Smoother than classic fuzzes — a singing, sustaining voice that is perfect for leads. Brightness matches it to dark and bright amps alike. The fluid border between fuzz and one massive distortion.',
+      pl: 'Aksamitny fuzz zaprojektowany tak, by brzmieć jak wielki wzmacniacz stackowy na granicy eksplozji. Gładszy niż klasyczne fuzzy — śpiewający sustain idealny do solówek. Brightness dopasowuje brzmienie zarówno do ciemnych, jak i jasnych wzmacniaczy. Płynna granica między fuzzem a wielkim distortion.',
+    },
     producerUrl: 'https://www.wamplerpedals.com/',
     art(W, H, k) {
-      return `${body(W, H, '#1d1d20', 24, 'rgba(0,0,0,0.6)')}
-  ${knobSockets(k, 'rgba(255,255,255,0.10)')}
-  <text x="240" y="386" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-style="italic" fill="#f4f4f6">Velvet Fuzz</text>
-  <text x="240" y="446" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-style="italic" fill="rgba(244,244,246,0.8)">Wampler</text>
-  ${led(240, 524, '#9ad1ff')}
+      return `${body(W, H, 24, 'rgba(0,0,0,0.65)')}
+  ${knobSockets(k, 'rgba(255,255,255,0.1)')}
+  <text x="240" y="388" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-style="italic" fill="#f4f4f6">Velvet Fuzz</text>
+  <text x="240" y="448" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-style="italic" fill="rgba(244,244,246,0.82)">Wampler</text>
+  ${led(240, 524)}
   ${footswitch(240, 632, 50)}
   ${screws(W, H)}`;
     },
   },
   {
-    // Variac Fuzz: fioletowy MXR, mała typografia, biały blok MXR na dole
     id: 'mxr-variac-fuzz', name: 'Super Badass Variac Fuzz', manufacturer: 'MXR', type: 'fuzz',
     W: 460, H: 800,
     knobs: [
@@ -246,24 +310,28 @@ const PEDALS = [
       { id: 'tone', label: 'Tone', role: 'tone', cx: 230, cy: 84, d: 66 },
       { id: 'amount', label: 'Amount', role: 'gain', cx: 356, cy: 84, d: 66 },
     ],
-    description: 'Fuzz z kontrolą napięcia zasilania (variac) — od sprężystego, pełnego brzmienia przy 9 V po rozpadające się, bramkujące tekstury przy niższych napięciach. Amount steruje ilością ognia, a Tone okiełznuje górę pasma. Klasyczny krzemowy charakter zamknięty w pancernej obudowie MXR.',
+    description: {
+      en: 'A fuzz with supply-voltage control (variac) — from springy, full voicing at 9 V to collapsing, gated textures at lower voltages. Amount sets the amount of fire and Tone tames the top end. Classic silicon fuzz character in MXR’s tank-like housing.',
+      pl: 'Fuzz z kontrolą napięcia zasilania (variac) — od sprężystego, pełnego brzmienia przy 9 V po rozpadające się, bramkujące tekstury przy niższych napięciach. Amount steruje ilością ognia, a Tone okiełznuje górę pasma. Klasyczny krzemowy charakter zamknięty w pancernej obudowie MXR.',
+    },
     producerUrl: 'https://www.jimdunlop.com/mxr-super-badass-variac-fuzz/',
     art(W, H, k) {
-      return `${body(W, H, '#6f43a8', 22)}
-  ${knobSockets(k, 'rgba(0,0,0,0.28)')}
-  <text x="230" y="296" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-style="italic" fill="#ffffff">variac fuzz</text>
-  <text x="230" y="336" text-anchor="middle" font-family="${F}" font-size="17" font-weight="600" letter-spacing="2" fill="rgba(255,255,255,0.75)">SUPER BADASS</text>
+      return `${body(W, H, 22)}
+  ${knobSockets(k, 'rgba(0,0,0,0.3)')}
+  <text x="230" y="298" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-style="italic" fill="#ffffff">variac fuzz</text>
+  <text x="230" y="338" text-anchor="middle" font-family="${F}" font-size="17" font-weight="600" letter-spacing="2.5" fill="rgba(255,255,255,0.78)">SUPER BADASS</text>
   ${led(230, 392)}
   ${footswitch(230, 510, 50)}
-  <rect x="118" y="640" width="224" height="84" rx="12" fill="#ffffff"/>
-  <text x="230" y="700" text-anchor="middle" font-family="${F}" font-size="52" font-weight="900" letter-spacing="2" fill="#1d1d1f">MXR</text>
+  <rect x="116" y="638" width="228" height="88" rx="12" fill="#ffffff"/>
+  <rect x="116" y="638" width="228" height="88" rx="12" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+  <text x="230" y="700" text-anchor="middle" font-family="${F}" font-size="54" font-weight="900" letter-spacing="2.5" fill="#1d1d1f">MXR</text>
   ${screws(W, H)}`;
     },
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Logotypy producentów (wordmarki) — ciemne, na jasne tło panelu
+// Logotypy producentów (wordmarki)
 // ---------------------------------------------------------------------------
 
 const LOGOS = {
@@ -281,7 +349,7 @@ function manufacturerSlug(name) {
 }
 
 // ---------------------------------------------------------------------------
-// Audio: jeden wspólny riff (Karplus–Strong) + DSP kostki (jak w oryginale MVP)
+// Audio: jeden wspólny riff (Karplus–Strong) + DSP kostki
 // ---------------------------------------------------------------------------
 
 const KNOB_VALUES = [2, 6, 9];
@@ -405,17 +473,18 @@ function writeWav(filePath, samples) {
 }
 
 // ---------------------------------------------------------------------------
-// Linki afiliacyjne — sklep producenta ZAWSZE pierwszy (reguła biznesowa)
+// Linki sklepów — sklep producenta ZAWSZE pierwszy (reguła biznesowa).
+// URL-e zweryfikowane (HTTP 200) 2026-08-20; Sweetwater blokuje boty, działa w przeglądarce.
 // ---------------------------------------------------------------------------
 
 function affiliateLinks(pedal) {
   const aff = 'aff=pedalteststudio';
   const q = encodeURIComponent(`${pedal.manufacturer} ${pedal.name}`);
   return [
-    { store: `${pedal.manufacturer} (producent)`, url: `${pedal.producerUrl}?${aff}`, order: 1 },
-    { store: 'Sweetwater', url: `https://www.sweetwater.com/store/search.php?s=${q}&${aff}`, order: 2 },
-    { store: 'GuitarCenter.pl', url: `https://guitarcenter.pl/szukaj?q=${q}&${aff}`, order: 3 },
-    { store: 'Guitar Center', url: `https://www.guitarcenter.com/search?Ntt=${q}&${aff}`, order: 4 },
+    { store: pedal.manufacturer, role: 'producer', url: `${pedal.producerUrl}?${aff}`, order: 1 },
+    { store: 'Thomann', url: `https://www.thomann.de/pl/search_dir.html?sw=${q}&${aff}`, order: 2 },
+    { store: 'Sweetwater', url: `https://www.sweetwater.com/store/search.php?s=${q}&${aff}`, order: 3 },
+    { store: 'GuitarCenter.pl', url: `https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=${q}&${aff}`, order: 4 },
   ];
 }
 
@@ -424,6 +493,7 @@ function affiliateLinks(pedal) {
 // ---------------------------------------------------------------------------
 
 function main() {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
   fs.mkdirSync(AUDIO_DIR, { recursive: true });
   fs.mkdirSync(LOGO_DIR, { recursive: true });
 
@@ -439,14 +509,13 @@ function main() {
     const pedalAudioDir = path.join(AUDIO_DIR, pedal.id);
     fs.mkdirSync(pedalAudioDir, { recursive: true });
 
-    // grafika kostki (na wzór oryginału)
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${pedal.W}" height="${pedal.H}" viewBox="0 0 ${pedal.W} ${pedal.H}">
+  ${svgDefs(pedal.artColor || bodyColorOf(pedal))}
   ${pedal.art(pedal.W, pedal.H, pedal.knobs)}
 </svg>
 `;
     fs.writeFileSync(path.join(IMG_DIR, `${pedal.id}.svg`), svg);
 
-    // gałki: pozycje pikselowe → ułamki względem zdjęcia (frontend nakłada overlay)
     const knobs = pedal.knobs.map((k) => ({
       id: k.id,
       label: k.label,
@@ -495,7 +564,22 @@ function main() {
   }
 
   fs.writeFileSync(path.join(DATA_DIR, 'pedals.json'), JSON.stringify(catalog, null, 2));
-  console.log(`\nGotowe: ${catalog.length} kostek + ${Object.keys(LOGOS).length} logotypów → data/pedals.json, public/img/`);
+  console.log(`\nGotowe: ${catalog.length} kostek → data/pedals.json, public/img/, public/audio/`);
+}
+
+// kolor bazowy do gradientu obudowy — wyciągany z pierwszego rect w art()
+function bodyColorOf(pedal) {
+  const colors = {
+    'boss-bd-2': '#2f63d2',
+    'ibanez-ts9': '#3fae49',
+    'fulltone-ocd': '#ece4cd',
+    'ehx-soul-food': '#e8e9ec',
+    'ehx-big-muff': '#d6d7d9',
+    'way-huge-swollen-pickle': '#4f7a1f',
+    'wampler-velvet-fuzz': '#232326',
+    'mxr-variac-fuzz': '#6f43a8',
+  };
+  return colors[pedal.id] || '#888888';
 }
 
 main();

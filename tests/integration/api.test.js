@@ -51,7 +51,9 @@ test('GET /api/pedals zwraca katalog z kompletem encji', async () => {
     assert.ok(p.recordings.length > 0, `kostka ${p.id}: brak nagrań`);
     // reguła biznesowa: sklep producenta pierwszy
     const first = [...p.affiliateLinks].sort((a, b) => a.order - b.order)[0];
-    assert.match(first.store, /producent/i, `kostka ${p.id}: pierwszy link musi być producenta`);
+    assert.equal(first.role, 'producer', `kostka ${p.id}: pierwszy link musi być producenta`);
+    // opisy dwujęzyczne (EN bazowy + PL)
+    assert.ok(p.description && p.description.en && p.description.pl, `kostka ${p.id}: opis musi mieć wersje en i pl`);
     // wartości gałek nagrań w skali 0–10
     for (const rec of p.recordings) {
       for (const v of Object.values(rec.knobValues)) {

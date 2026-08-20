@@ -24,13 +24,13 @@ Dane startowe (8 kostek z placeholderami) wygenerowane są skryptem `node app/sc
   "manufacturer": "Producent",
   "type": "overdrive",
   "image": "/img/moja-kostka.jpg",
-  "description": "Krótki opis brzmienia.",
+  "description": { "en": "Short tone description.", "pl": "Krótki opis brzmienia." },
   "knobs": [
     { "id": "gain", "label": "Gain", "role": "gain", "x": 0.23, "y": 0.20, "size": 0.17, "min": 0, "max": 10 }
   ],
   "affiliateLinks": [
-    { "store": "Producent (producent)", "url": "https://…?aff=pedalteststudio", "order": 1 },
-    { "store": "Sweetwater", "url": "https://…", "order": 2 }
+    { "store": "Producent", "role": "producer", "url": "https://…?aff=pedalteststudio", "order": 1 },
+    { "store": "Thomann", "url": "https://…", "order": 2 }
   ],
   "recordings": []
 }
@@ -46,7 +46,7 @@ Dane startowe (8 kostek z placeholderami) wygenerowane są skryptem `node app/sc
 ## A2 — Dodawanie nagrań z pozycjami gałek
 
 1. Nagraj **ten sam riff** suchej gitary przez kostkę w różnych ustawieniach. Rekomendowane wartości gałek: **2 / 6 / 9** (skala 0–10) — przy 3 gałkach ok. 9 sensownych kombinacji.
-2. Pliki audio (WAV lub MP3) zapisz w `app/data/audio/<id-kostki>/`, np. `app/data/audio/moja-kostka/2-6-9.wav`.
+2. Pliki audio (WAV lub MP3) zapisz w `app/public/audio/<id-kostki>/`, np. `app/public/audio/moja-kostka/2-6-9.wav`.
 3. Do `recordings` kostki w `pedals.json` dodaj wpis per nagranie:
 
 ```json
@@ -74,7 +74,7 @@ app/
 ├── server.js          ← serwer (node app/server.js)
 ├── data/
 │   ├── pedals.json    ← KATALOG — tu dodajesz kostki i nagrania
-│   ├── audio/<id>/    ← pliki audio nagrań
 │   └── events.ndjson  ← log zdarzeń (statystyki)
+├── public/audio/<id>/ ← pliki audio nagrań
 └── public/img/        ← zdjęcia kostek
 ```

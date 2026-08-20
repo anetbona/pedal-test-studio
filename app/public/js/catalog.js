@@ -7,7 +7,7 @@ export function renderCatalog(pedals) {
   for (const pedal of pedals) {
     const card = document.createElement('button');
     card.className = 'pedal-card';
-    card.setAttribute('aria-label', `${pedal.manufacturer} ${pedal.name} — otwórz konfigurator`);
+    card.setAttribute('aria-label', `${pedal.manufacturer} ${pedal.name}`);
 
     const img = document.createElement('img');
     img.src = pedal.image;

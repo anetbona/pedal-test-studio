@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PedalTest Studio — usłysz prawdziwą kostkę, zanim ją kupisz</title>
-  <meta name="description" content="Katalog efektów gitarowych z nagraniami tego samego riffu w różnych ustawieniach gałek. Porównaj brzmienie własnym uchem, zanim kupisz.">
+  <title>PedalTest Studio — hear the real pedal before you buy</title>
+  <meta name="description" content="A catalog of guitar pedals with recordings of the same riff at different knob settings. Compare tones with your own ears before you buy. / Katalog efektów gitarowych — porównaj brzmienie zanim kupisz.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,53 +13,56 @@
 <body>
   <nav class="nav">
     <a href="#/" class="nav-brand">PedalTest Studio</a>
-    <a href="#/" class="nav-link" data-nav-catalog>Katalog</a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button><button type="button" data-lang="pl">PL</button>
+    </div>
+    <a href="#/" class="nav-link" data-i18n="nav.catalog">Catalog</a>
   </nav>
 
   <!-- Widok: katalog (U1) -->
   <main id="view-catalog" hidden>
     <header class="hero">
-      <div class="eyebrow">PedalTest Studio</div>
-      <h1>Usłysz prawdziwą kostkę,<br>zanim ją kupisz.</h1>
-      <p class="hero-sub">Ten sam riff, różne ustawienia gałek. Porównaj brzmienie efektów własnym uchem — bez wycieczki do sklepu.</p>
-      <a class="pill-cta" href="#katalog">Przeglądaj katalog</a>
+      <div class="eyebrow" data-i18n="hero.eyebrow">PedalTest Studio</div>
+      <h1 data-i18n="hero.title">Hear the real pedal<br>before you buy.</h1>
+      <p class="hero-sub" data-i18n="hero.sub">The same riff, different knob settings. Compare pedals with your own ears — no trip to the store.</p>
+      <a class="pill-cta" href="#katalog" data-i18n="hero.cta">Browse the catalog</a>
     </header>
 
     <section class="catalog-section" id="katalog">
-      <h2>Katalog kostek</h2>
-      <p class="catalog-hint">Fuzz i overdrive od różnych producentów. Kliknij kostkę, żeby ją usłyszeć.</p>
+      <h2 data-i18n="catalog.title">Pedal catalog</h2>
+      <p class="catalog-hint" data-i18n="catalog.hint">Fuzz and overdrive from different makers. Click a pedal to hear it.</p>
       <div class="carousel-wrap">
-        <button class="carousel-arrow" data-dir="-1" aria-label="Poprzednie kostki">‹</button>
+        <button class="carousel-arrow" data-dir="-1" aria-label="Previous">‹</button>
         <div class="carousel" id="carousel"></div>
-        <button class="carousel-arrow" data-dir="1" aria-label="Następne kostki">›</button>
+        <button class="carousel-arrow" data-dir="1" aria-label="Next">›</button>
       </div>
     </section>
   </main>
 
-  <!-- Widok: kostka — układ 3-częściowy: podgląd | panel ustawień | belka sklepów -->
+  <!-- Widok: kostka — układ: podgląd | panel ustawień | belka sklepów -->
   <main id="view-pedal" hidden>
     <div class="kn-page">
       <section class="kn-preview">
         <div class="kn-preview-bar">
-          <a class="kn-back" href="#/">‹ Katalog</a>
-          <span class="kn-preview-label">◇ Podgląd kostki</span>
-          <span class="kn-preview-hint">obraz poglądowy</span>
+          <a class="kn-back" href="#/" data-i18n="preview.back">‹ Catalog</a>
+          <span class="kn-preview-label" data-i18n="preview.label">◇ Pedal preview</span>
+          <span class="kn-preview-hint" data-i18n="preview.hint">illustrative image</span>
         </div>
         <div class="kn-stage">
           <div class="pedal-image-wrap" id="pedal-image-wrap">
             <img id="pedal-image" alt="">
-            <!-- animowane gałki nakładane przez knobs.js -->
+            <!-- interaktywne gałki nakładane przez knobs.js -->
           </div>
         </div>
       </section>
 
       <aside class="kn-panel">
-        <h2 class="kn-title">Posłuchaj tej kostki</h2>
+        <h2 class="kn-title" data-i18n="panel.title">Listen to this pedal</h2>
 
         <section class="kn-step">
           <header class="kn-step-head">
             <span class="kn-step-num">01</span>
-            <h3>Kostka</h3>
+            <h3 data-i18n="step1.title">Pedal</h3>
             <span class="kn-step-value" id="pedal-type"></span>
           </header>
           <div class="kn-name-row">
@@ -68,16 +71,16 @@
           </div>
           <p class="pedal-manufacturer" id="pedal-manufacturer"></p>
           <p class="pedal-description clamped" id="pedal-description"></p>
-          <button class="kn-more" id="desc-toggle" hidden>więcej</button>
+          <button class="kn-more" id="desc-toggle" hidden>more</button>
         </section>
 
         <section class="kn-step">
           <header class="kn-step-head">
             <span class="kn-step-num">02</span>
-            <h3>Nagrania</h3>
+            <h3 data-i18n="step2.title">Recordings</h3>
             <span class="kn-step-value" id="current-recording">—</span>
           </header>
-          <p class="kn-step-hint">Ten sam riff w różnych ustawieniach gałek — kliknij, żeby porównać.</p>
+          <p class="kn-step-hint" data-i18n="step2.hint">The same riff with different knob settings — click a recording or turn the knobs yourself.</p>
           <ul class="recording-list" id="recording-list"></ul>
         </section>
       </aside>
@@ -85,13 +88,13 @@
 
     <!-- belka sklepów (U5) — pod całością, zawsze widoczna -->
     <div class="kn-buybar" id="affiliate-banner">
-      <span class="kn-buybar-label">Kup ten efekt w:</span>
+      <span class="kn-buybar-label" data-i18n="buybar.label">Buy this pedal at:</span>
       <div class="affiliate-links" id="affiliate-links"></div>
     </div>
   </main>
 
   <footer class="footer">
-    <p>PedalTest Studio · portal odsłuchowy dla gitarzystów · nagrania demonstracyjne</p>
+    <p data-i18n="footer.text">PedalTest Studio · a listening room for guitarists · demo recordings</p>
   </footer>
 
   <script type="module" src="/js/app.js"></script>
