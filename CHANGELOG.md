@@ -20,9 +20,11 @@ wersjonowanie zgodne z [SemVer](https://semver.org/lang/pl/).
   URL wyszukiwarki; dodany Thomann (PL).
 
 ### Added
-- **Interaktywne gałki**: kręcenie przeciągnięciem lub strzałkami (dostępność: role
-  slider, fokus) — wartość przyciąga się do najbliższego nagranego ustawienia
-  i odtwarza pasujące nagranie.
+- **Interaktywne gałki**: obrót jak prawdziwą gałką (łapiesz i kręcisz wokół osi,
+  mysz/dotyk; klawiatura: strzałki; dostępność: role slider, fokus) z „zapadkami"
+  na nagranych ustawieniach — złapanie zapadki od razu odtwarza pasujące nagranie,
+  a jeśli riff właśnie gra, nowe ustawienie gra dalej od tej samej pozycji
+  (płynne porównywanie brzmień bez restartu).
 - **Dwujęzyczność EN/PL**: angielski jako wersja bazowa (domyślna), polski przez
   przełącznik EN/PL w nawigacji; opisy kostek w obu językach; wybór zapamiętywany.
 

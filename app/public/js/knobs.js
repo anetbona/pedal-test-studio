@@ -60,7 +60,7 @@ export function renderKnobs(container, knobs, opts = {}) {
   }
 
   function attachInteraction(state, avail, changed) {
-    const { el, knob, dial } = state;
+    const { el, knob, dial, valueEl } = state;
     const values = (avail && avail.length ? [...avail] : null)?.sort((a, b) => a - b);
 
     const snap = (v) => {
@@ -78,38 +78,50 @@ export function renderKnobs(container, knobs, opts = {}) {
       if (moved) changed(knob.id, snapped);
     };
 
-    // przeciąganie w pionie (mysz / dotyk)
+    // obrót jak prawdziwą gałką: łapiesz i kręcisz wokół osi (mysz / dotyk).
+    // Zapadki: przekroczenie połowy drogi do kolejnego nagranego ustawienia
+    // od razu je "łapie" (commit → gra nowe ustawienie bez puszczania gałki).
     let dragging = false;
-    let startY = 0;
-    let startValue = 0;
+    let center = null;
+
+    const pointerDeg = (e) => {
+      const dx = e.clientX - center.x;
+      const dy = e.clientY - center.y;
+      // 0° na godzinie 12, zgodnie z ruchem wskazówek; zakres gałki: -135°…+135°
+      const deg = Math.atan2(dx, -dy) * (180 / Math.PI);
+      return Math.max(-ROTATION_RANGE / 2, Math.min(ROTATION_RANGE / 2, deg));
+    };
+    const degToValue = (deg) =>
+      knob.min + ((deg + ROTATION_RANGE / 2) / ROTATION_RANGE) * (knob.max - knob.min);
 
     el.addEventListener('pointerdown', (e) => {
       dragging = true;
-      startY = e.clientY;
-      startValue = state.committed;
+      const r = dial.getBoundingClientRect();
+      center = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
       el.setPointerCapture(e.pointerId);
-      dial.style.transition = 'none'; // podczas przeciągania obrót 1:1, bez animacji
+      dial.style.transition = 'none'; // wskaźnik podąża 1:1 za palcem/kursorem
       e.preventDefault();
     });
     el.addEventListener('pointermove', (e) => {
       if (!dragging) return;
-      const raw = startValue + (startY - e.clientY) / 16; // 16 px = 1 punkt skali
-      const v = Math.max(knob.min, Math.min(knob.max, raw));
-      show(state, v);
+      const deg = pointerDeg(e);
+      dial.style.transform = `rotate(${deg}deg)`;
+      const snapped = snap(degToValue(deg));
+      valueEl.textContent = snapped;
+      el.setAttribute('aria-valuenow', String(snapped));
+      if (snapped !== state.committed) {
+        state.committed = snapped;
+        changed(knob.id, snapped); // zapadka złapana → gra nowe ustawienie
+      }
     });
-    const endDrag = (e) => {
+    const endDrag = () => {
       if (!dragging) return;
       dragging = false;
       dial.style.transition = '';
-      const raw = startValue + (startY - e.clientY) / 16;
-      commit(raw);
+      show(state, state.committed); // wskaźnik dojeżdża płynnie do zapadki
     };
     el.addEventListener('pointerup', endDrag);
-    el.addEventListener('pointercancel', () => {
-      dragging = false;
-      dial.style.transition = '';
-      show(state, state.committed);
-    });
+    el.addEventListener('pointercancel', endDrag);
 
     // klawiatura: strzałki przechodzą do sąsiedniego nagranego ustawienia
     el.addEventListener('keydown', (e) => {

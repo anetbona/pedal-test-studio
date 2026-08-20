@@ -55,6 +55,44 @@ export class Player {
     return 'started';
   }
 
+  /**
+   * Przełączenie na inne nagranie z zachowaniem pozycji odtwarzania —
+   * jeśli riff właśnie gra, nowe ustawienie gra dalej od tego samego miejsca
+   * (wszystkie nagrania kostki to ten sam riff o tej samej długości).
+   * Zwraca 'started' gdy rozpoczęto odtwarzanie (do zliczania), inaczej 'selected'.
+   */
+  switchTo(recordingId) {
+    const audio = this.audios.get(recordingId);
+    if (!audio) return null;
+
+    if (this.currentId === recordingId) {
+      if (audio.paused) {
+        if (audio.ended) audio.currentTime = 0;
+        audio.play();
+        this._emit(recordingId, true);
+        return 'started';
+      }
+      return 'selected';
+    }
+
+    let pos = 0;
+    let wasPlaying = false;
+    if (this.currentId) {
+      const prev = this.audios.get(this.currentId);
+      if (prev) {
+        wasPlaying = !prev.paused && !prev.ended;
+        pos = prev.ended ? 0 : prev.currentTime;
+        prev.pause();
+        prev.currentTime = 0;
+      }
+    }
+    this.currentId = recordingId;
+    audio.currentTime = wasPlaying ? pos : 0;
+    audio.play();
+    this._emit(recordingId, true);
+    return 'started';
+  }
+
   stop() {
     if (this.currentId) {
       const audio = this.audios.get(this.currentId);

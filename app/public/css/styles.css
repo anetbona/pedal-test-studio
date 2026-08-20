@@ -55,11 +55,11 @@ h1, h2, h3 { font-family: var(--heading); color: var(--ink); }
   white-space: nowrap;
 }
 .lang-switch {
-  margin-left: auto;
   display: flex;
   gap: 2px;
-  margin-right: 16px;
+  margin-left: 20px; /* na podstronie: przycisk Katalog po lewej, EN/PL po prawej */
 }
+body:not(.pedal-view) .lang-switch { margin-left: auto; } /* na głównej: sam EN/PL */
 .lang-switch button {
   background: none;
   border: none;
@@ -77,6 +77,8 @@ h1, h2, h3 { font-family: var(--heading); color: var(--ink); }
 .lang-switch button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 .nav-link {
+  /* na stronie głównej przycisk nic nie robi — pokazujemy go tylko na podstronie kostki */
+  display: none;
   color: var(--green);
   border: 2px solid var(--green);
   border-radius: 3px;
@@ -91,6 +93,7 @@ h1, h2, h3 { font-family: var(--heading); color: var(--ink); }
 }
 .nav-link:hover { background: var(--green); color: #fff; }
 .nav-link:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na podstronie wraca do katalogu */
 
 /* ===================== Strona główna: hero ===================== */
 

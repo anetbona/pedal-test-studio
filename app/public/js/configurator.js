@@ -45,10 +45,9 @@ export function renderConfigurator(pedal) {
   const rows = new Map(); // recordingId -> { item, icon }
   const currentLabel = document.getElementById('current-recording');
 
-  const selectRecording = (rec, { restart = true } = {}) => {
-    const result = restart && player.currentId === rec.id
-      ? (player.stop(), player.toggle(rec.id))
-      : player.toggle(rec.id);
+  // przełączenie z zachowaniem pozycji riffu — gałka "łapie" ustawienie i gra dalej
+  const selectRecording = (rec) => {
+    const result = player.switchTo(rec.id);
     knobControl.setValues(rec.knobValues);
     currentLabel.textContent = rec.label;
     if (result === 'started') trackPlay(pedal.id, rec.id);
@@ -130,11 +129,16 @@ function renderRecordings(pedal, rows, selectRecording, currentLabel) {
     item.append(icon, label);
     item.addEventListener('click', () => {
       currentLabel.dataset.recId = rec.id;
-      // klik w aktywne nagranie = pauza/wznowienie (bez restartu)
-      const result = player.toggle(rec.id);
-      knobControl.setValues(rec.knobValues);
-      currentLabel.textContent = rec.label;
-      if (result === 'started') trackPlay(pedal.id, rec.id);
+      if (player.currentId === rec.id) {
+        // klik w aktywne nagranie = pauza/wznowienie
+        const result = player.toggle(rec.id);
+        knobControl.setValues(rec.knobValues);
+        currentLabel.textContent = rec.label;
+        if (result === 'started') trackPlay(pedal.id, rec.id);
+      } else {
+        // inne nagranie: jeśli riff gra — kontynuacja od tej samej pozycji
+        selectRecording(rec);
+      }
     });
 
     li.appendChild(item);
