@@ -59,10 +59,12 @@ function serveStatic(res, baseDir, relPath) {
       return;
     }
     const ext = path.extname(filePath).toLowerCase();
+    // audio cache'ujemy (pliki są wersjonowane w URL: ?v=N), resztę nie —
+    // no-store zapobiega serwowaniu starego JS/CSS podczas pracy lokalnej
     res.writeHead(200, {
       'Content-Type': MIME[ext] || 'application/octet-stream',
       'Content-Length': st.size,
-      'Cache-Control': ext === '.wav' ? 'public, max-age=3600' : 'no-cache',
+      'Cache-Control': ext === '.wav' ? 'public, max-age=3600' : 'no-store',
     });
     fs.createReadStream(filePath).pipe(res);
   });

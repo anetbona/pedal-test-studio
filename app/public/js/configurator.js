@@ -64,8 +64,9 @@ export function renderConfigurator(pedal) {
       const rec = pedal.recordings.find((r) =>
         pedal.knobs.every((k) => r.knobValues[k.id] === values[k.id]));
       if (!rec) return;
-      // autoplay:false → dźwięk płynie dalej tylko wtedy, gdy już grał
-      const result = player.switchTo(rec.id, { autoplay: false });
+      // kręcenie gałką zawsze gra: gdy riff leci — przechodzi płynnie od tej samej
+      // pozycji, gdy była cisza — startuje tak, jakby nacisnąć Play
+      const result = player.switchTo(rec.id, { autoplay: true });
       showSelection(rec);
       if (result === 'started') trackPlay(pedal.id, rec.id);
     },

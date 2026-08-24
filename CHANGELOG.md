@@ -4,6 +4,23 @@ Wszystkie istotne zmiany w projekcie są dokumentowane w tym pliku.
 Format zgodny z [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/),
 wersjonowanie zgodne z [SemVer](https://semver.org/lang/pl/).
 
+## [0.4.1] — 2026-08-24
+
+### Fixed
+- **Podpisy gałek nie nachodzą na siebie** — rozmiar tekstu skaluje się z grafiką
+  kostki, a kolidujące podpisy trafiają do kolejnych poziomów z zachowaniem
+  min. 2 px odstępu (przeliczane po renderze, przy zmianie okna i wartości).
+- **Nadmiar czarnego tła przy niskich oknach** (< 600 px) i w układzie
+  jednokolumnowym: podgląd nie rozciąga się już do wysokości panelu, tylko
+  otacza kostkę marginesem z progu 600 px; przy niskich oknach dodatkowo
+  „przykleja się" do góry przy przewijaniu listy nagrań.
+- Serwer deweloperski wysyła `no-store` dla JS/CSS/HTML — koniec z podglądem
+  starej wersji podczas pracy lokalnej (audio nadal cache'owane, ma `?v=N`).
+
+### Changed
+- Kręcenie gałką przy wyciszonym odtwarzaczu **od razu włącza dźwięk**
+  (tak samo jak Play) — wcześniej zmieniało tylko ustawienie.
+
 ## [0.4.0] — 2026-08-21
 
 ### Added

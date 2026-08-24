@@ -329,10 +329,11 @@ body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na po
 .knob-meta {
   display: inline-block;
   margin-top: 7px;
-  padding: 2px 9px;
+  padding: 2px 8px;
   border-radius: 980px;
-  background: rgba(0, 0, 0, 0.62);
-  font-size: 11px;
+  background: rgba(0, 0, 0, 0.72);
+  /* rozmiar skalowany do grafiki, kolizje rozsuwane — jedno i drugie w knobs.js */
+  font-size: var(--knob-label-fs, 11px);
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.92);
   white-space: nowrap;
@@ -566,11 +567,18 @@ body.pedal-view .footer { display: none; } /* na podstronie dół zajmuje belka 
 
 /* ===================== Responsywność ===================== */
 
-/* niskie okna (<600px wysokości): kostka wraca do przewijania strony */
+/* niskie okna (<600px wysokości): kostka wraca do przewijania strony.
+   Podgląd zachowuje proporcje z progu 600 px — nie rozciąga się do wysokości
+   panelu, żeby nie powstawała wielka pusta czarna płaszczyzna. */
 @media (max-height: 599px) {
   .kn-page { height: auto; min-height: 100vh; }
+  .kn-preview {
+    align-self: start;
+    position: sticky;
+    top: var(--nav-h); /* kostka zostaje w polu widzenia przy przewijaniu listy */
+  }
   .pedal-image-wrap { height: 420px; }
-  .kn-stage { padding: 24px; }
+  .kn-stage { padding: var(--stage-pad) 24px; }
 }
 
 @media (max-width: 1024px) {
@@ -587,7 +595,8 @@ body.pedal-view .footer { display: none; } /* na podstronie dół zajmuje belka 
     min-height: 100vh;
     padding-bottom: 170px; /* zapas na pasek sklepów, który zawija się na wąskich ekranach */
   }
-  .kn-stage { padding: 28px 24px; }
+  .kn-preview { align-self: start; } /* czarne tło tylko wokół kostki */
+  .kn-stage { padding: var(--stage-pad) 24px; }
   .pedal-image-wrap { height: min(52vh, 460px); }
   .kn-panel { border-left: none; overflow: visible; }
 }

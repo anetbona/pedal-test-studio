@@ -10,6 +10,9 @@ import { t } from './i18n.js';
 
 const ROTATION_RANGE = 270; // -135° (wartość 0) … +135° (wartość 10)
 
+// sprzątanie nasłuchów układu etykiet z poprzednio wyrenderowanej kostki
+let detachLayout = null;
+
 export function renderKnobs(container, knobs, opts = {}) {
   const availableValues = opts.availableValues || {};
   const onChange = opts.onChange || (() => {});
@@ -139,6 +142,61 @@ export function renderKnobs(container, knobs, opts = {}) {
     });
   }
 
+  // Etykiety gałek nie mogą na siebie nachodzić — przy małej grafice kostki
+  // sąsiednie podpisy są szersze niż odstęp gałek, więc kolidujące trafiają
+  // do kolejnych „poziomów" pod spodem (min. 2 px przerwy).
+  const LABEL_GAP = 2;
+  let layoutQueued = false;
+
+  function layoutLabels() {
+    layoutQueued = false;
+    const width = container.getBoundingClientRect().width;
+    if (!width) return;
+    // podpisy skalują się z grafiką (mniejsza kostka → mniejszy tekst)
+    const fs = Math.max(9, Math.min(11, width * 0.028));
+    container.style.setProperty('--knob-label-fs', `${fs.toFixed(1)}px`);
+
+    const metas = [...elements.values()].map((s) => s.el.querySelector('.knob-meta'));
+    metas.forEach((m) => { m.style.transform = ''; });
+
+    const items = metas
+      .map((el) => ({ el, r: el.getBoundingClientRect() }))
+      .filter((it) => it.r.width > 0)
+      .sort((a, b) => a.r.left - b.r.left);
+
+    const laneRightEdge = []; // prawa krawędź ostatniej etykiety w danym poziomie
+    for (const it of items) {
+      let lane = 0;
+      while (laneRightEdge[lane] !== undefined && it.r.left < laneRightEdge[lane] + LABEL_GAP) lane++;
+      laneRightEdge[lane] = it.r.right;
+      if (lane > 0) it.el.style.transform = `translateY(${lane * (it.r.height + LABEL_GAP)}px)`;
+    }
+  }
+
+  // setTimeout, nie rAF — rAF nie odpala w karcie w tle, a układ etykiet
+  // musi być policzony także wtedy (inaczej po powrocie widać nachodzące podpisy)
+  function scheduleLayout() {
+    if (layoutQueued) return;
+    layoutQueued = true;
+    setTimeout(layoutLabels, 0);
+  }
+
+  scheduleLayout();
+  // grafika kostki może dojechać później (lazy) i zmienia rozmiar przy resize okna
+  const img = container.querySelector('img');
+  if (img && !img.complete) img.addEventListener('load', scheduleLayout, { once: true });
+
+  detachLayout?.(); // sprzątanie po poprzedniej kostce
+  const onResize = () => scheduleLayout();
+  window.addEventListener('resize', onResize);
+  const ro = window.ResizeObserver ? new ResizeObserver(scheduleLayout) : null;
+  ro?.observe(container);
+  detachLayout = () => {
+    window.removeEventListener('resize', onResize);
+    ro?.disconnect();
+    detachLayout = null;
+  };
+
   return {
     // ustawia gałki (np. po kliknięciu nagrania) — płynna animacja przez CSS transition
     setValues(knobValues) {
@@ -148,6 +206,7 @@ export function renderKnobs(container, knobs, opts = {}) {
         state.committed = value;
         show(state, value);
       }
+      scheduleLayout(); // zmiana wartości może zmienić szerokość etykiety
     },
   };
 }
