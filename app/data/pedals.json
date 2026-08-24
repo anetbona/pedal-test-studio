@@ -58,17 +58,12 @@
         "store": "Sweetwater",
         "url": "https://www.sweetwater.com/store/search.php?s=Boss%20BD-2%20Blues%20Driver&aff=pedalteststudio",
         "order": 3
-      },
-      {
-        "store": "GuitarCenter.pl",
-        "url": "https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=Boss%20BD-2%20Blues%20Driver&aff=pedalteststudio",
-        "order": 4
       }
     ],
     "recordings": [
       {
         "id": "boss-bd-2-g2-t2-l6",
-        "file": "/audio/boss-bd-2/2-2-6.wav",
+        "file": "/audio/boss-bd-2/2-2-6.wav?v=2",
         "label": "Gain 2 · Tone 2 · Level 6",
         "knobValues": {
           "level": 6,
@@ -78,7 +73,7 @@
       },
       {
         "id": "boss-bd-2-g2-t6-l6",
-        "file": "/audio/boss-bd-2/2-6-6.wav",
+        "file": "/audio/boss-bd-2/2-6-6.wav?v=2",
         "label": "Gain 2 · Tone 6 · Level 6",
         "knobValues": {
           "level": 6,
@@ -88,7 +83,7 @@
       },
       {
         "id": "boss-bd-2-g2-t9-l6",
-        "file": "/audio/boss-bd-2/2-9-6.wav",
+        "file": "/audio/boss-bd-2/2-9-6.wav?v=2",
         "label": "Gain 2 · Tone 9 · Level 6",
         "knobValues": {
           "level": 6,
@@ -98,7 +93,7 @@
       },
       {
         "id": "boss-bd-2-g6-t2-l6",
-        "file": "/audio/boss-bd-2/6-2-6.wav",
+        "file": "/audio/boss-bd-2/6-2-6.wav?v=2",
         "label": "Gain 6 · Tone 2 · Level 6",
         "knobValues": {
           "level": 6,
@@ -108,7 +103,7 @@
       },
       {
         "id": "boss-bd-2-g6-t6-l6",
-        "file": "/audio/boss-bd-2/6-6-6.wav",
+        "file": "/audio/boss-bd-2/6-6-6.wav?v=2",
         "label": "Gain 6 · Tone 6 · Level 6",
         "knobValues": {
           "level": 6,
@@ -118,7 +113,7 @@
       },
       {
         "id": "boss-bd-2-g6-t9-l6",
-        "file": "/audio/boss-bd-2/6-9-6.wav",
+        "file": "/audio/boss-bd-2/6-9-6.wav?v=2",
         "label": "Gain 6 · Tone 9 · Level 6",
         "knobValues": {
           "level": 6,
@@ -128,7 +123,7 @@
       },
       {
         "id": "boss-bd-2-g9-t2-l6",
-        "file": "/audio/boss-bd-2/9-2-6.wav",
+        "file": "/audio/boss-bd-2/9-2-6.wav?v=2",
         "label": "Gain 9 · Tone 2 · Level 6",
         "knobValues": {
           "level": 6,
@@ -138,7 +133,7 @@
       },
       {
         "id": "boss-bd-2-g9-t6-l6",
-        "file": "/audio/boss-bd-2/9-6-6.wav",
+        "file": "/audio/boss-bd-2/9-6-6.wav?v=2",
         "label": "Gain 9 · Tone 6 · Level 6",
         "knobValues": {
           "level": 6,
@@ -148,7 +143,7 @@
       },
       {
         "id": "boss-bd-2-g9-t9-l6",
-        "file": "/audio/boss-bd-2/9-9-6.wav",
+        "file": "/audio/boss-bd-2/9-9-6.wav?v=2",
         "label": "Gain 9 · Tone 9 · Level 6",
         "knobValues": {
           "level": 6,
@@ -217,17 +212,12 @@
         "store": "Sweetwater",
         "url": "https://www.sweetwater.com/store/search.php?s=Ibanez%20TS9%20Tube%20Screamer&aff=pedalteststudio",
         "order": 3
-      },
-      {
-        "store": "GuitarCenter.pl",
-        "url": "https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=Ibanez%20TS9%20Tube%20Screamer&aff=pedalteststudio",
-        "order": 4
       }
     ],
     "recordings": [
       {
         "id": "ibanez-ts9-g2-t2-l6",
-        "file": "/audio/ibanez-ts9/2-2-6.wav",
+        "file": "/audio/ibanez-ts9/2-2-6.wav?v=2",
         "label": "Drive 2 · Tone 2 · Level 6",
         "knobValues": {
           "drive": 2,
@@ -237,7 +227,7 @@
       },
       {
         "id": "ibanez-ts9-g2-t6-l6",
-        "file": "/audio/ibanez-ts9/2-6-6.wav",
+        "file": "/audio/ibanez-ts9/2-6-6.wav?v=2",
         "label": "Drive 2 · Tone 6 · Level 6",
         "knobValues": {
           "drive": 2,
@@ -247,7 +237,7 @@
       },
       {
         "id": "ibanez-ts9-g2-t9-l6",
-        "file": "/audio/ibanez-ts9/2-9-6.wav",
+        "file": "/audio/ibanez-ts9/2-9-6.wav?v=2",
         "label": "Drive 2 · Tone 9 · Level 6",
         "knobValues": {
           "drive": 2,
@@ -257,7 +247,7 @@
       },
       {
         "id": "ibanez-ts9-g6-t2-l6",
-        "file": "/audio/ibanez-ts9/6-2-6.wav",
+        "file": "/audio/ibanez-ts9/6-2-6.wav?v=2",
         "label": "Drive 6 · Tone 2 · Level 6",
         "knobValues": {
           "drive": 6,
@@ -267,7 +257,7 @@
       },
       {
         "id": "ibanez-ts9-g6-t6-l6",
-        "file": "/audio/ibanez-ts9/6-6-6.wav",
+        "file": "/audio/ibanez-ts9/6-6-6.wav?v=2",
         "label": "Drive 6 · Tone 6 · Level 6",
         "knobValues": {
           "drive": 6,
@@ -277,7 +267,7 @@
       },
       {
         "id": "ibanez-ts9-g6-t9-l6",
-        "file": "/audio/ibanez-ts9/6-9-6.wav",
+        "file": "/audio/ibanez-ts9/6-9-6.wav?v=2",
         "label": "Drive 6 · Tone 9 · Level 6",
         "knobValues": {
           "drive": 6,
@@ -287,7 +277,7 @@
       },
       {
         "id": "ibanez-ts9-g9-t2-l6",
-        "file": "/audio/ibanez-ts9/9-2-6.wav",
+        "file": "/audio/ibanez-ts9/9-2-6.wav?v=2",
         "label": "Drive 9 · Tone 2 · Level 6",
         "knobValues": {
           "drive": 9,
@@ -297,7 +287,7 @@
       },
       {
         "id": "ibanez-ts9-g9-t6-l6",
-        "file": "/audio/ibanez-ts9/9-6-6.wav",
+        "file": "/audio/ibanez-ts9/9-6-6.wav?v=2",
         "label": "Drive 9 · Tone 6 · Level 6",
         "knobValues": {
           "drive": 9,
@@ -307,7 +297,7 @@
       },
       {
         "id": "ibanez-ts9-g9-t9-l6",
-        "file": "/audio/ibanez-ts9/9-9-6.wav",
+        "file": "/audio/ibanez-ts9/9-9-6.wav?v=2",
         "label": "Drive 9 · Tone 9 · Level 6",
         "knobValues": {
           "drive": 9,
@@ -376,17 +366,12 @@
         "store": "Sweetwater",
         "url": "https://www.sweetwater.com/store/search.php?s=Fulltone%20OCD%20V2&aff=pedalteststudio",
         "order": 3
-      },
-      {
-        "store": "GuitarCenter.pl",
-        "url": "https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=Fulltone%20OCD%20V2&aff=pedalteststudio",
-        "order": 4
       }
     ],
     "recordings": [
       {
         "id": "fulltone-ocd-g2-t2-l6",
-        "file": "/audio/fulltone-ocd/2-2-6.wav",
+        "file": "/audio/fulltone-ocd/2-2-6.wav?v=2",
         "label": "Drive 2 · Tone 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -396,7 +381,7 @@
       },
       {
         "id": "fulltone-ocd-g2-t6-l6",
-        "file": "/audio/fulltone-ocd/2-6-6.wav",
+        "file": "/audio/fulltone-ocd/2-6-6.wav?v=2",
         "label": "Drive 2 · Tone 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -406,7 +391,7 @@
       },
       {
         "id": "fulltone-ocd-g2-t9-l6",
-        "file": "/audio/fulltone-ocd/2-9-6.wav",
+        "file": "/audio/fulltone-ocd/2-9-6.wav?v=2",
         "label": "Drive 2 · Tone 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -416,7 +401,7 @@
       },
       {
         "id": "fulltone-ocd-g6-t2-l6",
-        "file": "/audio/fulltone-ocd/6-2-6.wav",
+        "file": "/audio/fulltone-ocd/6-2-6.wav?v=2",
         "label": "Drive 6 · Tone 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -426,7 +411,7 @@
       },
       {
         "id": "fulltone-ocd-g6-t6-l6",
-        "file": "/audio/fulltone-ocd/6-6-6.wav",
+        "file": "/audio/fulltone-ocd/6-6-6.wav?v=2",
         "label": "Drive 6 · Tone 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -436,7 +421,7 @@
       },
       {
         "id": "fulltone-ocd-g6-t9-l6",
-        "file": "/audio/fulltone-ocd/6-9-6.wav",
+        "file": "/audio/fulltone-ocd/6-9-6.wav?v=2",
         "label": "Drive 6 · Tone 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -446,7 +431,7 @@
       },
       {
         "id": "fulltone-ocd-g9-t2-l6",
-        "file": "/audio/fulltone-ocd/9-2-6.wav",
+        "file": "/audio/fulltone-ocd/9-2-6.wav?v=2",
         "label": "Drive 9 · Tone 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -456,7 +441,7 @@
       },
       {
         "id": "fulltone-ocd-g9-t6-l6",
-        "file": "/audio/fulltone-ocd/9-6-6.wav",
+        "file": "/audio/fulltone-ocd/9-6-6.wav?v=2",
         "label": "Drive 9 · Tone 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -466,7 +451,7 @@
       },
       {
         "id": "fulltone-ocd-g9-t9-l6",
-        "file": "/audio/fulltone-ocd/9-9-6.wav",
+        "file": "/audio/fulltone-ocd/9-9-6.wav?v=2",
         "label": "Drive 9 · Tone 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -535,17 +520,12 @@
         "store": "Sweetwater",
         "url": "https://www.sweetwater.com/store/search.php?s=Electro-Harmonix%20Soul%20Food&aff=pedalteststudio",
         "order": 3
-      },
-      {
-        "store": "GuitarCenter.pl",
-        "url": "https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=Electro-Harmonix%20Soul%20Food&aff=pedalteststudio",
-        "order": 4
       }
     ],
     "recordings": [
       {
         "id": "ehx-soul-food-g2-t2-l6",
-        "file": "/audio/ehx-soul-food/2-2-6.wav",
+        "file": "/audio/ehx-soul-food/2-2-6.wav?v=2",
         "label": "Drive 2 · Treble 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -555,7 +535,7 @@
       },
       {
         "id": "ehx-soul-food-g2-t6-l6",
-        "file": "/audio/ehx-soul-food/2-6-6.wav",
+        "file": "/audio/ehx-soul-food/2-6-6.wav?v=2",
         "label": "Drive 2 · Treble 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -565,7 +545,7 @@
       },
       {
         "id": "ehx-soul-food-g2-t9-l6",
-        "file": "/audio/ehx-soul-food/2-9-6.wav",
+        "file": "/audio/ehx-soul-food/2-9-6.wav?v=2",
         "label": "Drive 2 · Treble 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -575,7 +555,7 @@
       },
       {
         "id": "ehx-soul-food-g6-t2-l6",
-        "file": "/audio/ehx-soul-food/6-2-6.wav",
+        "file": "/audio/ehx-soul-food/6-2-6.wav?v=2",
         "label": "Drive 6 · Treble 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -585,7 +565,7 @@
       },
       {
         "id": "ehx-soul-food-g6-t6-l6",
-        "file": "/audio/ehx-soul-food/6-6-6.wav",
+        "file": "/audio/ehx-soul-food/6-6-6.wav?v=2",
         "label": "Drive 6 · Treble 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -595,7 +575,7 @@
       },
       {
         "id": "ehx-soul-food-g6-t9-l6",
-        "file": "/audio/ehx-soul-food/6-9-6.wav",
+        "file": "/audio/ehx-soul-food/6-9-6.wav?v=2",
         "label": "Drive 6 · Treble 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -605,7 +585,7 @@
       },
       {
         "id": "ehx-soul-food-g9-t2-l6",
-        "file": "/audio/ehx-soul-food/9-2-6.wav",
+        "file": "/audio/ehx-soul-food/9-2-6.wav?v=2",
         "label": "Drive 9 · Treble 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -615,7 +595,7 @@
       },
       {
         "id": "ehx-soul-food-g9-t6-l6",
-        "file": "/audio/ehx-soul-food/9-6-6.wav",
+        "file": "/audio/ehx-soul-food/9-6-6.wav?v=2",
         "label": "Drive 9 · Treble 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -625,7 +605,7 @@
       },
       {
         "id": "ehx-soul-food-g9-t9-l6",
-        "file": "/audio/ehx-soul-food/9-9-6.wav",
+        "file": "/audio/ehx-soul-food/9-9-6.wav?v=2",
         "label": "Drive 9 · Treble 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -694,17 +674,12 @@
         "store": "Sweetwater",
         "url": "https://www.sweetwater.com/store/search.php?s=Electro-Harmonix%20Big%20Muff%20Pi&aff=pedalteststudio",
         "order": 3
-      },
-      {
-        "store": "GuitarCenter.pl",
-        "url": "https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=Electro-Harmonix%20Big%20Muff%20Pi&aff=pedalteststudio",
-        "order": 4
       }
     ],
     "recordings": [
       {
         "id": "ehx-big-muff-g2-t2-l6",
-        "file": "/audio/ehx-big-muff/2-2-6.wav",
+        "file": "/audio/ehx-big-muff/2-2-6.wav?v=2",
         "label": "Sustain 2 · Tone 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -714,7 +689,7 @@
       },
       {
         "id": "ehx-big-muff-g2-t6-l6",
-        "file": "/audio/ehx-big-muff/2-6-6.wav",
+        "file": "/audio/ehx-big-muff/2-6-6.wav?v=2",
         "label": "Sustain 2 · Tone 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -724,7 +699,7 @@
       },
       {
         "id": "ehx-big-muff-g2-t9-l6",
-        "file": "/audio/ehx-big-muff/2-9-6.wav",
+        "file": "/audio/ehx-big-muff/2-9-6.wav?v=2",
         "label": "Sustain 2 · Tone 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -734,7 +709,7 @@
       },
       {
         "id": "ehx-big-muff-g6-t2-l6",
-        "file": "/audio/ehx-big-muff/6-2-6.wav",
+        "file": "/audio/ehx-big-muff/6-2-6.wav?v=2",
         "label": "Sustain 6 · Tone 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -744,7 +719,7 @@
       },
       {
         "id": "ehx-big-muff-g6-t6-l6",
-        "file": "/audio/ehx-big-muff/6-6-6.wav",
+        "file": "/audio/ehx-big-muff/6-6-6.wav?v=2",
         "label": "Sustain 6 · Tone 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -754,7 +729,7 @@
       },
       {
         "id": "ehx-big-muff-g6-t9-l6",
-        "file": "/audio/ehx-big-muff/6-9-6.wav",
+        "file": "/audio/ehx-big-muff/6-9-6.wav?v=2",
         "label": "Sustain 6 · Tone 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -764,7 +739,7 @@
       },
       {
         "id": "ehx-big-muff-g9-t2-l6",
-        "file": "/audio/ehx-big-muff/9-2-6.wav",
+        "file": "/audio/ehx-big-muff/9-2-6.wav?v=2",
         "label": "Sustain 9 · Tone 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -774,7 +749,7 @@
       },
       {
         "id": "ehx-big-muff-g9-t6-l6",
-        "file": "/audio/ehx-big-muff/9-6-6.wav",
+        "file": "/audio/ehx-big-muff/9-6-6.wav?v=2",
         "label": "Sustain 9 · Tone 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -784,7 +759,7 @@
       },
       {
         "id": "ehx-big-muff-g9-t9-l6",
-        "file": "/audio/ehx-big-muff/9-9-6.wav",
+        "file": "/audio/ehx-big-muff/9-9-6.wav?v=2",
         "label": "Sustain 9 · Tone 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -853,17 +828,12 @@
         "store": "Sweetwater",
         "url": "https://www.sweetwater.com/store/search.php?s=Way%20Huge%20Swollen%20Pickle%20MkIIS&aff=pedalteststudio",
         "order": 3
-      },
-      {
-        "store": "GuitarCenter.pl",
-        "url": "https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=Way%20Huge%20Swollen%20Pickle%20MkIIS&aff=pedalteststudio",
-        "order": 4
       }
     ],
     "recordings": [
       {
         "id": "way-huge-swollen-pickle-g2-t2-l6",
-        "file": "/audio/way-huge-swollen-pickle/2-2-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/2-2-6.wav?v=2",
         "label": "Sustain 2 · Filter 2 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -873,7 +843,7 @@
       },
       {
         "id": "way-huge-swollen-pickle-g2-t6-l6",
-        "file": "/audio/way-huge-swollen-pickle/2-6-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/2-6-6.wav?v=2",
         "label": "Sustain 2 · Filter 6 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -883,7 +853,7 @@
       },
       {
         "id": "way-huge-swollen-pickle-g2-t9-l6",
-        "file": "/audio/way-huge-swollen-pickle/2-9-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/2-9-6.wav?v=2",
         "label": "Sustain 2 · Filter 9 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -893,7 +863,7 @@
       },
       {
         "id": "way-huge-swollen-pickle-g6-t2-l6",
-        "file": "/audio/way-huge-swollen-pickle/6-2-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/6-2-6.wav?v=2",
         "label": "Sustain 6 · Filter 2 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -903,7 +873,7 @@
       },
       {
         "id": "way-huge-swollen-pickle-g6-t6-l6",
-        "file": "/audio/way-huge-swollen-pickle/6-6-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/6-6-6.wav?v=2",
         "label": "Sustain 6 · Filter 6 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -913,7 +883,7 @@
       },
       {
         "id": "way-huge-swollen-pickle-g6-t9-l6",
-        "file": "/audio/way-huge-swollen-pickle/6-9-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/6-9-6.wav?v=2",
         "label": "Sustain 6 · Filter 9 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -923,7 +893,7 @@
       },
       {
         "id": "way-huge-swollen-pickle-g9-t2-l6",
-        "file": "/audio/way-huge-swollen-pickle/9-2-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/9-2-6.wav?v=2",
         "label": "Sustain 9 · Filter 2 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -933,7 +903,7 @@
       },
       {
         "id": "way-huge-swollen-pickle-g9-t6-l6",
-        "file": "/audio/way-huge-swollen-pickle/9-6-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/9-6-6.wav?v=2",
         "label": "Sustain 9 · Filter 6 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -943,7 +913,7 @@
       },
       {
         "id": "way-huge-swollen-pickle-g9-t9-l6",
-        "file": "/audio/way-huge-swollen-pickle/9-9-6.wav",
+        "file": "/audio/way-huge-swollen-pickle/9-9-6.wav?v=2",
         "label": "Sustain 9 · Filter 9 · Loudness 6",
         "knobValues": {
           "loudness": 6,
@@ -1012,17 +982,12 @@
         "store": "Sweetwater",
         "url": "https://www.sweetwater.com/store/search.php?s=Wampler%20Velvet%20Fuzz&aff=pedalteststudio",
         "order": 3
-      },
-      {
-        "store": "GuitarCenter.pl",
-        "url": "https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=Wampler%20Velvet%20Fuzz&aff=pedalteststudio",
-        "order": 4
       }
     ],
     "recordings": [
       {
         "id": "wampler-velvet-fuzz-g2-t2-l6",
-        "file": "/audio/wampler-velvet-fuzz/2-2-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/2-2-6.wav?v=2",
         "label": "Fuzz 2 · Brightness 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1032,7 +997,7 @@
       },
       {
         "id": "wampler-velvet-fuzz-g2-t6-l6",
-        "file": "/audio/wampler-velvet-fuzz/2-6-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/2-6-6.wav?v=2",
         "label": "Fuzz 2 · Brightness 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1042,7 +1007,7 @@
       },
       {
         "id": "wampler-velvet-fuzz-g2-t9-l6",
-        "file": "/audio/wampler-velvet-fuzz/2-9-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/2-9-6.wav?v=2",
         "label": "Fuzz 2 · Brightness 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1052,7 +1017,7 @@
       },
       {
         "id": "wampler-velvet-fuzz-g6-t2-l6",
-        "file": "/audio/wampler-velvet-fuzz/6-2-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/6-2-6.wav?v=2",
         "label": "Fuzz 6 · Brightness 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1062,7 +1027,7 @@
       },
       {
         "id": "wampler-velvet-fuzz-g6-t6-l6",
-        "file": "/audio/wampler-velvet-fuzz/6-6-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/6-6-6.wav?v=2",
         "label": "Fuzz 6 · Brightness 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1072,7 +1037,7 @@
       },
       {
         "id": "wampler-velvet-fuzz-g6-t9-l6",
-        "file": "/audio/wampler-velvet-fuzz/6-9-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/6-9-6.wav?v=2",
         "label": "Fuzz 6 · Brightness 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1082,7 +1047,7 @@
       },
       {
         "id": "wampler-velvet-fuzz-g9-t2-l6",
-        "file": "/audio/wampler-velvet-fuzz/9-2-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/9-2-6.wav?v=2",
         "label": "Fuzz 9 · Brightness 2 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1092,7 +1057,7 @@
       },
       {
         "id": "wampler-velvet-fuzz-g9-t6-l6",
-        "file": "/audio/wampler-velvet-fuzz/9-6-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/9-6-6.wav?v=2",
         "label": "Fuzz 9 · Brightness 6 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1102,7 +1067,7 @@
       },
       {
         "id": "wampler-velvet-fuzz-g9-t9-l6",
-        "file": "/audio/wampler-velvet-fuzz/9-9-6.wav",
+        "file": "/audio/wampler-velvet-fuzz/9-9-6.wav?v=2",
         "label": "Fuzz 9 · Brightness 9 · Volume 6",
         "knobValues": {
           "volume": 6,
@@ -1171,17 +1136,12 @@
         "store": "Sweetwater",
         "url": "https://www.sweetwater.com/store/search.php?s=MXR%20Super%20Badass%20Variac%20Fuzz&aff=pedalteststudio",
         "order": 3
-      },
-      {
-        "store": "GuitarCenter.pl",
-        "url": "https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=MXR%20Super%20Badass%20Variac%20Fuzz&aff=pedalteststudio",
-        "order": 4
       }
     ],
     "recordings": [
       {
         "id": "mxr-variac-fuzz-g2-t2-l6",
-        "file": "/audio/mxr-variac-fuzz/2-2-6.wav",
+        "file": "/audio/mxr-variac-fuzz/2-2-6.wav?v=2",
         "label": "Amount 2 · Tone 2 · Output 6",
         "knobValues": {
           "output": 6,
@@ -1191,7 +1151,7 @@
       },
       {
         "id": "mxr-variac-fuzz-g2-t6-l6",
-        "file": "/audio/mxr-variac-fuzz/2-6-6.wav",
+        "file": "/audio/mxr-variac-fuzz/2-6-6.wav?v=2",
         "label": "Amount 2 · Tone 6 · Output 6",
         "knobValues": {
           "output": 6,
@@ -1201,7 +1161,7 @@
       },
       {
         "id": "mxr-variac-fuzz-g2-t9-l6",
-        "file": "/audio/mxr-variac-fuzz/2-9-6.wav",
+        "file": "/audio/mxr-variac-fuzz/2-9-6.wav?v=2",
         "label": "Amount 2 · Tone 9 · Output 6",
         "knobValues": {
           "output": 6,
@@ -1211,7 +1171,7 @@
       },
       {
         "id": "mxr-variac-fuzz-g6-t2-l6",
-        "file": "/audio/mxr-variac-fuzz/6-2-6.wav",
+        "file": "/audio/mxr-variac-fuzz/6-2-6.wav?v=2",
         "label": "Amount 6 · Tone 2 · Output 6",
         "knobValues": {
           "output": 6,
@@ -1221,7 +1181,7 @@
       },
       {
         "id": "mxr-variac-fuzz-g6-t6-l6",
-        "file": "/audio/mxr-variac-fuzz/6-6-6.wav",
+        "file": "/audio/mxr-variac-fuzz/6-6-6.wav?v=2",
         "label": "Amount 6 · Tone 6 · Output 6",
         "knobValues": {
           "output": 6,
@@ -1231,7 +1191,7 @@
       },
       {
         "id": "mxr-variac-fuzz-g6-t9-l6",
-        "file": "/audio/mxr-variac-fuzz/6-9-6.wav",
+        "file": "/audio/mxr-variac-fuzz/6-9-6.wav?v=2",
         "label": "Amount 6 · Tone 9 · Output 6",
         "knobValues": {
           "output": 6,
@@ -1241,7 +1201,7 @@
       },
       {
         "id": "mxr-variac-fuzz-g9-t2-l6",
-        "file": "/audio/mxr-variac-fuzz/9-2-6.wav",
+        "file": "/audio/mxr-variac-fuzz/9-2-6.wav?v=2",
         "label": "Amount 9 · Tone 2 · Output 6",
         "knobValues": {
           "output": 6,
@@ -1251,7 +1211,7 @@
       },
       {
         "id": "mxr-variac-fuzz-g9-t6-l6",
-        "file": "/audio/mxr-variac-fuzz/9-6-6.wav",
+        "file": "/audio/mxr-variac-fuzz/9-6-6.wav?v=2",
         "label": "Amount 9 · Tone 6 · Output 6",
         "knobValues": {
           "output": 6,
@@ -1261,7 +1221,7 @@
       },
       {
         "id": "mxr-variac-fuzz-g9-t9-l6",
-        "file": "/audio/mxr-variac-fuzz/9-9-6.wav",
+        "file": "/audio/mxr-variac-fuzz/9-9-6.wav?v=2",
         "label": "Amount 9 · Tone 9 · Output 6",
         "knobValues": {
           "output": 6,

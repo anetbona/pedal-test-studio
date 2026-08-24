@@ -1,8 +1,10 @@
 // Podstrona kostki (U2–U5): podgląd z interaktywnymi gałkami, sekcje 01/02,
-// rozwijany opis (EN/PL), belka sklepów z linkami afiliacyjnymi.
+// transport play/stop, rozwijany opis (EN/PL), pasek sklepów.
 //
-// Gałki: kliknięcie nagrania animuje je do zapisanych pozycji, a kręcenie gałką
-// przyciąga wartość do najbliższego nagranego ustawienia i odtwarza pasujące nagranie.
+// Riff gra w pętli. Kręcenie gałką przenosi odtwarzanie na nagranie o tych
+// ustawieniach OD TEJ SAMEJ POZYCJI — dźwięk zmienia się w locie, bez przerwy.
+// Gdy odtwarzanie jest zatrzymane, kręcenie tylko wybiera ustawienie (cisza
+// zostaje uszanowana aż do naciśnięcia Play).
 
 import { renderKnobs } from './knobs.js';
 import { Player } from './player.js';
@@ -44,13 +46,12 @@ export function renderConfigurator(pedal) {
 
   const rows = new Map(); // recordingId -> { item, icon }
   const currentLabel = document.getElementById('current-recording');
+  const transportBtn = document.getElementById('transport-btn');
 
-  // przełączenie z zachowaniem pozycji riffu — gałka "łapie" ustawienie i gra dalej
-  const selectRecording = (rec) => {
-    const result = player.switchTo(rec.id);
+  const showSelection = (rec) => {
     knobControl.setValues(rec.knobValues);
     currentLabel.textContent = rec.label;
-    if (result === 'started') trackPlay(pedal.id, rec.id);
+    currentLabel.dataset.recId = rec.id;
   };
 
   // gałki na grafice — kręcenie wybiera nagranie o najbliższych ustawieniach
@@ -58,23 +59,22 @@ export function renderConfigurator(pedal) {
   knobControl = renderKnobs(wrap, pedal.knobs, {
     availableValues,
     onChange(knobId, value) {
-      const current = currentValues(pedal, currentLabel.dataset.recId);
-      current[knobId] = value;
+      const values = currentValues(pedal, currentLabel.dataset.recId);
+      values[knobId] = value;
       const rec = pedal.recordings.find((r) =>
-        pedal.knobs.every((k) => r.knobValues[k.id] === current[k.id]));
-      if (rec) {
-        currentLabel.dataset.recId = rec.id;
-        selectRecording(rec);
-      }
+        pedal.knobs.every((k) => r.knobValues[k.id] === values[k.id]));
+      if (!rec) return;
+      // autoplay:false → dźwięk płynie dalej tylko wtedy, gdy już grał
+      const result = player.switchTo(rec.id, { autoplay: false });
+      showSelection(rec);
+      if (result === 'started') trackPlay(pedal.id, rec.id);
     },
   });
-  if (pedal.recordings.length) {
-    knobControl.setValues(pedal.recordings[0].knobValues);
-    currentLabel.dataset.recId = pedal.recordings[0].id;
-  }
 
-  renderRecordings(pedal, rows, selectRecording, currentLabel);
+  renderRecordings(pedal, rows, showSelection, transportBtn, currentLabel);
   renderAffiliateBanner(pedal);
+
+  if (pedal.recordings.length) showSelection(pedal.recordings[0]);
 }
 
 function currentValues(pedal, recId) {
@@ -99,10 +99,9 @@ function renderDescription(pedal) {
   });
 }
 
-function renderRecordings(pedal, rows, selectRecording, currentLabel) {
+function renderRecordings(pedal, rows, showSelection, transportBtn, currentLabel) {
   const list = document.getElementById('recording-list');
   list.innerHTML = '';
-  currentLabel.textContent = '—';
   player.load(pedal.recordings);
 
   player.onStateChange = (recordingId, isPlaying) => {
@@ -111,6 +110,16 @@ function renderRecordings(pedal, rows, selectRecording, currentLabel) {
       item.classList.toggle('active', active && isPlaying);
       icon.textContent = active && isPlaying ? '❚❚' : '▶';
     }
+    transportBtn.textContent = isPlaying ? '■' : '▶';
+    transportBtn.classList.toggle('playing', isPlaying);
+    transportBtn.setAttribute('aria-label', isPlaying ? t('transport.stop') : t('transport.play'));
+  };
+
+  transportBtn.onclick = () => {
+    const recId = currentLabel.dataset.recId || pedal.recordings[0]?.id;
+    if (!recId) return;
+    const result = player.toggle(recId);
+    if (result === 'started') trackPlay(pedal.id, recId);
   };
 
   for (const rec of pedal.recordings) {
@@ -128,17 +137,12 @@ function renderRecordings(pedal, rows, selectRecording, currentLabel) {
 
     item.append(icon, label);
     item.addEventListener('click', () => {
-      currentLabel.dataset.recId = rec.id;
-      if (player.currentId === rec.id) {
-        // klik w aktywne nagranie = pauza/wznowienie
-        const result = player.toggle(rec.id);
-        knobControl.setValues(rec.knobValues);
-        currentLabel.textContent = rec.label;
-        if (result === 'started') trackPlay(pedal.id, rec.id);
-      } else {
-        // inne nagranie: jeśli riff gra — kontynuacja od tej samej pozycji
-        selectRecording(rec);
-      }
+      // klik w aktywne nagranie = pauza/wznowienie; w inne = przełączenie i granie
+      const result = player.currentId === rec.id
+        ? player.toggle(rec.id)
+        : player.switchTo(rec.id, { autoplay: true });
+      showSelection(rec);
+      if (result === 'started') trackPlay(pedal.id, rec.id);
     });
 
     li.appendChild(item);
@@ -152,7 +156,7 @@ function renderAffiliateBanner(pedal) {
   container.innerHTML = '';
 
   // reguła biznesowa: sklep producenta pierwszy, potem pozostałe wg `order`
-  const links = [...pedal.affiliateLinks].sort((a, b) => a.order - b.order);
+  const links = [...(pedal.affiliateLinks || [])].sort((a, b) => a.order - b.order);
   links.forEach((link, i) => {
     const isProducer = link.role === 'producer' || i === 0;
     const a = document.createElement('a');

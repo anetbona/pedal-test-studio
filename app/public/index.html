@@ -31,11 +31,7 @@
     <section class="catalog-section" id="katalog">
       <h2 data-i18n="catalog.title">Pedal catalog</h2>
       <p class="catalog-hint" data-i18n="catalog.hint">Fuzz and overdrive from different makers. Click a pedal to hear it.</p>
-      <div class="carousel-wrap">
-        <button class="carousel-arrow" data-dir="-1" aria-label="Previous">‹</button>
-        <div class="carousel" id="carousel"></div>
-        <button class="carousel-arrow" data-dir="1" aria-label="Next">›</button>
-      </div>
+      <div class="pedal-grid" id="carousel"></div>
     </section>
   </main>
 
@@ -78,9 +74,12 @@
           <header class="kn-step-head">
             <span class="kn-step-num">02</span>
             <h3 data-i18n="step2.title">Recordings</h3>
-            <span class="kn-step-value" id="current-recording">—</span>
           </header>
           <p class="kn-step-hint" data-i18n="step2.hint">The same riff with different knob settings — click a recording or turn the knobs yourself.</p>
+          <div class="transport">
+            <button type="button" class="transport-btn" id="transport-btn" aria-label="Play">▶</button>
+            <span class="transport-label" id="current-recording">—</span>
+          </div>
           <ul class="recording-list" id="recording-list"></ul>
         </section>
       </aside>

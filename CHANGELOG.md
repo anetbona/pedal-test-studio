@@ -4,6 +4,31 @@ Wszystkie istotne zmiany w projekcie są dokumentowane w tym pliku.
 Format zgodny z [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/),
 wersjonowanie zgodne z [SemVer](https://semver.org/lang/pl/).
 
+## [0.4.0] — 2026-08-21
+
+### Added
+- **Transport play/stop** w panelu kostki — zatrzymanie i wznowienie odsłuchu
+  w dowolnym momencie (ikona ▶/■, dostępna z klawiatury).
+
+### Changed
+- **Riff gra w pętli** i jest 2× dłuższy (~10,2 s, dwie frazy): można kręcić
+  gałkami dowolnie długo i cały czas słyszeć zmiany brzmienia. Pętla jest
+  bezszwowa (zawinięcie wybrzmienia na początek + pre-roll filtra, bez fade'ów).
+- Kręcenie gałką w trakcie grania przełącza ustawienie **od tej samej pozycji
+  riffu** — dźwięk nie startuje od nowa. Po zatrzymaniu kręcenie zmienia
+  ustawienie bez wznawiania dźwięku (decyzja usera o ciszy jest respektowana).
+- **Katalog jako siatka** zamiast karuzeli — wszystkie kostki widoczne naraz,
+  bez przewijania w bok; kompaktowe hero i karty.
+- **Kostka mieści się w widoku** przy wysokości okna ≥ 600 px (bez przewijania
+  strony); rośnie z oknem do 820 px i powyżej ok. 1060 px wysokości okna
+  zostaje w stałym rozmiarze. Poniżej 600 px strona przewija się jak dotąd.
+- Pasek sklepów ograniczony do **3 pozycji**: producent + Thomann + Sweetwater
+  (docelowo linki afiliacyjne).
+
+### Fixed
+- Nagrania mają wersję w URL (`?v=N`) — po zmianie brzmienia przeglądarki nie
+  odtwarzają już starych plików z cache.
+
 ## [Unreleased]
 
 ### Planowane

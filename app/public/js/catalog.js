@@ -1,8 +1,8 @@
-// Katalog kostek (U1): przesuwana karuzela — swipe na mobile, strzałki/scroll na desktopie.
+// Katalog kostek (U1): siatka — wszystkie kostki widoczne naraz, bez przewijania.
 
 export function renderCatalog(pedals) {
-  const carousel = document.getElementById('carousel');
-  carousel.innerHTML = '';
+  const grid = document.getElementById('carousel');
+  grid.innerHTML = '';
 
   for (const pedal of pedals) {
     const card = document.createElement('button');
@@ -30,14 +30,6 @@ export function renderCatalog(pedals) {
     card.addEventListener('click', () => {
       location.hash = `#/pedal/${pedal.id}`;
     });
-    carousel.appendChild(card);
+    grid.appendChild(card);
   }
-
-  // strzałki na desktopie
-  document.querySelectorAll('.carousel-arrow').forEach((btn) => {
-    btn.onclick = () => {
-      const dir = Number(btn.dataset.dir);
-      carousel.scrollBy({ left: dir * (272 * 2), behavior: 'smooth' });
-    };
-  });
 }

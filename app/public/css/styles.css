@@ -100,7 +100,8 @@ body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na po
 .hero {
   background: #ffffff;
   text-align: center;
-  padding: 140px 24px 72px;
+  /* kompaktowo, żeby siatka katalogu była widoczna od razu pod hero */
+  padding: 104px 24px 48px;
 }
 .eyebrow {
   display: inline-block;
@@ -113,18 +114,18 @@ body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na po
   margin-bottom: 20px;
 }
 .hero h1 {
-  font-size: 58px;
+  font-size: 50px;
   font-weight: 700;
   line-height: 1.08;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 .hero-sub {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--gray);
   max-width: 620px;
-  margin: 0 auto 36px;
+  margin: 0 auto 28px;
 }
 .pill-cta {
   display: inline-block;
@@ -148,7 +149,7 @@ body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na po
 .catalog-section {
   background: var(--bg-soft);
   border-top: 1px solid var(--border);
-  padding: 64px 0 96px;
+  padding: 40px 0 64px;
 }
 .catalog-section h2 {
   font-size: 36px;
@@ -164,41 +165,32 @@ body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na po
   color: var(--gray);
   margin-bottom: 40px;
 }
-.carousel-wrap {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 56px;
-}
-.carousel {
-  display: flex;
+/* siatka — wszystkie kostki widoczne naraz, bez przewijania w bok */
+.pedal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 18px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding: 6px 4px 26px;
-  scrollbar-width: none;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
-.carousel::-webkit-scrollbar { display: none; }
 .pedal-card {
-  flex: 0 0 252px;
-  scroll-snap-align: start;
   background: #ffffff;
   border: 1px solid #dedede;
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
-  padding: 24px 18px 22px;
+  padding: 18px 14px 16px;
   font-family: var(--body);
   transition: transform 0.2s ease, border-color 0.2s;
 }
 .pedal-card:hover { transform: translateY(-3px); border-color: var(--green); }
 .pedal-card:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
 .pedal-card img {
-  width: 150px;
-  height: 200px;
+  width: 120px;
+  height: 152px;
   object-fit: contain;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .pedal-card .card-name {
   font-family: var(--heading);
@@ -225,33 +217,23 @@ body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na po
   padding: 4px 12px;
   border-radius: 3px;
 }
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px; height: 44px;
-  background: #ffffff;
-  border: 2px solid var(--green);
-  border-radius: 3px;
-  color: var(--green);
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-  z-index: 2;
-}
-.carousel-arrow:hover { background: var(--green); color: #fff; }
-.carousel-arrow:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
-.carousel-arrow[data-dir="-1"] { left: 4px; }
-.carousel-arrow[data-dir="1"] { right: 4px; }
-
 /* ===================== Podstrona kostki ===================== */
+
+:root {
+  --nav-h: 64px;
+  --buybar-h: 76px;
+  --stage-pad: 28px;
+  /* wysokość dostępna dla grafiki kostki: viewport bez nav, paska podglądu,
+     paddingu sceny i paska sklepów; zatrzymuje się na 820px, więc powyżej
+     ok. 1060px wysokości okna kostka nie rośnie już wraz z oknem */
+  --pedal-h: min(calc(100vh - var(--nav-h) - var(--buybar-h) - 50px - var(--stage-pad) * 2), 820px);
+}
 
 .kn-page {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  min-height: 100vh;
-  padding: 64px 0 96px; /* nav + belka sklepów */
+  height: 100vh; /* kostka mieści się w widoku — bez scrollowania strony */
+  padding: var(--nav-h) 0 var(--buybar-h);
 }
 
 /* --- lewa kolumna: podgląd --- */
@@ -288,23 +270,27 @@ body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na po
 }
 .kn-stage {
   flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 56px 48px 64px;
+  padding: var(--stage-pad) 24px;
   /* czarny horyzont + szara podłoga, jak w podglądzie 3D */
   background: linear-gradient(180deg, #0c0c0c 0%, #0c0c0c 44%, #c7c8ca 44.2%, #b3b4b7 100%);
 }
+/* wrapper przyjmuje dokładnie rozmiar grafiki (gałki są pozycjonowane w %) */
 .pedal-image-wrap {
   position: relative;
-  width: 100%;
-  max-width: 400px;
-  filter: drop-shadow(0 34px 36px rgba(0, 0, 0, 0.45));
+  display: inline-block;
+  height: var(--pedal-h);
+  max-width: 100%;
+  filter: drop-shadow(0 30px 34px rgba(0, 0, 0, 0.45));
 }
 .pedal-image-wrap img {
   display: block;
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
 }
 
 /* --- gałki (overlay na zdjęciu) --- */
@@ -448,7 +434,37 @@ body.pedal-view .nav-link { display: inline-block; margin-left: auto; } /* na po
 }
 .kn-more:hover { text-decoration: underline; }
 
-/* sekcja 02: nagrania */
+/* sekcja 02: transport (play/stop) + nagrania */
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.transport-btn {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--green);
+  border-radius: 3px;
+  background: #ffffff;
+  color: var(--green);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.transport-btn:hover { background: var(--green-tint); }
+.transport-btn.playing { background: var(--green); color: #ffffff; }
+.transport-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.transport-label {
+  font-family: var(--heading);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+}
+
 .recording-list { list-style: none; }
 .recording-item {
   display: flex;
@@ -550,17 +566,30 @@ body.pedal-view .footer { display: none; } /* na podstronie dół zajmuje belka 
 
 /* ===================== Responsywność ===================== */
 
+/* niskie okna (<600px wysokości): kostka wraca do przewijania strony */
+@media (max-height: 599px) {
+  .kn-page { height: auto; min-height: 100vh; }
+  .pedal-image-wrap { height: 420px; }
+  .kn-stage { padding: 24px; }
+}
+
 @media (max-width: 1024px) {
   .kn-page { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
   .kn-panel { padding: 28px 24px 40px; }
 }
+/* układ jednokolumnowy — podgląd nad panelem, strona przewijana */
 @media (max-width: 834px) {
   .hero { padding: 112px 20px 56px; }
   .hero h1 { font-size: 42px; }
-  .kn-page { grid-template-columns: 1fr; padding-bottom: 132px; }
-  .kn-stage { min-height: 420px; padding: 36px 28px 44px; }
-  .pedal-image-wrap { max-width: 320px; }
-  .kn-panel { border-left: none; }
+  .kn-page {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 170px; /* zapas na pasek sklepów, który zawija się na wąskich ekranach */
+  }
+  .kn-stage { padding: 28px 24px; }
+  .pedal-image-wrap { height: min(52vh, 460px); }
+  .kn-panel { border-left: none; overflow: visible; }
 }
 @media (max-width: 640px) {
   .nav { padding: 0 16px; }
@@ -569,9 +598,10 @@ body.pedal-view .footer { display: none; } /* na podstronie dół zajmuje belka 
   .hero h1 { font-size: 32px; }
   .hero-sub { font-size: 16px; }
   .catalog-section h2 { font-size: 26px; }
-  .carousel-wrap { padding: 0 12px; }
-  .carousel-arrow { display: none; } /* na mobile: swipe */
-  .pedal-card { flex-basis: 218px; }
+  .pedal-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; padding: 0 16px; }
+  .pedal-card { padding: 16px 12px 14px; }
+  .pedal-card img { width: 110px; height: 150px; }
+  .pedal-card .card-name { font-size: 17px; }
   .kn-name-row h1 { font-size: 26px; }
   #pedal-logo { height: 20px; }
   .kn-buybar { padding: 12px 16px; }

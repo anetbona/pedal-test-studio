@@ -25,6 +25,10 @@ const LOGO_DIR = path.join(IMG_DIR, 'logos');
 const SAMPLE_RATE = 22050;
 const F = `-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif`;
 
+// Wersja nagrań — doklejana do URL-i audio (?v=N). Podbij przy każdej zmianie
+// brzmienia/długości próbek, inaczej przeglądarki zagrają stare pliki z cache.
+const AUDIO_VERSION = 2;
+
 // ---------------------------------------------------------------------------
 // Pomocnicze: kolory i wspólne elementy grafik
 // ---------------------------------------------------------------------------
@@ -356,7 +360,10 @@ const KNOB_VALUES = [2, 6, 9];
 const FIXED_LEVEL = 6;
 
 const E3 = 164.81, G3 = 196.0, A3 = 220.0, B3 = 246.94, D4 = 293.66, E4 = 329.63;
-const RIFF = [
+
+// Riff w dwóch przebiegach (A + wariacja) — dłuższa próbka, żeby dało się kręcić
+// gałkami przez dłuższą chwilę i cały czas słyszeć zmiany brzmienia.
+const RIFF_A = [
   [E3, 0.0, 1.5, 0.9], [B3, 0.0, 1.5, 0.55],
   [E3, 1.0, 0.5, 0.8],
   [G3, 1.5, 0.5, 0.85],
@@ -367,10 +374,32 @@ const RIFF = [
   [D4, 5.0, 0.5, 0.85],
   [B3, 5.5, 0.5, 0.8],
   [A3, 6.0, 1.0, 0.9],
-  [E3, 7.0, 2.0, 0.95], [B3, 7.0, 2.0, 0.6], [E4, 7.0, 2.0, 0.4],
+  [E3, 7.0, 1.5, 0.95], [B3, 7.0, 1.5, 0.6], [E4, 7.0, 1.5, 0.4],
+];
+const RIFF_B = [
+  [E3, 0.0, 1.0, 0.9], [B3, 0.0, 1.0, 0.55],
+  [D4, 1.0, 0.5, 0.85],
+  [E4, 1.5, 0.5, 0.8],
+  [G3, 2.0, 1.0, 0.9], [D4, 2.0, 1.0, 0.5],
+  [A3, 3.0, 0.5, 0.85],
+  [G3, 3.5, 0.5, 0.8],
+  [E3, 4.0, 0.5, 0.9],
+  [G3, 4.5, 0.5, 0.85],
+  [A3, 5.0, 1.0, 0.9], [E4, 5.0, 1.0, 0.5],
+  [B3, 6.0, 0.5, 0.85],
+  [G3, 6.5, 0.5, 0.8],
+  [E3, 7.0, 1.5, 0.95], [B3, 7.0, 1.5, 0.6], [G3, 7.0, 1.5, 0.45],
+];
+const PHRASE_BEATS = 8.5;
+const RIFF = [
+  ...RIFF_A,
+  ...RIFF_B.map(([f, s, d, a]) => [f, s + PHRASE_BEATS, d, a]),
 ];
 const BPM = 100;
-const TOTAL_BEATS = 9.2;
+// długość pętli (druga fraza kończy się na PHRASE_BEATS * 2) — ok. 10,2 s
+const TOTAL_BEATS = PHRASE_BEATS * 2;
+// ogon renderowany poza pętlą i zawijany na jej początek (bezszwowe zapętlenie)
+const TAIL_BEATS = 2.4;
 
 let seedState = 42;
 function rand() {
@@ -395,19 +424,30 @@ function pluck(freq, durSec, amp) {
   return out;
 }
 
+// Zwraca próbkę przygotowaną do BEZSZWOWEGO zapętlenia: wybrzmienie ostatniego
+// akordu (ogon poza długością pętli) jest zawijane na początek, więc styk końca
+// z początkiem nie daje słyszalnego przeskoku.
 function renderDryRiff() {
   const beatSec = 60 / BPM;
-  const total = Math.round(TOTAL_BEATS * beatSec * SAMPLE_RATE);
-  const mix = new Float32Array(total);
+  const loopLen = Math.round(TOTAL_BEATS * beatSec * SAMPLE_RATE);
+  const tailLen = Math.round(TAIL_BEATS * beatSec * SAMPLE_RATE);
+  const buf = new Float32Array(loopLen + tailLen);
+
   for (const [freq, startBeat, durBeats, amp] of RIFF) {
     const start = Math.round(startBeat * beatSec * SAMPLE_RATE);
     const note = pluck(freq, Math.min(durBeats * beatSec * 1.8, 2.4), amp);
-    for (let i = 0; i < note.length && start + i < total; i++) mix[start + i] += note[i];
+    for (let i = 0; i < note.length && start + i < buf.length; i++) buf[start + i] += note[i];
   }
+
+  // zawinięcie ogona na początek pętli
+  const mix = new Float32Array(loopLen);
+  mix.set(buf.subarray(0, loopLen));
+  for (let i = 0; i < tailLen; i++) mix[i] += buf[loopLen + i];
+
   let peak = 0;
-  for (let i = 0; i < total; i++) peak = Math.max(peak, Math.abs(mix[i]));
+  for (let i = 0; i < loopLen; i++) peak = Math.max(peak, Math.abs(mix[i]));
   const k = 0.5 / (peak || 1);
-  for (let i = 0; i < total; i++) mix[i] *= k;
+  for (let i = 0; i < loopLen; i++) mix[i] *= k;
   return mix;
 }
 
@@ -429,7 +469,10 @@ function processThroughPedal(dry, type, gain, tone, level) {
 
   const cutoff = 550 * Math.pow(2, (tone / 10) * 3.45);
   const alpha = 1 - Math.exp((-2 * Math.PI * cutoff) / SAMPLE_RATE);
+  // pre-roll: pierwszy przebieg tylko po to, by stan filtra na starcie pętli
+  // odpowiadał stanowi na jej końcu (inaczej styk pętli daje słyszalny „klik")
   let y = 0;
+  for (let i = 0; i < n; i++) y += alpha * (out[i] - y);
   for (let i = 0; i < n; i++) {
     y += alpha * (out[i] - y);
     out[i] = y;
@@ -441,11 +484,7 @@ function processThroughPedal(dry, type, gain, tone, level) {
   const k = (0.92 / (peak || 1)) * levelGain;
   for (let i = 0; i < n; i++) out[i] *= k;
 
-  const fade = Math.round(0.01 * SAMPLE_RATE);
-  for (let i = 0; i < fade; i++) {
-    out[i] *= i / fade;
-    out[n - 1 - i] *= i / fade;
-  }
+  // bez fade-in/out — próbka jest zapętlana (fade tworzyłby dziurę w dźwięku)
   return out;
 }
 
@@ -481,10 +520,10 @@ function affiliateLinks(pedal) {
   const aff = 'aff=pedalteststudio';
   const q = encodeURIComponent(`${pedal.manufacturer} ${pedal.name}`);
   return [
+    // 3 sklepy: producent + dwaj duzi dystrybutorzy (docelowo linki afiliacyjne)
     { store: pedal.manufacturer, role: 'producer', url: `${pedal.producerUrl}?${aff}`, order: 1 },
     { store: 'Thomann', url: `https://www.thomann.de/pl/search_dir.html?sw=${q}&${aff}`, order: 2 },
     { store: 'Sweetwater', url: `https://www.sweetwater.com/store/search.php?s=${q}&${aff}`, order: 3 },
-    { store: 'GuitarCenter.pl', url: `https://guitarcenter.pl/catalog/advanced_search_result.php?keywords=${q}&${aff}`, order: 4 },
   ];
 }
 
@@ -541,7 +580,7 @@ function main() {
         writeWav(path.join(pedalAudioDir, fileName), processed);
         recordings.push({
           id: `${pedal.id}-g${g}-t${t}-l${FIXED_LEVEL}`,
-          file: `/audio/${pedal.id}/${fileName}`,
+          file: `/audio/${pedal.id}/${fileName}?v=${AUDIO_VERSION}`,
           label: `${byRole.gain.label} ${g} · ${byRole.tone.label} ${t} · ${byRole.level.label} ${FIXED_LEVEL}`,
           knobValues: values,
         });
