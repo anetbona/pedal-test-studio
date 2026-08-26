@@ -14,7 +14,7 @@ Data: 2026-06-11
 - **`03-design-source.md`** — design.md w stylu Apple (z getdesign.md) — źródło stylu wizualnego
 - `01-pomysl.md`, `02-brief.md`, `03-design.md` — dokumenty robocze sesji
 - `02-brief.html`, `04-spec.html`, `05-mvp-decision.html` — podgląd w przeglądarce
-- `_STATUS.md` — stan sesji (do kontynuacji skillem `/od-pomyslu-do-promptu`)
+- `_STATUS.md` — stan sesji (obecnie: [docs/dziennik-projektu.md](dziennik-projektu.md))
 
 ## Jak zacząć w Claude Code
 

@@ -4,6 +4,12 @@ Wszystkie istotne zmiany w projekcie są dokumentowane w tym pliku.
 Format zgodny z [Keep a Changelog](https://keepachangelog.com/pl/1.1.0/),
 wersjonowanie zgodne z [SemVer](https://semver.org/lang/pl/).
 
+## [Unreleased]
+
+### Planowane
+- Prawdziwe nagrania i zdjęcia kostek (zamiast generowanych placeholderów)
+- U12 porównanie A/B, U13 ankieta NPS — patrz [docs/ROADMAP.md](docs/ROADMAP.md)
+
 ## [0.4.1] — 2026-08-24
 
 ### Fixed
@@ -45,12 +51,6 @@ wersjonowanie zgodne z [SemVer](https://semver.org/lang/pl/).
 ### Fixed
 - Nagrania mają wersję w URL (`?v=N`) — po zmianie brzmienia przeglądarki nie
   odtwarzają już starych plików z cache.
-
-## [Unreleased]
-
-### Planowane
-- Prawdziwe nagrania i zdjęcia kostek (zamiast generowanych placeholderów)
-- U12 porównanie A/B, U13 ankieta NPS — patrz [docs/ROADMAP.md](docs/ROADMAP.md)
 
 ## [0.3.0] — 2026-08-20
 

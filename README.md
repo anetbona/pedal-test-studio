@@ -70,9 +70,18 @@ node --test "tests/**/*.test.js"
 │   ├── STRATEGY.md        #   Business Model Canvas + Value Proposition Canvas
 │   ├── ROADMAP.md         #   Inception → MVP → V1.1 → Future Backlog
 │   ├── UX_ARCHITECTURE.md #   architektura informacji, user flows, design system, WCAG
-│   └── TESTING_STRATEGY.md#   strategia testów: automaty, UAT, checklista QA
+│   ├── TESTING_STRATEGY.md#   strategia testów: automaty, UAT, checklista QA
+│   └── dziennik-projektu.md #  notatki robocze: dziennik decyzji (nie dokumentacja)
 ├── tests/                 # testy (integration; unit/e2e w backlogu)
-├── 01-pomysl.md … 07-initial-prompt.md, _STATUS.md   # discovery (sesja od-pomysłu-do-promptu)
+├── 01-pomysl.md           # discovery (sesja od-pomysłu-do-promptu), .md + .html:
+├── 02-brief.md            #   brief produktu
+├── 03-design.md           #   design system (+ 03-design-source.md — źródło z Kroku 3)
+├── 04-spec.md             #   specyfikacja: user stories, acceptance criteria, priorytety
+├── 05-mvp-decision.html   #   decyzja o zakresie MVP (MoSCoW)
+├── 07-initial-prompt.md   #   initial prompt pod Claude Code
+├── 08-research-benchmarking.md    # research konkurencji i benchmarking
+├── 09-business-model-canvas.md    # Business Model Canvas
+├── 10-value-proposition-canvas.md # Value Proposition Canvas
 └── .github/               # CI, szablony PR i issues
 ```
 
@@ -83,7 +92,15 @@ node --test "tests/**/*.test.js"
 - [docs/PRD.md](docs/PRD.md) · [docs/STRATEGY.md](docs/STRATEGY.md) ·
   [docs/ROADMAP.md](docs/ROADMAP.md) · [docs/UX_ARCHITECTURE.md](docs/UX_ARCHITECTURE.md) ·
   [docs/TESTING_STRATEGY.md](docs/TESTING_STRATEGY.md)
+- Discovery i strategia: [08-research-benchmarking.md](08-research-benchmarking.md) ·
+  [09-business-model-canvas.md](09-business-model-canvas.md) ·
+  [10-value-proposition-canvas.md](10-value-proposition-canvas.md)
+- Dziennik decyzji (notatki robocze): [docs/dziennik-projektu.md](docs/dziennik-projektu.md)
 - Historia zmian: [CHANGELOG.md](CHANGELOG.md)
+
+## Licencja
+
+MIT — patrz [LICENSE](LICENSE).
 
 ## Treści
 
